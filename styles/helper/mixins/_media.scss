@@ -1,0 +1,31 @@
+@mixin up($size) {
+    @if map_has_key($breakpoints, $size) {
+        $size: map_get($breakpoints, $size);
+
+        @media screen and (min-width: $size) {
+            @content;
+        }
+    }
+}
+
+@mixin down($size) {
+    @if map_has_key($breakpoints, $size) {
+        $size: map_get($breakpoints, $size);
+
+        @media screen and (max-width: $size - 1px) {
+            @content;
+        }
+    }
+}
+
+
+@mixin between($from, $to) {
+    @if map_has_key($breakpoints, $from) and map_has_key($breakpoints, $to) {
+        $from: map_get($breakpoints, $from);
+        $to: map_get($breakpoints, $to);
+
+        @media screen and (min-width: $from) and (max-width: $to - 1px) {
+            @content;
+        }
+    }
+}

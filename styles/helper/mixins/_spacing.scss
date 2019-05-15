@@ -1,0 +1,19 @@
+@mixin margin($ratio: 1, $pos: auto) {
+    @if $pos == auto {
+        margin: margin($ratio);
+    }
+
+    @else {
+        margin-#{$pos}: margin($ratio);
+    }
+}
+
+@mixin padding($ratio: 1, $pos: auto) {
+    @if $pos == auto {
+        padding: padding($ratio);
+    }
+
+    @else {
+        padding-#{$pos}: padding($ratio);
+    }
+}

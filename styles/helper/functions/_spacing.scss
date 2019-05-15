@@ -1,0 +1,8 @@
+@function margin($ratio: 1) {
+    @return 1.25rem * $ratio;
+}
+
+@function padding($ratio: 1) {
+    @return .75rem * $ratio;
+}
+

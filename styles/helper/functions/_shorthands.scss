@@ -1,0 +1,39 @@
+/* warning util */
+
+@function get($map, $key) {
+    @if not map-has-key($map, $key) {
+        @error "#{$key} doesn't exist in #{$map}!";
+    }
+
+    @return map-get($map, $key);
+}
+
+/* map shorthands */
+
+@function line-height($size: content) {
+    @return get($line-heights, $size);
+}
+
+@function z($layer: content) {
+    @return get($z-index, $layer);
+}
+
+@function color($name: primary) {
+    @return get($colors, $name);
+}
+
+@function font-size($size: text) {
+    @return get($font-sizes, $size);
+}
+
+@function font-family($name: primary) {
+    @return get($font, $name);
+}
+
+@function font-weight($weight) {
+    @return get($font-weights, $weight);
+}
+
+@function animation($type) {
+    @return get(get($animations, $type), duration) get(get($animations, $type), ease);
+}
