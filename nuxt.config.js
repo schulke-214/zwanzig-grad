@@ -2,6 +2,8 @@ const path = require('path');
 
 const pkg = require('./package');
 
+const icons = require('./static/icon/map');
+
 module.exports = {
     mode: 'universal',
 
@@ -21,13 +23,29 @@ module.exports = {
                 hid: 'description',
                 name: 'description',
                 content: pkg.description
+            },
+            {
+                name: 'msapplication-TileColor',
+                content: pkg.theme
+            },
+            {
+                name: 'theme-color',
+                content: pkg.theme
+            },
+            {
+                name: 'msapplication-TileImage',
+                content: "/icon/ms-icon-144x144.png"
             }
         ],
         link: [{
-            rel: 'icon',
-            type: 'image/x-icon',
-            href: '/favicon.ico'
-        }]
+                rel: 'stylesheet',
+                href: 'https://use.typekit.net/irh3eia.css'
+            }, {
+                rel: 'manifest',
+                href: '/manifest.json'
+            },
+            ...icons
+        ]
     },
 
     /*
