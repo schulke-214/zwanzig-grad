@@ -1,0 +1,9 @@
+.header {
+    @include padding(2, top);
+    @include padding(2, bottom);
+    display: block;
+    position: relative;
+}
+
+.header > .container {
+}
