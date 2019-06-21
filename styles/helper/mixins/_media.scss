@@ -18,7 +18,6 @@
     }
 }
 
-
 @mixin between($from, $to) {
     @if map_has_key($breakpoints, $from) and map_has_key($breakpoints, $to) {
         $from: map_get($breakpoints, $from);
