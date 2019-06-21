@@ -1,21 +1,18 @@
+// color shades in 5 steps -> 20, 40, 60, 80, 100
+
 $colors: (
     primary: #ffffff,
     secondary: #060606,
+    dark-text: #333,
+    light-text: #9ea0a6,
+    highlight:#8E3636,
+    contrast: #C1C12B
 );
-
-// dark text
-// #333
-
-// light text grey
-// #9ea0a6
-
-// color shades in 5 steps -> 20, 40, 60, 80, 100
 
 $font: (
     primary: 'akagi-pro',
     highlight: 'ff-tisa-web-pro'
 );
-
 
 $base: 16px;
 $font-sizes: (
@@ -83,7 +80,7 @@ $breakpoints: (
     phone: 576px, 
     tablet-small: 768px, 
     tablet: 992px,
-    desktop: 1200px
+    desktop: 1440px
 );
 
 $animations: (
