@@ -1,0 +1,63 @@
+.container {
+    @include padding(6, left);
+    @include padding(6, right);
+
+    max-width: 1440px;
+    margin: 0 auto;
+
+    @include down(tablet) {
+        @include padding(4, left);
+        @include padding(4, right);
+    }
+
+    @include down(phone) {
+        @include padding(2, left);
+        @include padding(2, right);
+    }
+}
+
+.row {
+    width: 100%;
+    display: flex;
+}
+
+.col {
+    display: flex;
+}
+
+@function size-of-col($col-width) {
+    @if $col-width == 12 {
+        @return 100%;
+    }
+
+    @return $col-width * 8.3333333%;
+
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        @extend .col;
+        width: size-of-col($i);
+    }
+
+    .offset-#{$i} {
+        margin-left: size-of-col($i);
+    }
+
+    @each $bp-name, $bp-size in $breakpoints {
+        .col-#{$bp-name}-#{$i} {
+            @extend .col;
+
+            @include up($bp-name) {
+                width: size-of-col($i) !important;
+            }
+
+        }
+
+        .offset-#{$bp-name}-#{$i} {
+            @include up($bp-name) {
+                margin-left: size-of-col($i) !important;
+            }
+        } 
+    }
+}
