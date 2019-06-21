@@ -1,4 +1,4 @@
-const iconHref = fileName => '/icon/' + fileName;
+const iconHref = fileName => '/static/icon/' + fileName;
 
 module.exports = [{
     rel: 'apple-touch-icon',
