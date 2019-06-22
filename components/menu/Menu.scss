@@ -1,40 +1,64 @@
 .menu {
-    background-color: color(primary);
-    width: 100vw;
+    @include padding(8, top);
+
     position: absolute;
-    top: -100vh;
-    transition: transition(top);
+    top: 0;
+    z-index: z(foreground);
+    width: 100vw;
+    min-height: 80vh;
     max-height: 100vh;
+    transform: translateY(-100%);
     overflow: scroll;
-    height: 80vh;
+    background-color: color(primary);
 
     @media screen and (max-height: 780px) {
         height: 100vh;
     }
 
-    @include below(phone) {
-        height: 100vh;
+    @include below(tablet) {
+        @include padding(4, top);
+    }
+
+    @include below(tablet-small) {
+        @include padding(2, top);
+        min-height: 600px;
     }
 }
 
-.menu--open {
-    top: 0;
-}
-
 .menu__backdrop {
-    position: fixed;
-    cursor: pointer;
-    pointer-events: none;
-    top: 0;
+    position: absolute;
     left: 0;
+    top: 0;
+    z-index: -1;
     width: 100vw;
     height: 100vh;
     background-color: transparent;
-    transition: transition(background-color);
-    z-index: -1;
+    cursor: pointer;
+    pointer-events: none;
 }
 
-.menu--open + .menu__backdrop {
-    pointer-events: all;
-    background-color: rgba(0,0,0, 0.1);
+.menu__content-col {
+    @include margin(4, top);
+}
+
+.menu__topic {
+    @include padding(1, top);
+    @include padding(1, bottom);
+    @include font(primary, 1, light);
+
+    color: color(light-text);
+    height: 40px;
+    line-height: 1.6;
+
+    &::before {
+        @include margin(0.25, right);
+        content: "\2014";
+        color: color(light-text);
+    }
+}
+
+.menu__logo {
+    height: 40px !important;
+    width: 100%;
+    align-items: center;
 }
