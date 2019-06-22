@@ -1,4 +1,5 @@
 import Application, { Container } from 'next/app';
+import Head from 'next/head';
 
 import { Layout } from 'layout/default';
 
@@ -10,7 +11,9 @@ class App extends Application {
 
 		return (
 			<Container>
-				{/* <Head /> */}
+				<Head>
+					<title>20° — Handwerk zum Wohnen</title>
+				</Head>
 
 				<Layout>
 					<Component {...pageProps} />
