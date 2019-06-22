@@ -1,0 +1,25 @@
+@function transition($properties...) {
+	$last: nth($properties, length($properties));
+	$res: null;
+
+	$duration: animation-property(duration);
+	$ease: animation-property(ease);
+
+	@if map-has-key( $animations, $last ) {
+		$duration: animation-property(duration, $last);
+		$ease: animation-property(ease, $last);
+		$properties: nth-delete($properties, length($properties));
+    }
+
+	@each $prop in $properties {
+		@if $res == null {
+			$res: $prop $duration $ease;
+		}
+
+		@else {
+			$res: $res, $prop $duration $ease;
+		}
+	}
+
+	@return $res;
+}
