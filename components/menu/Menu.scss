@@ -1,0 +1,40 @@
+.menu {
+    background-color: color(primary);
+    width: 100vw;
+    position: absolute;
+    top: -100vh;
+    transition: transition(top);
+    max-height: 100vh;
+    overflow: scroll;
+    height: 80vh;
+
+    @media screen and (max-height: 780px) {
+        height: 100vh;
+    }
+
+    @include below(phone) {
+        height: 100vh;
+    }
+}
+
+.menu--open {
+    top: 0;
+}
+
+.menu__backdrop {
+    position: fixed;
+    cursor: pointer;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    transition: transition(background-color);
+    z-index: -1;
+}
+
+.menu--open + .menu__backdrop {
+    pointer-events: all;
+    background-color: rgba(0,0,0, 0.1);
+}
