@@ -12,15 +12,15 @@
 
     $mid: ((( $max - $min ) / 2 ) + $min);
 
-    @include up(desktop) {
+    @include above(desktop) {
         font-size: $max;
     }
 
-    @include between(tablet, desktop ) {
+    @include between(tablet, desktop) {
         font-size: $mid;
     }
 
-    @include down(tablet) {
+    @include below(tablet) {
         font-size: $min;
     }
 }

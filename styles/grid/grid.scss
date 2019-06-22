@@ -5,12 +5,12 @@
     max-width: 1440px;
     margin: 0 auto;
 
-    @include down(tablet) {
+    @include below(tablet) {
         @include padding(4, left);
         @include padding(4, right);
     }
 
-    @include down(phone) {
+    @include below(phone) {
         @include padding(2, left);
         @include padding(2, right);
     }
@@ -23,6 +23,8 @@
 
 .col {
     display: flex;
+    height: min-content;
+    width: 100%;
 }
 
 @function size-of-col($col-width) {
@@ -48,14 +50,14 @@
         .col-#{$bp-name}-#{$i} {
             @extend .col;
 
-            @include up($bp-name) {
+            @include above($bp-name) {
                 width: size-of-col($i) !important;
             }
 
         }
 
         .offset-#{$bp-name}-#{$i} {
-            @include up($bp-name) {
+            @include above($bp-name) {
                 margin-left: size-of-col($i) !important;
             }
         } 
