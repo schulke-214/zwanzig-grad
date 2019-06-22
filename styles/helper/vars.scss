@@ -83,9 +83,20 @@ $breakpoints: (
     desktop: 1440px
 );
 
+$ease: cubic-bezier(.81,0,.3,1);
+$duration: 0.75s;
 $animations: (
     primary: (
-        duration: 1s,
-        ease: cubic-bezier(.19,1,.22,1)
+        duration: $duration,
+        ease: $ease
+    ),
+    fast: (
+        duration: $duration / 2,
+        ease: $ease
     )
 );
+
+:export {
+    ease: $ease;
+    duration: $duration;
+}
