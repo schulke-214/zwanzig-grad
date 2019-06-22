@@ -8,6 +8,19 @@
     @return map-get($map, $key);
 }
 
+/* map delete util */
+
+@function nth-delete($list, $n){
+    $result: ();
+    $n: if($n < 0, length($list) + $n + 1, $n);
+    $bracketed: is-bracketed($list);
+    $separator: list-separator($list);
+    @for $i from 1 through length($list){
+        @if $i != $n { $result: append($result, nth($list, $i)); }
+    }
+    @return join((), $result, $separator, $bracketed);
+}
+
 /* map shorthands */
 
 @function line-height($size: content) {
@@ -34,6 +47,12 @@
     @return get($font-weights, $weight);
 }
 
-@function animation($type) {
-    @return get(get($animations, $type), duration) get(get($animations, $type), ease);
+// access single prop of an animation
+@function animation-property($property, $type: primary) {
+    @return get(get($animations, $type), $property);
+}
+
+// access all props of an animation
+@function animation($type: primary) {
+    @return animation-property(duration, $type) animation-property(ease, $type);
 }
