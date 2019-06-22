@@ -1,6 +1,22 @@
-.typo {
-    &.typo--align-center {
+.typo-flags {
+    &.--align-center {
         text-align: center;
+    }
+
+    &.--bold {
+        font-weight: bold;
+    }
+
+    &.--light {
+        font-weight: light;
+    }
+
+    &.--italic {
+        font-style: italic;
+    }
+
+    &.--normal {
+        font-style: normal;
     }
 }
 
