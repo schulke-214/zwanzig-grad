@@ -1,5 +1,7 @@
 // import { ease, duration } from 'helper/animation';
 
+import Link from 'next/link';
+
 import './HugeLink.scss';
 
 class HugeLink extends React.Component {
@@ -19,7 +21,11 @@ class HugeLink extends React.Component {
 				onMouseEnter={this.enter}
 				onMouseLeave={this.leave}
 				className='huge-link'>
-				<h1>{this.props.children}</h1>
+				<Link href={this.props.href}>
+					<a>
+						<h1>{this.props.children}</h1>
+					</a>
+				</Link>
 				<span ref={this.span} className='huge-link__grey-area' />
 			</div>
 		);

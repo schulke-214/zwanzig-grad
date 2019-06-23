@@ -1,4 +1,5 @@
 // import { ease, duration } from 'helper/animation';
+import Link from 'next/link';
 
 import './SmallLink.scss';
 
@@ -19,7 +20,9 @@ class SmallLink extends React.Component {
 				onMouseEnter={this.enter}
 				onMouseLeave={this.leave}
 				className='small-link'>
-				<a>{this.props.children}</a>
+				<Link href={this.props.href}>
+					<a>{this.props.children}</a>
+				</Link>
 				<span ref={this.span} className='small-link__grey-area' />
 			</div>
 		);
