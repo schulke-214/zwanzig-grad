@@ -41,8 +41,8 @@ html {
 }
 
 html {
-    @include font(primary, 0, regular);
-    
+    @include font(primary, 1);
+
     min-width: 300px;
     line-height: line-height(text);
     background-color: color(primary);
@@ -68,7 +68,6 @@ body,
     height: 100%;
     text-align: left;
     color: color(secondary);
-    background-color: color(primary);
 }
 
 article,
