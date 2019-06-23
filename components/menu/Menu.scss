@@ -1,13 +1,22 @@
-.menu {
+.menu{
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: z(foreground);
+    transform: translateY(-100%);
+    border: 1px solid red;
+    height: 100vh;
+    width: 100vw;
+}
+
+.menu__content {
     @include padding(8, top);
 
     position: absolute;
     top: 0;
-    z-index: z(foreground);
     width: 100vw;
     min-height: 80vh;
     max-height: 100vh;
-    transform: translateY(-100%);
     overflow: scroll;
     background-color: color(primary);
 
@@ -21,7 +30,6 @@
 
     @include below(tablet-small) {
         @include padding(2, top);
-        min-height: 600px;
     }
 }
 
@@ -54,6 +62,21 @@
         @include margin(0.25, right);
         content: "\2014";
         color: color(light-text);
+    }
+}
+
+.menu__place {
+    @include margin(2, bottom);
+
+    h4 {
+        @include margin(0.25, bottom);
+    }
+
+    p {
+        @include padding(2, left);
+        @include font(primary, 0, light);
+        white-space: no-wrap;
+        line-height: line-height(extra);
     }
 }
 
