@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Logo from 'components/logo/Logo';
+import Logo from 'components/stateless/logo/Logo';
 import Menu from 'components/menu/Menu';
 import MenuButton from 'components/menu/menu-button/MenuButton';
 
@@ -29,7 +29,7 @@ class Header extends React.Component {
 				<Menu open={this.state.menu} handleClose={this.closeMenu} />
 				<div className='container'>
 					<div className='row'>
-						<div className='header__content col'>
+						<div className='header__content col display__flex'>
 							<Link href='/'>
 								<a>
 									<Logo />
