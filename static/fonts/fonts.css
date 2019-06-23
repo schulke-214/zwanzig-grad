@@ -28,6 +28,13 @@
     
 @font-face {
     font-family: "akagi-pro";
+    src: url("/static/fonts/akagi-pro-500.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 500;
+}
+    
+@font-face {
+    font-family: "akagi-pro";
     src: url("/static/fonts/akagi-pro-700.woff2") format("woff2");
     font-style: normal;
     font-weight: 700;
