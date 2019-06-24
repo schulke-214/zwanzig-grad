@@ -1,45 +1,72 @@
-.d__block {
-    display: block;
+.display__block {
+    display: block !important;
 }
 
-.d__flex {
-    display: flex;
+.display__flex {
+    display: flex !important;
+}
 
-    &.d__flex--flags {
-        /* justify content */
-        
-        &.--center {
-            justify-content: center;
-        }
+.display__flex--flags {
+    /* justify content */
     
-        &.--start {
-            justify-content: start;
-        }
-    
-        &.--end {
-            justify-content: end;
-        }
-    
-        &.--around {
-            justify-content: space-around;
-        }
-    
-        &.--between {
-            justify-content: space-between;
-        }
-    
-        &.--evenly {
-            justify-content: space-evenly;
+    &.--justify-center {
+        justify-content: center;
+    }
+
+    &.--justify-start {
+        justify-content: start;
+    }
+
+    &.--justify-end {
+        justify-content: end;
+    }
+
+    &.--justify-around {
+        justify-content: space-around;
+    }
+
+    &.--justify-between {
+        justify-content: space-between;
+    }
+
+    &.--justify-evenly {
+        justify-content: space-evenly;
+    }
+
+    /* flex dir */
+
+    &.--row {
+        flex-direction: row;
+    }
+
+    &.--col {
+        flex-direction: column;
+    }
+
+    /* align center */
+
+    &.--align-items-center {
+        align-items: center;
+    }
+}
+
+.display__none {
+    display: none !important;
+}
+
+@each $breakpoint, $size in $breakpoints {
+    @include above($breakpoint) {
+        .display-#{$breakpoint}__none {
+            display: none !important;
         }
 
-        /* flex dir */
 
-        &.--row {
-            flex-direction: row;
+        .display-#{$breakpoint}__block {
+            display: block !important;
         }
 
-        &.--col {
-            flex-direction: column;
+        .display-#{$breakpoint}__flex {
+            display: flex !important;
         }
     }
 }
