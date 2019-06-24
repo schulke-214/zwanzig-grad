@@ -14,7 +14,11 @@ class AppDocument extends Document {
 						content='initial-scale=1.0, width=device-width'
 						key='viewport'
 					/>
-
+					<meta httpEquiv='X-UA-Compatible' content='ie=edge' />
+					<meta
+						name='description'
+						content='Handwerk zum wohnen - Professionell, Hochwertig, Zuverlässig - Seit 20 Jahren.'
+					/>
 					<meta name='theme-color' content={pkg.theme} />
 					<meta name='msapplication-TileColor' content={pkg.theme} />
 					<meta name='theme-color' content={pkg.theme} />

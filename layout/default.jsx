@@ -1,11 +1,13 @@
-import Header from 'components/header/Header';
+import Navigation from 'components/sections/navigation/Navigation';
+// import Footer from 'components/footer/Footer';
 
 export class Layout extends React.Component {
 	render() {
 		return (
 			<>
-				<Header />
+				<Navigation />
 				<main className='layout__main'>{this.props.children}</main>
+				{/* <Footer /> */}
 			</>
 		);
 	}
