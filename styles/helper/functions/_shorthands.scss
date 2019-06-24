@@ -31,8 +31,8 @@
     @return get($z-index, $layer);
 }
 
-@function color($name: primary) {
-    @return get($colors, $name);
+@function color($name: primary, $opacity: 100) {
+    @return get(get($colors, $name), $opacity);
 }
 
 @function font-size($size: text) {
