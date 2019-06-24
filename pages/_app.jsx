@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { Layout } from 'layout/default';
 
+import 'helper/gsap/imports';
 import 'styles/main.scss';
 
 class App extends Application {
