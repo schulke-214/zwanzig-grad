@@ -7,8 +7,12 @@
         font-weight: bold;
     }
 
+    &.--medium {
+        font-weight: 500;
+    }
+
     &.--light {
-        font-weight: light;
+        font-weight: 300;
     }
 
     &.--italic {
@@ -17,6 +21,18 @@
 
     &.--normal {
         font-style: normal;
+    }
+
+    &.--primary {
+        font-family: font-family(primary);
+    }
+
+    &.--highlight {
+        font-family: font-family(highlight);
+    }
+
+    &.--letter-spacing-wide {
+        letter-spacing: 0.3px;
     }
 }
 
