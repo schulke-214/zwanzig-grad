@@ -1,4 +1,4 @@
-.header {
+.navigation {
     @include padding(2, top);
     @include padding(2, bottom);
     display: block;
@@ -8,13 +8,13 @@
     z-index: z(foreground);
 }
 
-.header__content {
+.navigation__content {
     position: relative;
     align-items: center;
     justify-content: space-between;
 }
 
-.header__contact-btn {
+.navigation__contact-btn {
     @include padding(0.5, top);
     @include padding(0.5, bottom);
     @include padding(1.5, left);
