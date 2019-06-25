@@ -1,21 +1,18 @@
 // import variables from 'styles/helper/vars.scss';
 
 import TweenLite from "gsap/umd/TweenLite";
-import TimelineLite from "gsap/umd/TimelineLite";
+import TimelineMax from "gsap/umd/TimelineMax";
 import CSSPlugin from "gsap/umd/CSSPlugin";
-import TextPlugin from "gsap/umd/TextPlugin";
-import ScrollToPlugin from "gsap/umd/ScrollToPlugin";
 import BezierPlugin from "gsap/umd/BezierPlugin";
 import CustomEase from "./custom-ease";
 
-CustomEase.create("zwanzig-grad", "M0,0 C0.902,0 0.094,1 1,1");
+CustomEase.create("hard", 'M0,0 C0.8,0 0.2,1 1,1');
+CustomEase.create("smooth", 'M0,0,C0.5,0.5,1,1,1,1');
 
 // workaround to prevent tree shaking
 export default {
     TweenLite,
-    TimelineLite,
+    TimelineMax,
     CSSPlugin,
-    TextPlugin,
-    ScrollToPlugin,
     BezierPlugin
 };
