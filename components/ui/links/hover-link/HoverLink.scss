@@ -1,0 +1,19 @@
+.hover-link {
+    @include padding(1, bottom);
+
+    display: block;
+    width: min-content;
+    cursor: pointer;
+    pointer-events: all;
+
+    .hover-link__inner {
+        @include padding(2, right);
+        position: relative;
+    }
+
+    span {
+        display: block;
+        text-transform: lowercase;
+        white-space: nowrap;
+    }
+}
