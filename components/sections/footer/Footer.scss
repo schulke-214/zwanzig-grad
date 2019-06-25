@@ -1,0 +1,12 @@
+.footer {
+    
+
+    & > .row {
+        @include padding(16, top);
+        @include padding(16, bottom);
+
+        border-top: 1px solid color(light-text, 20);
+        border-bottom: 1px solid color(light-text, 20);
+    }
+    
+}
