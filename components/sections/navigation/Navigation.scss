@@ -13,30 +13,3 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.navigation__contact-btn {
-    @include padding(0.5, top);
-    @include padding(0.5, bottom);
-    @include padding(1.5, left);
-    @include padding(1.5, right);
-
-    position: absolute;
-    right: margin(3);
-    top: -1.75px; // 28.5 - 25 = 3.5 so this gets offset by -1.75 to center this vertically
-    transition: transition(background-color, fast);
-    user-select: none;
-    height: 28.5px;
-    line-height: 1.6;
-    text-align: center;
-    // the last two digits in 8 digit hex codes describe the opacity 26 equals 0.15
-    background-color: #{color(light-text)}26;
-    border-radius: 1rem;
-
-    &:hover {
-        background-color: #{color(light-text)}60;
-    }
-
-    @include below(phone) {
-        display: none;
-    }
-}

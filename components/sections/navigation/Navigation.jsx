@@ -39,7 +39,11 @@ class Navigation extends React.Component {
 								</a>
 							</Link>
 
-							<MenuButton open={this.state.menu} onClick={this.toggleMenu} />
+							<MenuButton
+								open={this.state.menu}
+								onClick={this.toggleMenu}
+								style={{ right: '-9px' }}
+							/>
 						</Col>
 					</Row>
 				</Grid>
