@@ -1,5 +1,12 @@
 @font-face {
     font-family: "ff-tisa-web-pro";
+    src: url("/static/fonts/ff-tisa-web-pro-100.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "ff-tisa-web-pro";
     src: url("/static/fonts/ff-tisa-web-pro-300.woff2") format("woff2");
     font-style: normal;
     font-weight: 300;
