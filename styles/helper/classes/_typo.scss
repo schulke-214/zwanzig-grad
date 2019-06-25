@@ -1,4 +1,4 @@
-.typo-flags {
+.typo--flags {
     &.--align-center {
         text-align: center;
     }
@@ -13,6 +13,10 @@
 
     &.--light {
         font-weight: 300;
+    }
+
+    &.--ultra-light {
+        font-weight: 100;
     }
 
     &.--italic {
@@ -36,6 +40,8 @@
     }
 }
 
-// .typo__ {
-
-// }
+@for $i from 1 through 6 {
+    .typo--size-#{$i} {
+        @include font-size($i);
+    }
+}
