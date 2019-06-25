@@ -1,13 +1,11 @@
-import { Grid, Row, Col } from 'components/ui/grid/Grid';
 import Logo from 'components/ui/logo/Logo';
+import HeadlineLink from 'components/ui/links/headline-link/HeadlineLink';
+import HoverLink from 'components/ui/links/hover-link/HoverLink';
 
+import { Grid, Row, Col } from 'components/ui/grid/Grid';
 import { ease, duration } from 'helper/animation';
 
-import MenuButton from './menu-button/MenuButton';
-
-// import Logo from 'components/stateless/logo/Logo';
-// import HugeLink from 'components/links/huge-link/HugeLink';
-// import SmallLink from 'components/links/small-link/SmallLink';
+import linkData from 'helper/link-data.json';
 
 import './Menu.scss';
 
@@ -17,8 +15,8 @@ const MenuTopic = ({ children, className }) => (
 
 const Place = ({ title, children }) => (
 	<div className='menu__place col-12'>
-		<h4 className='typo-flags --primary --letter-spacing-wide --medium'>{title}</h4>
-		<p className='typo-flags --letter-spacing-wide --light'>{children}</p>
+		<h4 className='typo--flags --primary --letter-spacing-wide --medium'>{title}</h4>
+		<p className='typo--flags --letter-spacing-wide --light'>{children}</p>
 	</div>
 );
 
@@ -26,129 +24,139 @@ class Menu extends React.Component {
 	menu = React.createRef();
 	backdrop = React.createRef();
 
-	// componentDidMount() {}
+	state = {
+		mounted: false
+	};
 
-	// show = () => {
-	// 	new TimelineLite();
-	// };
+	componentDidMount() {
+		addEventListener('resize', this.tryToUnmount);
+	}
 
-	// componentDidUpdate(prevProps) {
-	// 	if (prevProps.open == this.props.open) return;
+	componentWillUnmount() {
+		removeEventListener('resize', this.tryToUnmount);
+	}
 
-	// 	if (this.props.open) {
-	// 		this.setState({ mounted: true }, this.open);
-	// 	} else {
-	// 		this.close().then(() => this.setState({ mounted: false }));
-	// 	}
-	// }
+	componentDidUpdate(prevProps) {
+		if (prevProps.open == this.props.open) return;
 
-	// open = () => {
-	// 	new TimelineLite()
-	// 		.to(this.menu.current, duration, {
-	// 			ease,
-	// 			y: 0
-	// 		})
-	// 		.to(
-	// 			this.backdrop.current,
-	// 			duration,
-	// 			{
-	// 				ease,
-	// 				backgroundColor: 'rgba(0,0,0,0.1)',
-	// 				pointerEvents: 'all'
-	// 			},
-	// 			0
-	// 		);
-	// };
+		if (this.props.open) {
+			this.open();
+		} else {
+			this.close();
+		}
+	}
 
-	// close = () =>
-	// 	new Promise((resolve, reject) => {
-	// 		new TimelineLite({ onComplete: resolve })
-	// 			.to(this.menu.current, duration, {
-	// 				ease,
-	// 				y: '-100%'
-	// 			})
-	// 			.to(
-	// 				this.backdrop.current,
-	// 				duration,
-	// 				{
-	// 					ease,
-	// 					backgroundColor: 'rgba(0,0,0,0)',
-	// 					pointerEvents: 'none'
-	// 				},
-	// 				0
-	// 			);
-	// 	});
+	tryToUnmount = () => {
+		if (this.props.open) return;
 
-	// unmount = () => {
-	// 	this.setState({ mounted: false });
-	// };
+		this.setState({ mounted: false });
+	};
+
+	open = () => {
+		this.setState({ mounted: true }, () => {
+			new TimelineMax()
+				.to(this.menu.current, duration, {
+					ease,
+					y: 0
+				})
+				.to(
+					this.backdrop.current,
+					duration,
+					{
+						ease,
+						backgroundColor: 'rgba(0,0,0,0.1)',
+						pointerEvents: 'all'
+					},
+					0
+				);
+		});
+	};
+
+	close = () => {
+		new TimelineMax().to(this.menu.current, duration, { ease, y: '-100vh' }).to(
+			this.backdrop.current,
+			duration,
+			{
+				ease,
+				backgroundColor: 'rgba(0,0,0,0.0)',
+				pointerEvents: 'none'
+			},
+			0
+		);
+	};
 
 	render() {
+		if (!this.state.mounted) return <></>;
+
 		return (
 			<>
-				<div className='menu' ref={this.menu}>
-					<div className='menu__content'>
-						<Grid>
-							<Row>
-								{/* <Col
-									width={{ default: 12, smallTablet: 4 }}
-									offset={{ smallTablet: 1 }}
-									className='display__flex--flags --col'>
-									<Row>
-										<Col
-											width={12}
-											className='display__flex display__flex--flags --align-items-center'
-											style={{ height: '40px' }}>
-											<Logo />
-										</Col>
-									</Row>
-									<Row className='menu__content-col display__none display-tablet-small__flex '>
-										<Col>
-											<SmallLink href='/archiv'>archiv</SmallLink>
-											<SmallLink href='/newsletter'>newsletter</SmallLink>
-											<SmallLink href='/blog'>blog</SmallLink>
-                                            <SmallLink href='/presse'>presse</SmallLink>
-                                            <SmallLink href='/abc'>instagram</SmallLink>
-										</Col>
-									</Row>
-								</Col> */}
-								{/* <Col
-									width={{ default: 12, smallTablet: 4 }}
-									className='display__flex display__flex--flags --col'>
-									<MenuTopic className='display__none display-tablet-small__block'>
-										Inhalte
-									</MenuTopic>
-									<div className='menu__content-col row'>
-										<div className='col'>
-											<HugeLink href='/work'>Arbeiten</HugeLink>
-											<HugeLink href='/about'>Über Uns</HugeLink>
-											<HugeLink href='/news'>Neuigkeiten</HugeLink>
-											<HugeLink href='/jobs'>Stellenangebote</HugeLink>
-											<HugeLink href='/contact'>Kontakt</HugeLink>
-										</div>
+				<div ref={this.menu} className='menu'>
+					<Grid>
+						<Row>
+							<Col
+								width={{ default: 12, smallTablet: 3 }}
+								offset={{ smallTablet: 1 }}
+								className='display__flex--flags --col'>
+								<Row>
+									<Col
+										width={12}
+										className='display__flex display__flex--flags --align-items-center'
+										style={{ height: '40px' }}>
+										<Logo />
+									</Col>
+								</Row>
+								<Row className='menu__content-col display__none display-tablet-small__flex '>
+									<Col>
+										{linkData['secondary'].map(link => (
+											<HoverLink
+												href={link.route}
+												key={link.name}
+												newTab={link.newTab}
+												style={{ fontWeight: 'bold' }}>
+												{link.name}
+											</HoverLink>
+										))}
+									</Col>
+								</Row>
+							</Col>
+							<Col
+								width={{ default: 12, smallTablet: 4 }}
+								className='display__flex display__flex--flags --col'>
+								<MenuTopic className='display__none display-tablet-small__block'>
+									Inhalte
+								</MenuTopic>
+								<div className='menu__content-col row'>
+									<div className='col'>
+										{linkData['primary'].map(link => (
+											<HeadlineLink href={link.route} key={link.name}>
+												{link.name}
+											</HeadlineLink>
+										))}
 									</div>
-								</Col> */}
-								{/* <Col className='display__none display-tablet-small__flex display__flex--flags --col'>
-									<MenuTopic className='display__none display-tablet-small__block'>
-										Räumlichkeiten
-									</MenuTopic>
-									<div className='menu__content-col row'>
-										<Place title='Hauptbüro'>
-											Wertherstraße 310 <br />
-											33619 Bielefeld <br />
-											Deutschland <br />
-										</Place>
+								</div>
+							</Col>
+							<Col
+								width={{ default: 12, smallTablet: 4 }}
+								className='display__none display-tablet-small__flex display__flex--flags --col'>
+								<MenuTopic className='display__none display-tablet-small__block'>
+									Räumlichkeiten
+								</MenuTopic>
+								<div className='menu__content-col row'>
+									<Place title='Hauptbüro'>
+										Wertherstraße 310 <br />
+										33619 Bielefeld <br />
+										Deutschland <br />
+									</Place>
 
-										<Place title='Werktstatt'>
-											Höfeweg 80 <br />
-											33619 Bielefeld <br />
-											Deutschland <br />
-										</Place>
-									</div>
-								</Col> */}
-							</Row>
-						</Grid>
-					</div>
+									<Place title='Werktstatt'>
+										Höfeweg 80 <br />
+										33619 Bielefeld <br />
+										Deutschland <br />
+									</Place>
+								</div>
+							</Col>
+						</Row>
+					</Grid>
 				</div>
 				<div
 					ref={this.backdrop}
