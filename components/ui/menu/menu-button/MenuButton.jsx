@@ -7,7 +7,7 @@ class MenuButton extends React.Component {
 	bot = React.createRef();
 
 	componentDidMount() {
-		this.tl = new TimelineLite({ paused: true });
+		this.tl = new TimelineMax({ paused: true });
 
 		this.tl
 			.to(
@@ -44,7 +44,7 @@ class MenuButton extends React.Component {
 
 	render() {
 		return (
-			<button className='menu-button' onClick={this.props.onClick}>
+			<button className='menu-button' onClick={this.props.onClick} {...this.props}>
 				<span ref={this.top} className='menu-button__top' />
 				<span className='menu-button__content'>Open menu</span>
 				<span ref={this.bot} className='menu-button__bot' />
