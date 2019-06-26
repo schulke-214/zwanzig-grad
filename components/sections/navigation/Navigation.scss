@@ -1,8 +1,9 @@
 .navigation {
     @include padding(2, top);
     @include padding(2, bottom);
+
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100vw;
     z-index: z(foreground);
