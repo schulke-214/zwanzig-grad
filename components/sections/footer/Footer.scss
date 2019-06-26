@@ -1,12 +1,43 @@
 .footer {
-    
+    @include padding(16, top);
 
     & > .row {
-        @include padding(16, top);
-        @include padding(16, bottom);
+        &:first-child {
+            @include above(tablet) {
+                @include padding(16, top);
+                @include padding(16, bottom);
+            }
 
+            @include below(tablet) {
+                @include padding(8, top);
+                @include padding(8, bottom);
+
+                & > :first-child {
+                    @include margin(2, bottom);
+                }
+            }
+        }
+
+        &:last-child {
+            @include padding(4, top);
+            @include padding(4, bottom);
+        }
+        
         border-top: 1px solid color(light-text, 20);
-        border-bottom: 1px solid color(light-text, 20);
     }
     
+}
+
+.footer__cta {
+    @include margin(1, top);
+
+    font-weight: bold;
+}
+
+.footer__bottom-links {
+
+    .hover-link {
+        @include margin(1, left);
+        @include padding(1, top);
+    }
 }
