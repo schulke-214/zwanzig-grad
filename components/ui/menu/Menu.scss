@@ -38,6 +38,12 @@
 
 .menu__content-col {
     @include margin(4, top);
+
+    @include below(tablet-small) {
+        @media screen and (min-height: 600px) {
+            @include margin(8, top);
+        }
+    }
 }
 
 .menu__topic {
