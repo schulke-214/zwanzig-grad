@@ -17,7 +17,10 @@ class HeadlineLink extends React.Component {
 
 	render() {
 		return (
-			<div onMouseEnter={this.enter} onMouseLeave={this.leave} className='headline-link'>
+			<div
+				onMouseEnter={this.enter}
+				onMouseLeave={this.leave}
+				className={`headline-link ${this.props.className}`}>
 				<Link href={this.props.href}>
 					<a>
 						<h1>{this.props.children}</h1>
