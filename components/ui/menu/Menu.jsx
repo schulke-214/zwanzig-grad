@@ -1,9 +1,12 @@
+import Link from 'next/link';
+
 import Logo from 'components/ui/logo/Logo';
 import HeadlineLink from 'components/ui/links/headline-link/HeadlineLink';
 import HoverLink from 'components/ui/links/hover-link/HoverLink';
 
 import { Grid, Row, Col } from 'components/ui/grid/Grid';
-import { ease, duration } from 'helper/animation';
+import { ease, duration, smoothEase } from 'helper/animation';
+import { disableScrolling, enableScrolling } from 'helper/scrolling';
 
 import linkData from 'helper/link-data.json';
 
@@ -13,8 +16,8 @@ const MenuTopic = ({ children, className }) => (
 	<h2 className={'menu__topic' + ' ' + className}>{children}</h2>
 );
 
-const Place = ({ title, children }) => (
-	<div className='menu__place col-12'>
+const Place = ({ title, children, className }) => (
+	<div className={`menu__place col-12 ${className}`}>
 		<h4 className='typo--flags --primary --letter-spacing-wide --medium'>{title}</h4>
 		<p className='typo--flags --letter-spacing-wide --light'>{children}</p>
 	</div>
@@ -54,7 +57,41 @@ class Menu extends React.Component {
 
 	open = () => {
 		this.setState({ mounted: true }, () => {
-			new TimelineMax()
+			// const contentColumns = [
+			// 	...this.menu.current.querySelectorAll('.menu__content-col')
+			// ].map(col => [...col.querySelectorAll('.menu__fly-in')]);
+
+			// const fadeInParams = {
+			// 	ease: Expo,
+			// 	y: -25,
+			// 	opacity: 0
+			// };
+
+			/*
+            				.staggerFrom(
+					contentColumns[0],
+					duration * 1.5,
+					fadeInParams,
+					0.25 / contentColumns[0].length,
+					0.5
+				)
+				.staggerFrom(
+					contentColumns[1],
+					duration * 1.5,
+					fadeInParams,
+					0.25 / contentColumns[1].length,
+					0.5
+				)
+				.staggerFrom(
+					contentColumns[2],
+					duration * 1.5,
+					fadeInParams,
+					0.25 / contentColumns[2].length,
+					0.5
+                )
+            */
+
+			new TimelineMax({ onStart: disableScrolling })
 				.to(this.menu.current, duration, {
 					ease,
 					y: 0
@@ -73,16 +110,18 @@ class Menu extends React.Component {
 	};
 
 	close = () => {
-		new TimelineMax().to(this.menu.current, duration, { ease, y: '-100vh' }).to(
-			this.backdrop.current,
-			duration,
-			{
-				ease,
-				backgroundColor: 'rgba(0,0,0,0.0)',
-				pointerEvents: 'none'
-			},
-			0
-		);
+		new TimelineMax({ onStart: enableScrolling })
+			.to(this.menu.current, duration, { ease, y: '-100vh' })
+			.to(
+				this.backdrop.current,
+				duration,
+				{
+					ease,
+					backgroundColor: 'rgba(0,0,0,0.0)',
+					pointerEvents: 'none'
+				},
+				0
+			);
 	};
 
 	render() {
@@ -102,16 +141,21 @@ class Menu extends React.Component {
 										width={12}
 										className='display__flex display__flex--flags --align-items-center'
 										style={{ height: '40px' }}>
-										<Logo />
+										<Link href='/'>
+											<a>
+												<Logo />
+											</a>
+										</Link>
 									</Col>
 								</Row>
 								<Row className='menu__content-col display__none display-tablet-small__flex '>
-									<Col>
+									<Col className='display__flex display__flex--flags --col'>
 										{linkData['secondary'].map(link => (
 											<HoverLink
 												href={link.route}
 												key={link.name}
 												newTab={link.newTab}
+												className='menu__fly-in'
 												style={{ fontWeight: 'bold' }}>
 												{link.name}
 											</HoverLink>
@@ -125,15 +169,18 @@ class Menu extends React.Component {
 								<MenuTopic className='display__none display-tablet-small__block'>
 									Inhalte
 								</MenuTopic>
-								<div className='menu__content-col row'>
-									<div className='col'>
+								<Row className='menu__content-col'>
+									<Col className='display__flex display__flex--flags --col'>
 										{linkData['primary'].map(link => (
-											<HeadlineLink href={link.route} key={link.name}>
+											<HeadlineLink
+												href={link.route}
+												key={link.name}
+												className='menu__fly-in'>
 												{link.name}
 											</HeadlineLink>
 										))}
-									</div>
-								</div>
+									</Col>
+								</Row>
 							</Col>
 							<Col
 								width={{ default: 12, smallTablet: 4 }}
@@ -142,13 +189,13 @@ class Menu extends React.Component {
 									Räumlichkeiten
 								</MenuTopic>
 								<div className='menu__content-col row'>
-									<Place title='Hauptbüro'>
+									<Place className='menu__fly-in' title='Hauptbüro'>
 										Wertherstraße 310 <br />
 										33619 Bielefeld <br />
 										Deutschland <br />
 									</Place>
 
-									<Place title='Werktstatt'>
+									<Place className='menu__fly-in' title='Werktstatt'>
 										Höfeweg 80 <br />
 										33619 Bielefeld <br />
 										Deutschland <br />
