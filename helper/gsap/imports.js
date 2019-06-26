@@ -3,6 +3,7 @@
 import TweenLite from "gsap/umd/TweenLite";
 import TimelineMax from "gsap/umd/TimelineMax";
 import CSSPlugin from "gsap/umd/CSSPlugin";
+import EasePack from "gsap/umd/EasePack";
 import BezierPlugin from "gsap/umd/BezierPlugin";
 import CustomEase from "./custom-ease";
 
@@ -14,5 +15,6 @@ export default {
     TweenLite,
     TimelineMax,
     CSSPlugin,
+    EasePack,
     BezierPlugin
 };
