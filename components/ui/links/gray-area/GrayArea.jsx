@@ -1,4 +1,4 @@
-import { smoothEase, duration } from 'helper/animation';
+import { ease, duration } from 'helper/animation';
 
 import './GrayArea.scss';
 
@@ -11,16 +11,16 @@ export class GrayArea extends React.Component {
 				transformOrigin: 'left'
 			})
 			.to(this.span.current, duration / 4, {
-				ease: smoothEase,
+				ease: Circ,
 				scaleX: 0.66
 			})
 			.addLabel('half')
 			.to(this.span.current, duration / 4, {
-				ease: smoothEase,
+				ease: Circ,
 				scaleX: 1
 			})
 			.to(this.span.current, duration / 4, {
-				ease: smoothEase,
+				ease: Circ,
 				transformOrigin: 'right',
 				scaleX: 0
 			});
