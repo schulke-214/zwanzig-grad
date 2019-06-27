@@ -1,6 +1,11 @@
 .footer {
     @include padding(16, top);
 
+    @include below(tablet) {
+        @include padding(8, top);
+        @include padding(8, bottom);
+    }
+
     & > .row {
         &:first-child {
             @include above(tablet) {
