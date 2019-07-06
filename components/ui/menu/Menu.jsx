@@ -5,10 +5,10 @@ import HeadlineLink from 'components/ui/links/headline-link/HeadlineLink';
 import HoverLink from 'components/ui/links/hover-link/HoverLink';
 
 import { Grid, Row, Col } from 'components/ui/grid/Grid';
-import { ease, duration, smoothEase } from 'helper/animation';
+import { ease, duration } from 'helper/animation';
 import { disableScrolling, enableScrolling } from 'helper/scrolling';
 
-import linkData from 'helper/link-data.json';
+import LINKS from ',/Menu.json';
 
 import './Menu.scss';
 
@@ -150,7 +150,7 @@ class Menu extends React.Component {
 								</Row>
 								<Row className='menu__content-col display__none display-tablet-small__flex '>
 									<Col className='display__flex display__flex--flags --col'>
-										{linkData['secondary'].map(link => (
+										{LINKS['secondary'].map(link => (
 											<HoverLink
 												href={link.route}
 												key={link.name}
@@ -171,7 +171,7 @@ class Menu extends React.Component {
 								</MenuTopic>
 								<Row className='menu__content-col'>
 									<Col className='display__flex display__flex--flags --col'>
-										{linkData['primary'].map(link => (
+										{LINKS['primary'].map(link => (
 											<HeadlineLink
 												href={link.route}
 												key={link.name}
