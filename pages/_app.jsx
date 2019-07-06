@@ -20,9 +20,7 @@ const mountGrid = () => {
 
 class App extends Application {
 	componentDidMount() {
-		if (window) {
-			mountGrid();
-		}
+		if (window) mountGrid();
 	}
 
 	render() {
