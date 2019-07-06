@@ -1,0 +1,41 @@
+{
+    "primary": [{
+            "name": "Arbeiten",
+            "route": "/work"
+        },
+        {
+            "name": "Über Uns",
+            "route": "/about"
+        },
+        {
+            "name": "Neuigkeiten",
+            "route": "/news"
+        },
+        {
+            "name": "Stellenangebote",
+            "route": "/jobs"
+        },
+        {
+            "name": "Kontakt",
+            "route": "/contact"
+        }
+    ],
+    "secondary": [{
+            "name": "archiv",
+            "route": "/archive"
+        },
+        {
+            "name": "blog",
+            "route": "/blog"
+        },
+        {
+            "name": "newsletter",
+            "route": "/newsletter"
+        },
+        {
+            "name": "instagram",
+            "route": "https://www.instagram.com/zwanzig-grad",
+            "newTab": true
+        }
+    ]
+}
