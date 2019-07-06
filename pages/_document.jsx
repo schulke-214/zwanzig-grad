@@ -36,7 +36,7 @@ class AppDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
-					<script src='https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js' />
+					{/* <script src='https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js' /> */}
 				</body>
 			</html>
 		);

@@ -1,3 +1,5 @@
+import { Masonry } from 'helper/masonry';
+
 import { Grid } from 'components/ui/grid/Grid';
 
 import './ProjectMasonry.scss';
@@ -6,11 +8,13 @@ class ProjectMasonry extends React.Component {
 	container = React.createRef();
 
 	componentDidMount() {
-		this.container = new Masonry(this.container.current, {
-			itemSelector: '.project-masonry__item',
-			stagger: 30,
-			columnWidth: this.container.current.style.width / 2
+		this.masonry = new Masonry(this.container.current, {
+			itemSelector: '.project-masonry__item'
 		});
+	}
+
+	componentWillUnmount() {
+		this.masonry.unmount();
 	}
 
 	render() {
