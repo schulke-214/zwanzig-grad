@@ -1,0 +1,37 @@
+.home-stage {
+    background-color: color(light-text, 10);
+}
+
+.home-stage__featured-project {
+
+    .row {
+        height: 100vh;
+        align-items: center;
+        position: relative;
+    }
+}
+
+.home-stage__project-image {
+    height: calc( 75vh - ((40px + 3rem) * 2) ); // 100vh - navigation * 2
+}
+
+
+.home-stage__color-box {
+    background-color: color(contrast);
+    width: 75vw;
+    height: 35vh;
+    z-index: z(background);
+
+    position: absolute;
+    top: calc(40px + 3rem); // navigation height
+    right: 0;
+    width: 45%;
+    height: calc( 100vh - ((40px + 3rem) * 2) ); // 100vh - navigation * 2
+
+    @include above(desktop) {
+        // calculate the margin to the right of the container + the initial width of this image
+        width: calc((100vw - #{get($breakpoints, desktop)}) * 0.5 + 45%);
+        // offset the image by - of the container margin -> perfectly aligned width the right window border
+        right: calc((100vw - #{get($breakpoints, desktop)}) * -0.5);
+    } 
+}
