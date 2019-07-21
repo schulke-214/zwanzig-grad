@@ -6,7 +6,7 @@ import HoverLink from 'components/ui/links/hover-link/HoverLink';
 
 import { Row, Col } from 'components/ui/grid/Grid';
 
-import linkData from 'helper/link-data.json';
+import LINKS from 'components/ui/menu/Menu.json';
 
 import './Footer.scss';
 
@@ -42,7 +42,7 @@ class Footer extends React.Component {
 									default: 6
 								}}
 								className='display__flex display__flex--flags --col'>
-								{linkData['primary'].map(link => (
+								{LINKS['primary'].map(link => (
 									<HoverLink
 										href={link.route}
 										key={link.name}
@@ -58,7 +58,7 @@ class Footer extends React.Component {
 									default: 6
 								}}
 								className='display__flex display__flex--flags --col'>
-								{linkData['secondary'].map(link => (
+								{LINKS['secondary'].map(link => (
 									<HoverLink
 										href={link.route}
 										key={link.name}

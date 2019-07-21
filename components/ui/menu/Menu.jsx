@@ -8,7 +8,7 @@ import { Grid, Row, Col } from 'components/ui/grid/Grid';
 import { ease, duration } from 'helper/animation';
 import { disableScrolling, enableScrolling } from 'helper/scrolling';
 
-import LINKS from ',/Menu.json';
+import LINKS from './Menu.json';
 
 import './Menu.scss';
 
