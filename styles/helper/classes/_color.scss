@@ -3,7 +3,7 @@
         color: color($color);
     }
 
-    @each $opacity in (80, 60, 40, 20) {
+    @each $opacity in (90, 80, 70, 60, 50, 40, 30, 20, 10) {
         .color--#{$color}-#{$opacity} {
             color: color($color, $opacity);
         }   
