@@ -1,4 +1,4 @@
-import { Masonry } from 'helper/masonry';
+// import { Masonry } from 'helper/masonry';
 
 import { Grid } from 'components/ui/grid/Grid';
 
@@ -8,19 +8,19 @@ class ProjectMasonry extends React.Component {
 	container = React.createRef();
 
 	componentDidMount() {
-		this.masonry = new Masonry(this.container.current, {
-			itemSelector: '.project-masonry__item'
-		});
+		// this.masonry = new Masonry(this.container.current, {
+		// 	itemSelector: '.project-masonry__item'
+		// });
 	}
 
 	componentWillUnmount() {
-		this.masonry.unmount();
+		// this.masonry.unmount();
 	}
 
 	render() {
 		return (
 			<Grid>
-				<ul className='project-masonry' ref={this.container}>
+				{/* <ul className='project-masonry' ref={this.container}>
 					<li className='project-masonry__item project-masonry__item--offset' />
 					<li className='project-masonry__item'>
 						<img src='https://source.unsplash.com/300x400' />
@@ -43,7 +43,7 @@ class ProjectMasonry extends React.Component {
 					<li className='project-masonry__item'>
 						<img src='https://source.unsplash.com/300x150' />
 					</li>
-				</ul>
+				</ul> */}
 			</Grid>
 		);
 	}
