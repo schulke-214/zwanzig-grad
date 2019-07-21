@@ -32,7 +32,7 @@
 }
 
 @function color($name: primary, $opacity: 100) {
-    @return get(get($colors, $name), $opacity);
+    @return rgba(get($colors, $name), $opacity / 100);
 }
 
 @function font-size($size: text) {
