@@ -1,23 +1,75 @@
 .home-stage {
-    background-color: color(light-text, 10);
+    background-color: color(light-text, 5);
+    z-index: 0;
+    position: relative;
 }
 
 .home-stage__featured-project {
-
     .row {
-        height: 100vh;
         align-items: center;
         position: relative;
+
+        @include above(tablet) {
+            height: 100vh;
+        }
+
+        @include below(tablet) {
+            @include padding(2, bottom);
+        }
     }
 }
 
 .home-stage__project-image {
-    height: calc( 75vh - ((40px + 3rem) * 2) ); // 100vh - navigation * 2
+    @include above(tablet) {
+        height: calc( 90vh - ((40px + 3rem) * 2) ); // 100vh - navigation * 2
+    }
 }
 
+.home-stage__project-text {
+    @include padding(8, top);
+    @include padding(2, right);
+
+    > span:first-child {
+        @include margin(2, bottom);
+
+        display: block;
+    }
+
+    h1, h2 {
+        @include font-size(7);
+    }
+
+    .hover-link {
+        @include margin(2, top);
+
+        span:first-child {
+            transform: none !important;
+        }
+
+        span:last-child {
+            left: -0.5rem;
+        }
+    }
+
+    @include below(tablet) {
+        @include padding(10, top);
+        @include padding(4, bottom);
+        @include padding(0, right);
+
+        > span:first-child {
+            @include margin(1, bottom);
+        }
+
+        .hover-link {
+            @include margin(1, top);
+        }
+    }
+}
 
 .home-stage__color-box {
-    background-color: color(contrast);
+    display: none;
+
+    background-color: color(highlight);
     width: 75vw;
     height: 35vh;
     z-index: z(background);
@@ -27,11 +79,4 @@
     right: 0;
     width: 45%;
     height: calc( 100vh - ((40px + 3rem) * 2) ); // 100vh - navigation * 2
-
-    @include above(desktop) {
-        // calculate the margin to the right of the container + the initial width of this image
-        width: calc((100vw - #{get($breakpoints, desktop)}) * 0.5 + 45%);
-        // offset the image by - of the container margin -> perfectly aligned width the right window border
-        right: calc((100vw - #{get($breakpoints, desktop)}) * -0.5);
-    } 
 }
