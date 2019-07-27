@@ -3,7 +3,6 @@
 
     @include below(tablet) {
         @include padding(8, top);
-        @include padding(8, bottom);
     }
 
     & > .row {
