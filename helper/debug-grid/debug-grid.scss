@@ -7,9 +7,9 @@
 	height: 100vh;
 	z-index: z(foreground);
 	opacity: 0.5;
+    //background-color: color(light-text, 50);
 
 	.container {
-		background-color: color(contrast, 20);
 		height: 100vh;
 
 		.row {
@@ -24,7 +24,8 @@
                 }
 
 				.debug-col-inner {
-					height: 100%;
+                    height: 100%;
+                    // background-color: color(light-text, 50);
                 }
 			}
 		}
