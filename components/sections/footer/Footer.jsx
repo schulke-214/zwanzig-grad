@@ -20,7 +20,7 @@ class Footer extends React.Component {
 							default: 12,
 							tablet: 6
 						}}>
-						<h1 style={{ marginTop: -10 }}>Sie haben ein Projekt?</h1>
+						<h1 style={{ marginTop: -10 }}>Sie haben eine Idee?</h1>
 						<h2 className='typo--flags --ultra-light'>Erzählen Sie uns mehr</h2>
 
 						<ArrowLink
