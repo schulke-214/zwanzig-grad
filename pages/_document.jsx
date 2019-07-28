@@ -32,11 +32,12 @@ class AppDocument extends Document {
 					))}
 
 					<link rel='stylesheet' href='/static/fonts/fonts.css' type='text/css' />
+
+					<script src='https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js' />
 				</Head>
 				<body>
 					<Main />
 					<NextScript />
-					{/* <script src='https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js' /> */}
 				</body>
 			</html>
 		);
