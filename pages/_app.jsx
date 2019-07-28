@@ -6,6 +6,8 @@ import { Layout } from 'layout/default';
 import 'helper/gsap/imports';
 import 'styles/main.scss';
 
+import 'intersection-observer';
+
 const { Grid } =
 	process.env.NODE_ENV !== 'production'
 		? require('helper/debug-grid/debug-grid.js')
