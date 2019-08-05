@@ -16,15 +16,6 @@ class ProjectMasonry extends React.Component {
 			stagger: 30,
 			columnWidth: this.container.current.style.width / 2
 		});
-
-		// layout Masonry after each image loads
-		// window.imagesLoaded(this.container.current).on('progress', () => {
-		//
-		// });
-
-		// this.masonry = new Masonry(this.container.current, {
-		// 	itemSelector: '.project-masonry__item'
-		// });
 	}
 
 	componentWillUnmount() {
@@ -32,15 +23,16 @@ class ProjectMasonry extends React.Component {
 	}
 
 	imageLoaded = () => {
-		console.log('AN IMAGE WAS LOADED');
 		this.masonry.layout();
 	};
 
 	render() {
 		const lazy = (src, height) => (
-			<ProjectTeaser height={height} once>
-				<img src={src} onLoad={this.imageLoaded} />
-			</ProjectTeaser>
+			// <ProjectTeaser>
+				<LazyLoad height={height} once>
+					<img src={src} onLoad={this.imageLoaded} />
+				</LazyLoad>
+			// </ProjectTeaser>
 		);
 
 		return (
