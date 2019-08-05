@@ -41,20 +41,32 @@ export class Masonry {
     }
 
     pack = () => {
-        // this.elements =
+        console.log("packed everything")
     }
 
     resize = () => {
+        console.log("resize")
+        console.log(this.elements)
 
-        // this.elements.map(el => {
-        //     for (let i = 0; i < this.columns.length; i++) {
-        //         const height = this.columns[i].reduce()
+        this.elements.map(el => {
+            let insertableColumn = {
+                height: Infinity,
+                index: 0
+            };
 
-        //         // console.log(colHeight)
-        //     }
+            for (let i = 0; i < this.columns.length; i++) {
+                const height = this.columns[i].computeHeight();
 
-        //     // this.columns[index % this.options.columns].push(el)
-        // });
+                console.log("row ", i, " has a height of ", height);
+
+                if (insertableColumn.height > height) {
+                    insertableColumn.height = height;
+                    insertableColumn.index = index;
+                }
+            }
+
+            //     // this.columns[index % this.options.columns].push(el)
+        });
 
         console.log(this.columns)
         // this.elements.map(el => console.log(absoluteHeight(el)))

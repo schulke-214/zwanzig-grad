@@ -30,10 +30,12 @@ class ProjectTeaser extends React.Component {
 
 	render() {
 		return (
-			<div ref={this.container}>
-				{this.props.children}
-				<span>Projekt Xyz</span>
-			</div>
+				<div ref={this.container}>
+					<LazyLoad {...this.props}>
+						{this.props.children}
+					</LazyLoad>
+					<span>Projekt Xyz</span>
+				</div>
 		);
 	}
 }
