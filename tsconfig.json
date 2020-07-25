@@ -6,6 +6,6 @@
 		"jsx": "preserve",
 		"noImplicitAny": true,
 		"esModuleInterop": true,
-		"baseUrl": "src",
+		"baseUrl": "src"
 	}
 }
