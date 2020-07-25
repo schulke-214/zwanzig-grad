@@ -1,22 +1,61 @@
+require('dotenv').config();
 const path = require('path');
 
-module.exports = {
-	siteMetadata: {
-		title: `Gatsby Default Starter`,
-		description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-		author: `@gatsbyjs`,
+const CONTENT_DIR = path.join(__dirname, 'content');
+
+
+const dev = [
+	{
+		resolve: 'gatsby-plugin-alias-imports',
+		options: {
+			alias: {
+				components: './src/components',
+				fonts: './src/fonts',
+				lib: './src/lib',
+				utils: './src/utils',
+				hooks: './src/hooks',
+				layouts: './src/layouts',
+				pages: './src/pages',
+				templates: './src/templates',
+			},
+		},
 	},
-	plugins: [
-		{
-			resolve: 'gatsby-plugin-root-import',
-			options: {
-				src: path.join(__dirname, 'src'),
-				components: path.join(__dirname, 'src/components'),
-				layouts: path.join(__dirname, 'src/layouts'),
-				lib: path.join(__dirname, 'src/lib'),
-				pages: path.join(__dirname, 'src/pages'),
-				hooks: path.join(__dirname, 'src/hooks')
-			}
+	'gatsby-plugin-styled-components',
+	'gatsby-plugin-typescript',
+];
+
+const sources = [
+];
+
+const seo = [
+	{
+		resolve: 'gatsby-plugin-manifest',
+		options: {
+			name: 'Maximilian Schulke',
+			short_name: 'Maximilian Schulke',
+			start_url: '/',
+			background_color: '#000000',
+			theme_color: '#ffffff',
+			display: 'standalone',
+			icon: 'static/assets/favicon.png',
+		},
+	},
+	{
+		resolve: 'gatsby-plugin-google-analytics',
+		options: {
+			trackingId: 'UA-',
+			anonymize: true,
 		}
+	},
+	'gatsby-plugin-offline',
+	'gatsby-plugin-react-helmet',
+];
+
+module.exports = {
+	siteMetadata: {},
+	plugins: [
+		...dev,
+		...sources,
+		...seo
 	]
-}
+};
