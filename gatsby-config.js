@@ -1,8 +1,4 @@
 require('dotenv').config();
-const path = require('path');
-
-const CONTENT_DIR = path.join(__dirname, 'content');
-
 
 const dev = [
 	{
@@ -21,23 +17,29 @@ const dev = [
 		},
 	},
 	'gatsby-plugin-styled-components',
-	'gatsby-plugin-typescript',
 ];
 
 const sources = [
+	{
+		resolve: 'gatsby-source-contentful',
+		options: {
+			spaceId: process.env.CONTENTFUL_SPACE_ID,
+			accessToken: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
+		}
+	}
 ];
 
 const seo = [
 	{
 		resolve: 'gatsby-plugin-manifest',
 		options: {
-			name: 'Maximilian Schulke',
-			short_name: 'Maximilian Schulke',
+			name: 'Zwanzig Grad - Handwerk zum Wohnen',
+			short_name: '20°',
 			start_url: '/',
 			background_color: '#000000',
 			theme_color: '#ffffff',
 			display: 'standalone',
-			icon: 'static/assets/favicon.png',
+			//icon: 'static/assets/favicon.png',
 		},
 	},
 	{
