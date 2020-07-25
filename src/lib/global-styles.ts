@@ -41,7 +41,7 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 	}
 
 	pre, hr, code {
-		font-family: '!!!<INSERT HERE>!!!', monospace;
+		font-family: monospace;
 	}
 
 	button {

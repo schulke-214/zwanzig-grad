@@ -1,8 +1,15 @@
 import Typography from 'typography';
-import FairyGatesTheme from 'typography-theme-fairy-gates';
+import GithubTheme from 'typography-theme-github';
 
+console.log(GithubTheme)
 
-const typography = new Typography(FairyGatesTheme);
+const typography = new Typography({
+	...GithubTheme,
+	bodyColor: undefined,
+	headerColor: undefined,
+	headerFontFamily: ['Arial'],
+	bodyFontFamily: ['Arial']
+});
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {
