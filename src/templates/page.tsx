@@ -9,12 +9,18 @@ interface PageProps {
 }
 
 const Page: FunctionComponent<PageProps> = ({ data }) => {
-	const { contentfulSeite: {slug, title} } = data;
+	const { contentfulSeite: {slug, title, description, keywords} } = data;
 
 	return (
 		<Layout>
 			<h1>{title}</h1>
-			<pre>/{slug}</pre>
+			<pre>
+				/{slug}
+			</pre>
+			<p>{description}</p>
+			<ul>
+				{keywords.map((word: string) => <li>{word}</li>)}
+			</ul>
 		</Layout>
 	);
 };
@@ -24,6 +30,8 @@ export const query = graphql`
 		contentfulSeite(slug: { eq: $slug }) {
 			slug
 			title
+			description
+			keywords
 			layout {
 				content {
 					... on ContentfulLayoutSlider {
