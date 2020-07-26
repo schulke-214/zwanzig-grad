@@ -1,7 +1,6 @@
 import Typography from 'typography';
 import GithubTheme from 'typography-theme-github';
 
-console.log(GithubTheme)
 
 const typography = new Typography({
 	...GithubTheme,
@@ -15,7 +14,6 @@ const typography = new Typography({
 if (process.env.NODE_ENV !== 'production') {
 	typography.injectStyles();
 }
-
 
 export const rhythm = typography.rhythm;
 export const scale = typography.scale;
