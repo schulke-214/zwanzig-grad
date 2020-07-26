@@ -3,13 +3,16 @@ import { graphql } from 'gatsby';
 
 import Layout from 'layouts/default';
 
+import PageLayout from 'components/PageLayout';
+
+
 
 interface PageProps {
 	data: any;
 }
 
 const Page: FunctionComponent<PageProps> = ({ data }) => {
-	const { contentfulSeite: {slug, title, description, keywords} } = data;
+	const { contentfulSeite: {slug, title, description, keywords, layout} } = data;
 
 	return (
 		<Layout>
@@ -17,10 +20,7 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 			<pre>
 				/{slug}
 			</pre>
-			<p>{description}</p>
-			<ul>
-				{keywords.map((word: string) => <li>{word}</li>)}
-			</ul>
+			<PageLayout {...layout} />
 		</Layout>
 	);
 };
@@ -33,15 +33,7 @@ export const query = graphql`
 			description
 			keywords
 			layout {
-				content {
-					... on ContentfulLayoutSlider {
-						id
-						title
-						images {
-							title
-						}
-					}
-				}
+				...Layout
 			}
 		}
 	}
