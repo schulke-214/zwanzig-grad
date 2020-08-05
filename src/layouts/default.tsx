@@ -1,14 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import { GlobalStyles } from 'lib/global-styles';
 import { DefaultTheme } from 'lib/themes';
 
+import Navigation from 'components/core/Navigation';
 
-const Layout: FunctionComponent<{}> = ({ children }) => (
+
+interface LayoutProps {
+	children: any;
+}
+
+const Layout: FunctionComponent<LayoutProps> = ({ children }) => (
 	<ThemeProvider theme={DefaultTheme}>
 		<GlobalStyles />
-		{children}
+		<Navigation />
+		<main>
+			{children}
+		</main>
 	</ThemeProvider>
 );
 
