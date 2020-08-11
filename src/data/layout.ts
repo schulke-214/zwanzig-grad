@@ -19,13 +19,15 @@ export const Layout = graphql`
 	}
 
 	fragment LayoutText on ContentfulLayoutText {
+		__typename
 		id
 		text {
-			text
+			json
 		}
 	}
 
 	fragment LayoutAccordion on ContentfulLayoutAccordion {
+		__typename
 		id
 		openFirstElement
 		title
@@ -40,11 +42,18 @@ export const Layout = graphql`
 	}
 
 	fragment LayoutContainer on ContentfulLayoutContainer {
+		__typename
 		id
 		type
+		content {
+			...on ContentfulLayoutText {
+				...LayoutText
+			}
+		}
 	}
 
 	fragment LayoutSlider on ContentfulLayoutSlider {
+		__typename
 		id
 		showTitle
 		title
