@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 
 
-interface ProjectProps {}
+interface ProjectsProps {}
 
-const Project: FunctionComponent<ProjectProps> = () => {
+const Projects: FunctionComponent<ProjectsProps> = () => {
 	return (
 		<div>
 			{"<Projects>"}
@@ -11,4 +11,4 @@ const Project: FunctionComponent<ProjectProps> = () => {
 	);
 }
 
-export default Project;
+export default Projects;

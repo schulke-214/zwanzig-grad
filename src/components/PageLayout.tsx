@@ -1,25 +1,29 @@
 import React, { FunctionComponent } from 'react'
 
+import Accordion from './modules/Accordion';
+import Container from './modules/Container';
+import Projects from './modules/Projects';
+import Slider from './modules/Slider';
+import Text from './modules/Text';
+
 
 interface PageLayoutProps {
 	content: any
 }
 
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
-	console.log(content)
-
 	const renderModules = ({ __typename, id, ...el }: any) => {
 		switch(__typename) {
 			case 'ContentfulLayoutAccordion':
-				return <p key={id}>ACCORDION</p>;
+				return <Accordion key={id} {...el} />;
 			case 'ContentfulLayoutContainer':
-				return <p key={id}>CONTAINER</p>;
+				return <Container key={id} {...el} />
 			case 'ContentfulLayoutProjects':
-				return <p key={id}>PROJECTS</p>;
+				return <Projects key={id} {...el} />;
 			case 'ContentfulLayoutSlider':
-				return <p key={id}>SLIDER</p>;
+				return <Slider key={id} {...el} />
 			case 'ContentfulLayoutText':
-				return <p key={id}>TEXT</p>;
+				return <Text key={id} {...el} />;
 			default:
 				throw new Error(`Unkown content element '${__typename}'`);
 		}
