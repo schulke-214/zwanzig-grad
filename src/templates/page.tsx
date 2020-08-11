@@ -6,7 +6,6 @@ import Layout from 'layouts/default';
 import PageLayout from 'components/PageLayout';
 
 
-
 interface PageProps {
 	data: any;
 }
