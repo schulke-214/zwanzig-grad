@@ -1,12 +1,16 @@
 import React, { FunctionComponent } from 'react'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+interface TextProps {
+	text: {
+		json?: any;
+	};
+}
 
-interface TextProps {}
-
-const Text: FunctionComponent<TextProps> = () => {
+const Text: FunctionComponent<TextProps> = ({ text }) => {
 	return (
 		<div>
-			{"<Text>"}
+			{documentToReactComponents(text?.json)}
 		</div>
 	);
 }
