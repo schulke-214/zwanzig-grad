@@ -18,7 +18,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
 				return <Accordion key={id} {...el} />;
 			case 'ContentfulLayoutContainer':
 				return <Container key={id} {...el} />
-			case 'ContentfulLayoutProjects':
+			case 'ContentfulLayoutProjekte':
 				return <Projects key={id} {...el} />;
 			case 'ContentfulLayoutSlider':
 				return <Slider key={id} {...el} />
