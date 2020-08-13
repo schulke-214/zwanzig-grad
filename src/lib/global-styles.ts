@@ -17,13 +17,9 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 
 	html {
 		background-color: ${props => props.theme.colors.background};
-		min-width: 100vw;
-		max-width: 100vw;
+		width: 100%;
 		overflow-x: hidden;
-		
-		&.theme-transition * {
-			transition: none !important;
-		}
+		overflow-y: auto;
 	}
 
 	a {
