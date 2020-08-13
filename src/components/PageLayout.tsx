@@ -29,7 +29,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
 		}
 	};
 
-	return content.map(renderModules);
+	return content?.map(renderModules) ?? null;
 }
 
 export default PageLayout;
