@@ -5,7 +5,9 @@ export const Navigation = graphql`
 		id
 		displayText
 		linkTo {
-			slug
+			metadata {
+				slug
+			}
 		}
 	}
 `;

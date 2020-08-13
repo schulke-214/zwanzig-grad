@@ -36,7 +36,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 			<ul>
 				{links.map((link: any) => (
 					<li key={link.id}>
-						<Link to={`/${link.linkTo.slug}`}>
+						<Link to={`/${link.linkTo.metadata.slug}`}>
 							{link.displayText}
 						</Link>
 					</li>	
