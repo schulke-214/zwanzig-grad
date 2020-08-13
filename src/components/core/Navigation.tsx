@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
+import { tablet } from 'lib/media';
+import { rem } from 'lib/polished';
 
 
 interface NavigationProps {
@@ -46,4 +48,25 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 	);
 }
 
-export default styled(Navigation)``;
+export default styled(Navigation)`
+	> a {
+		display: block;
+		width: 4rem;
+		height: 4rem;
+		margin-bottom: ${props => rem(props.theme.spacings.medium)};
+		background-color: ${props => props.theme.colors.brand};
+
+		${tablet} {
+			width: 15rem;
+			height: 15rem;
+		}
+
+		img {
+			display: none;
+		}
+	}
+
+	ul {
+		list-style: none;
+	}
+`;
