@@ -11,7 +11,17 @@ interface PageProps {
 }
 
 const Page: FunctionComponent<PageProps> = ({ data }) => {
-	const { contentfulSeite: {slug, title, description, keywords, layout} } = data;
+	const {
+		contentfulSeite: {
+			title,
+			metadata: {
+				slug
+				// description,
+				// keywopage.node.metadata.slugrds
+			},
+			layout
+		}
+	} = data;
 
 	return (
 		<Layout>
@@ -25,12 +35,14 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 };
 
 export const query = graphql`
-	query PageQuery($slug: String!) {
-		contentfulSeite(slug: { eq: $slug }) {
-			slug
+	query PageQuery($slug: String) {
+		contentfulSeite(metadata: {slug: {eq: $slug }}) {
 			title
-			description
-			keywords
+			metadata {
+				slug
+				description
+				keywords
+			}
 			layout {
 				...Layout
 			}
