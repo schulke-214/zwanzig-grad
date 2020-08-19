@@ -5,12 +5,9 @@ import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
 
-type FlexDirection = 'row' | 'column';
-type ContainerDirection = 'Horizontal' | 'Vertical';
-
 interface ContainerProps {
 	className?: string;
-	type: ContainerDirection;
+	type: 'Horizontal' | 'Vertical';
 	content: any;
 }
 
