@@ -49,16 +49,18 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 }
 
 export default styled(Navigation)`
+	padding: ${props => rem(props.theme.spacings.medium)};
+
 	> a {
 		display: block;
-		width: 4rem;
-		height: 4rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		margin-bottom: ${props => rem(props.theme.spacings.medium)};
 		background-color: ${props => props.theme.colors.brand};
 
 		${tablet} {
-			width: 15rem;
-			height: 15rem;
+			width: 100%;
+			padding-top: 100%;
 		}
 
 		img {
