@@ -16,8 +16,6 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 			title,
 			metadata: {
 				slug
-				// description,
-				// keywopage.node.metadata.slugrds
 			},
 			layout
 		}
@@ -25,10 +23,6 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 
 	return (
 		<Layout>
-			<h1>{title}</h1>
-			<pre>
-				/{slug}
-			</pre>
 			<PageLayout {...layout} />
 		</Layout>
 	);

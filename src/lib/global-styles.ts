@@ -3,8 +3,18 @@ import { createGlobalStyle, GlobalStyleComponent, DefaultTheme } from 'styled-co
 import typography from 'lib/typography';
 import { normalize } from 'lib/polished';
 
+// @ts-ignore next-line
+import swiper from '!!raw-loader!swiper/swiper-bundle.css';
+
 
 export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
+	/* @font-face {
+		font-family:'Lucida Grande';
+		font-style: normal;
+		font-weight: 400;
+		src:  local('Lucida Grand'), local('Lucida Grande Regular'), url('fonts/lucida-grande.woff2') format('woff2');
+	} */
+
 	${normalize()}
 	${typography.toString()}
 
@@ -17,13 +27,9 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 
 	html {
 		background-color: ${props => props.theme.colors.background};
-		min-width: 100vw;
-		max-width: 100vw;
+		width: 100%;
 		overflow-x: hidden;
-		
-		&.theme-transition * {
-			transition: none !important;
-		}
+		overflow-y: auto;
 	}
 
 	a {
@@ -49,4 +55,10 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 		outline: none;
 		text-decoration: none;
 	}
+
+	li > p {
+		display: inline-block;
+	}
+
+	${swiper}
 `;

@@ -15,6 +15,8 @@ declare module 'styled-components' {
 		colors: {
 			foreground: string;
 			background: string;
+			brand: string;
+			muted: string;
 		};
 		spacings: {
 			xlarge: number;
