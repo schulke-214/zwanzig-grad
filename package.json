@@ -2,7 +2,7 @@
   "name": "zwanzig-grad",
   "private": true,
   "description": "",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Maximilian Schulke <hello@maximilianschulke.com>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.1",
