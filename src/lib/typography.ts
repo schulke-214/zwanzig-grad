@@ -6,8 +6,8 @@ const typography = new Typography({
 	...GithubTheme,
 	bodyColor: undefined,
 	headerColor: undefined,
-	headerFontFamily: ['Arial'],
-	bodyFontFamily: ['Arial']
+	headerFontFamily: ['Lucida Grande'],
+	bodyFontFamily: ['Lucida Grande']
 });
 
 // Hot reload typography in development.

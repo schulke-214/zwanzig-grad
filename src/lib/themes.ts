@@ -5,15 +5,19 @@ import { colors } from 'lib/colors';
 
 const BLACK: string = colors.black;
 const WHITE: string = colors.white;
+const BRAND: string = colors.green;
+const GRAY: string = colors.gray;
 
 
 export const DefaultTheme: Theme = {
 	layout: {
-		maxWidth: 880
+		maxWidth: 1240
 	},
 	colors: {
 		foreground: BLACK,
-		background: WHITE
+		background: WHITE,
+		brand: BRAND,
+		muted: GRAY
 	},
 	spacings: {
 		xlarge: 60,
