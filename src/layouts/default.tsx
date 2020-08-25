@@ -4,14 +4,15 @@ import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from 'lib/global-styles';
 import { DefaultTheme } from 'lib/themes';
 
-import Navigation from 'components/core/Navigation';
+import Navigation from 'components/layout/Navigation';
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
 const Container = styled.div`
+	position: relative;
 	display: grid;
-	grid-template-columns: 20rem auto;
-	grid-template-rows: 5rem auto;
+	grid-template-columns: 17.5rem auto;
+	grid-template-rows: 7.5rem auto;
 	width: 100%;
 	margin: 0 auto;
 	max-width: ${props => rem(props.theme.layout.maxWidth)};
@@ -33,18 +34,8 @@ const Container = styled.div`
 		}
 	}
 
-	${Navigation} {
-		grid-column: 1 / span 2;
-		grid-row: 1 / span 1;
-
-		${tablet} {
-			overflow-y: auto;
-			grid-column: 1 / span 1;
-			grid-row: 1 / span 2;
-		}
-	}
-
 	main {
+		max-width: 100vw;
 		background-color: ${props => props.theme.colors.muted};
 		padding: ${props => rem(props.theme.spacings.medium)};
 		grid-column: 1 / span 2;
@@ -56,6 +47,11 @@ const Container = styled.div`
 			grid-column: 2 / span 1;
 			grid-row: 1 / span 2;
 		}
+
+		/* @media screen and (min-width: ${props => rem(props.theme.layout.maxWidth)}) {
+			padding-right: calc(50vw - ${props => rem(props.theme.layout.maxWidth / 2)});
+			margin-right: calc((50vw - ${props => rem(props.theme.layout.maxWidth / 2)}) * -1);
+		} */
 	}
 `;
 
