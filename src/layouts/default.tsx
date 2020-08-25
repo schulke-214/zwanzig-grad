@@ -9,7 +9,6 @@ import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
 const Container = styled.div`
-	position: relative;
 	display: grid;
 	grid-template-columns: 17.5rem auto;
 	grid-template-rows: 7.5rem auto;
