@@ -19,8 +19,8 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 							...NavigationLink
 						}
 						logo {
-							fixed {
-								src
+							file {
+								url
 							}
 						}
 					}
@@ -33,7 +33,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 	return (
 		<nav className={className}>
 			<Link to="/">
-				<img src={logo.fixed.src} />
+				<img src={logo.file.url} />
 			</Link>
 			<ul>
 				{links.map((link: any) => (
@@ -49,26 +49,39 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className }) => {
 }
 
 export default styled(Navigation)`
+	z-index: 10;
+	background-color: ${props => props.theme.colors.background};
 	padding: ${props => rem(props.theme.spacings.medium)};
 
 	> a {
+		position: relative;
 		display: block;
 		width: 2.5rem;
 		height: 2.5rem;
-		margin-bottom: ${props => rem(props.theme.spacings.medium)};
-		background-color: ${props => props.theme.colors.brand};
 
 		${tablet} {
 			width: 100%;
-			padding-top: 100%;
+			height: auto;
+			margin-bottom: ${props => rem(props.theme.spacings.medium)};
 		}
 
 		img {
-			display: none;
+			margin: 0;
+
+			${tablet} {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 
 	ul {
 		list-style: none;
+		display: none;
+
+		${tablet} {
+			display: block;
+		}
 	}
 `;
