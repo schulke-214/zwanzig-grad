@@ -42,13 +42,6 @@ const seo = [
 			//icon: 'static/assets/favicon.png',
 		},
 	},
-	{
-		resolve: 'gatsby-plugin-google-analytics',
-		options: {
-			trackingId: 'UA-',
-			anonymize: true,
-		}
-	},
 	'gatsby-plugin-offline',
 	'gatsby-plugin-react-helmet',
 ];
