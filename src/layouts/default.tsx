@@ -15,6 +15,7 @@ const Container = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	max-width: ${props => rem(props.theme.layout.maxWidth)};
+	min-height: 100vh;
 
 	${tablet} {
 		height: 100vh;

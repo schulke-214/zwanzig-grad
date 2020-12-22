@@ -20,6 +20,7 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 
 	${normalize()}
 	${typography.toString()}
+	${swiper}
 
 	* {
 		color: ${props => props.theme.colors.foreground};
@@ -36,7 +37,7 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 	}
 
 	body {
-		min-height: 100vw;
+		min-height: 100vh;
 	}
 
 	a {
@@ -66,6 +67,4 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 	li > p {
 		display: inline-block;
 	}
-
-	${swiper}
 `;
