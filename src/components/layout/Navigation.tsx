@@ -92,6 +92,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 					node {
 						links {
 							...NavigationLink
+
 							... on ContentfulNavigationLink {
 								internal {
 									type
@@ -102,6 +103,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 								internal {
 									type
 								}
+								id
 							}
 						}
 						logo {
@@ -122,7 +124,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 			{links.map((link: any) => {
 				switch (link.internal.type) {
 					case 'ContentfulNavigationSpacer':
-						return <NavigationSpacer />;
+						return <NavigationSpacer key={link.id} />;
 
 					case 'ContentfulNavigationLink':
 						return (
