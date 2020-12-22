@@ -8,12 +8,15 @@ import swiper from '!!raw-loader!swiper/swiper-bundle.css';
 
 
 export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
-	/* @font-face {
+	@font-face {
 		font-family:'Lucida Grande';
 		font-style: normal;
 		font-weight: 400;
-		src:  local('Lucida Grand'), local('Lucida Grande Regular'), url('fonts/lucida-grande.woff2') format('woff2');
-	} */
+		src: local('Lucida Grand'),
+			 local('Lucida Grande Regular'),
+			 url('fonts/lucida-grande-subset.woff2') format('woff2'),
+			 url('fonts/lucida-grande-subset.woff') format('woff');
+	}
 
 	${normalize()}
 	${typography.toString()}
@@ -30,6 +33,10 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
+	}
+
+	body {
+		min-height: 100vw;
 	}
 
 	a {
