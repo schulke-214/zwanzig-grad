@@ -11,7 +11,7 @@ import { rem } from 'lib/polished';
 const Container = styled.div`
 	display: grid;
 	grid-template-columns: 17.5rem auto;
-	grid-template-rows: 7.5rem auto;
+	grid-template-rows: 6.5rem auto;
 	width: 100%;
 	margin: 0 auto;
 	max-width: ${props => rem(props.theme.layout.maxWidth)};

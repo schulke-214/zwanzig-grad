@@ -54,8 +54,8 @@ const NavigationDesktopWrapper = styled.div`
 const NavigationLogo = styled(Link)`
 	position: relative;
 	display: block;
-	width: 5rem;
-	height: 5rem;
+	width: 4rem;
+	height: 4rem;
 
 	${tablet} {
 		width: 100%;
