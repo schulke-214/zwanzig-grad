@@ -84,6 +84,7 @@ interface NavigationProps {}
 const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 	const [open, setOpen] = useState(false);
 	const toggleOpen = () => setOpen(o => !o);
+	const close = () => setOpen(false);
 
 	const data = useStaticQuery(graphql`
 		{
@@ -131,6 +132,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 							<NavigationItem
 								key={link.id}
 								to={`/${link.linkTo.metadata.slug}`}
+								onClick={close}
 							>
 								{link.displayText}
 							</NavigationItem>
@@ -145,7 +147,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 
 	return (
 		<NavigationContainer>
-			<NavigationLogo to="/" className="logo" onClick={() => setOpen(false)}>
+			<NavigationLogo to="/" className="logo" onClick={close}>
 				<img src={logo.file.url} />
 			</NavigationLogo>
 			<NavigationDesktopWrapper>{nav}</NavigationDesktopWrapper>
