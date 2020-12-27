@@ -38,6 +38,7 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 
 	body {
 		min-height: 100vh;
+		color: inherit;
 	}
 
 	a {
