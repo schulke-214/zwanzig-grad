@@ -24,7 +24,7 @@ const Overlay = styled(RawOverlay)`
 	flex-direction: column;
 	position: fixed;
 	z-index: ${props => props.theme.layers.overlay.background};
-	padding: ${props => rem(props.theme.spacings.large * 2)} ${props => rem(props.theme.spacings.large)};
+	padding: 6.5rem ${props => rem(props.theme.spacings.medium)};
 	width: 100vw;
 	height: 100vh;
 	top: 0;

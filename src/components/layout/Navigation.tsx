@@ -51,7 +51,12 @@ const NavigationDesktopWrapper = styled.div`
 	}
 `;
 
+const NavigationSpacer = styled.li`
+	height: ${props => rem(props.theme.spacings.xsmall)};
+`;
+
 const NavigationLogo = styled(Link)`
+	z-index: ${props => props.theme.layers.overlay.content};
 	position: relative;
 	display: block;
 	width: 4rem;
@@ -73,11 +78,6 @@ const NavigationLogo = styled(Link)`
 		}
 	}
 `;
-
-const NavigationSpacer = styled.li`
-	height: ${props => rem(props.theme.spacings.xsmall)};
-`;
-
 
 interface NavigationProps {}
 
@@ -145,7 +145,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 
 	return (
 		<NavigationContainer>
-			<NavigationLogo to="/" className="logo">
+			<NavigationLogo to="/" className="logo" onClick={() => setOpen(false)}>
 				<img src={logo.file.url} />
 			</NavigationLogo>
 			<NavigationDesktopWrapper>{nav}</NavigationDesktopWrapper>
