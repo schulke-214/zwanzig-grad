@@ -4,6 +4,7 @@ import styled, { ThemeContext } from 'styled-components';
 
 import { rem } from 'lib/polished';
 import { desktop, tablet } from 'lib/media';
+import { common } from 'lib/module-styles';
 
 
 const SliderItem = styled.picture`
@@ -38,7 +39,7 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 	};
 
 	return (
-		<div className={className}>
+		<div className={className} css={common}>
 			<Swiper {...settings}>
 				{images.map((image: any) => (
 					<SliderItem key={image.id}>
@@ -57,5 +58,9 @@ export default styled(Slider)`
 
 	${tablet} {
 		margin: 0 ${props => rem(-props.theme.spacings.large)} ${props => rem(props.theme.spacings.medium)};
+	}
+
+	picture > img {
+		margin-bottom: 0;
 	}
 `;

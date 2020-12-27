@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from 'react'
 
+import { common } from 'lib/module-styles';
+
 
 interface ProjectsProps {}
 
 const Projects: FunctionComponent<ProjectsProps> = () => {
 	return (
-		<div>
+		<div css={common}>
 			{"<Projects>"}
 		</div>
 	);

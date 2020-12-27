@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
+
 import PageLayout from 'components/PageLayout';
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
+import { common } from 'lib/module-styles';
 
 
 interface ContainerProps {
@@ -13,7 +15,7 @@ interface ContainerProps {
 
 const Container: FunctionComponent<ContainerProps> = ({ className, type, content }) => {
 	return (
-		<div className={className}>
+		<div className={className} css={common}>
 			<PageLayout content={content} />
 		</div>
 	);
