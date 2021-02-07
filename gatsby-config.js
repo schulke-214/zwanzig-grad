@@ -31,18 +31,18 @@ const sources = [
 
 const seo = [
 	`gatsby-plugin-remove-serviceworker`,
-	// {
-	// 	resolve: 'gatsby-plugin-manifest',
-	// 	options: {
-	// 		name: 'Zwanzig Grad - Handwerk zum Wohnen',
-	// 		short_name: '20°',
-	// 		start_url: '/',
-	// 		background_color: '#000000',
-	// 		theme_color: '#ffffff',
-	// 		display: 'standalone',
-	// 		//icon: 'static/assets/favicon.png',
-	// 	},
-	// },
+	{
+		resolve: 'gatsby-plugin-manifest',
+		options: {
+			name: 'Zwanzig Grad - Handwerk zum Wohnen',
+			short_name: '20°',
+			start_url: '/',
+			background_color: '#000000',
+			theme_color: '#c2c02f',
+			display: 'standalone',
+			icon: 'static/assets/favicon.png',
+		},
+	},
 	'gatsby-plugin-react-helmet'
 ];
 
