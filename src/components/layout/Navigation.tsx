@@ -122,7 +122,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 
 	const nav = (
 		<ul>
-			{links.map((link: any) => {
+			{links?.map((link: any) => {
 				switch (link.internal.type) {
 					case 'ContentfulNavigationSpacer':
 						return <NavigationSpacer key={link.id} />;
@@ -146,9 +146,9 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 	);
 
 	return (
-		<NavigationContainer>
+		<NavigationContainer itemScope itemType="http://schema.org/SiteNavigationElement">
 			<NavigationLogo to="/" className="logo" onClick={close}>
-				<img src={logo.file.url} />
+				<img src={logo?.file?.url} />
 			</NavigationLogo>
 			<NavigationDesktopWrapper>{nav}</NavigationDesktopWrapper>
 			<NavigationMobileWrapper>
