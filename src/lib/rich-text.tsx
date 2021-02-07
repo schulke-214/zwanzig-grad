@@ -5,12 +5,35 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 const options = {
 	renderNode: {
-		[BLOCKS.EMBEDDED_ASSET]: (node: any, next: any) => (
-			<p>
-				<img alt={node.data.target.fields.description.de} src={node.data.target.fields.file.de.url} />
-		  	</p>
+		[BLOCKS.EMBEDDED_ASSET]: (node: any) => (
+			<p
+				css={`
+					&:last-child {
+						margin-bottom: 0;
+					}
+				`}
+			>
+				<img alt={node?.data?.target?.fields?.description?.de} src={node?.data?.target?.fields?.file?.de?.url} />
+			</p>
 		)
 	}
 };
-  
-export const renderRichText = (document: any) => documentToReactComponents(document, options);
+
+const cleanupDocument = (document: any) => {
+	const { content } = document;
+
+	try {
+		const last = content[content.length - 1];
+		const textContent = last.content.reduce((accum: string, el: any) => accum += el.value, '');
+
+		if (last.nodeType === 'paragraph' && textContent === '') {
+			content.pop();
+		}
+	} catch (e) {
+		console.warn('Failed cleaning document: ' + e + '\n' + JSON.stringify(4, null, document))
+	}
+
+	return document;
+}
+
+export const renderRichText = (document: any) => documentToReactComponents(cleanupDocument(document), options);

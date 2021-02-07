@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Overlay from 'components/ui/Overlay';
 
+
 interface MenuOverlayProps {
 	className?: string;
 }
@@ -16,7 +17,7 @@ const MenuOverlayContent = styled.div`
 	align-items: center;
 `;
 
-const MenuOverlay: FunctionComponent<MenuOverlayProps> = ({ className, children }) => (
+const MenuOverlay: FunctionComponent<MenuOverlayProps> = ({ className, children, logo }) => (
 	<Overlay className={className}>
 		<MenuOverlayContent>{children}</MenuOverlayContent>
 	</Overlay>
