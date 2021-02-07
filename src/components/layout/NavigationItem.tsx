@@ -38,7 +38,7 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 				onClick={onClick}
 				itemProp="url"
 			>
-				<span itemProp="name">{children}</span>
+				{children}
 			</Link>
 		);
 	} else {
@@ -50,7 +50,7 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 	}
 
 	return (
-		<StyledListItem>
+		<StyledListItem itemProp={to && 'name'}>
 			{content}
 		</StyledListItem>
 	);
