@@ -32,7 +32,14 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 
 	if(to) {
 		content = (
-			<Link to={to} className={className} onClick={onClick}>{children}</Link>
+			<Link
+				to={to}
+				className={className}
+				onClick={onClick}
+				itemProp="url"
+			>
+				<span itemProp="name">{children}</span>
+			</Link>
 		);
 	} else {
 		content = (

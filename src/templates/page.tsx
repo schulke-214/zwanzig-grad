@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from 'layouts/default';
 
 import PageLayout from 'components/PageLayout';
+import SEO from 'components/layout/SEO';
 
 
 interface PageProps {
@@ -15,7 +16,9 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 		contentfulSeite: {
 			title,
 			metadata: {
-				slug
+				slug,
+				description,
+				keywords
 			},
 			layout
 		}
@@ -23,6 +26,12 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 
 	return (
 		<Layout>
+			<SEO
+				title={title}
+				slug={slug}
+				description={description}
+				keywords={keywords}
+			/>
 			<PageLayout {...layout} />
 		</Layout>
 	);
