@@ -2,8 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
-import { tablet } from 'lib/media';
-import { rem } from 'lib/polished';
+import { rem, transparentize } from 'lib/polished';
 
 import NavigationItem from 'components/layout/NavigationItem';
 import MenuIcon from 'components/layout/MenuIcon';
@@ -17,37 +16,15 @@ const NavigationContainer = styled.nav`
 	position: sticky;
 	top: 0;
 	left: 0;
-	grid-column: 1 / span 2;
+	grid-column: 1 / span 1;
 	grid-row: 1 / span 1;
 	z-index: 10;
-	background-color: ${props => props.theme.colors.background};
+	background-color: ${props => transparentize(0.05, props.theme.colors.background)};
 	padding: ${props => rem(props.theme.spacings.medium)};
-
-	${tablet} {
-		display: block;
-		padding-top: ${props => rem(props.theme.spacings.large)};
-		overflow-y: auto;
-		grid-column: 1 / span 1;
-		grid-row: 1 / span 2;
-	}
 
 	ul {
 		list-style: none;
 		display: block;
-	}
-`;
-
-const NavigationMobileWrapper = styled.div`
-	${tablet} {
-		display: none;
-	}
-`;
-
-const NavigationDesktopWrapper = styled.div`
-	display: none;
-
-	${tablet} {
-		display: flex;
 	}
 `;
 
@@ -58,20 +35,9 @@ const NavigationLogo = styled(Link)`
 	width: 4rem;
 	height: 4rem;
 
-	${tablet} {
-		width: 100%;
-		height: auto;
-		margin-bottom: ${props => rem(props.theme.spacings.medium)};
-	}
-
 	img {
 		display: block;
 		margin: 0;
-
-		${tablet} {
-			display: block;
-			width: 100%;
-		}
 	}
 `;
 
@@ -122,28 +88,25 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 			<NavigationLogo to="/" className="logo" onClick={close}>
 				<img src={logo?.file?.url} />
 			</NavigationLogo>
-			<NavigationDesktopWrapper>{nav}</NavigationDesktopWrapper>
-			<NavigationMobileWrapper>
-				<MenuIcon
-					open={open}
-					onClick={toggleOpen}
+			<MenuIcon
+				open={open}
+				onClick={toggleOpen}
+				css={`
+					right: -${(props: any) => rem(props.theme.spacings.small)};
+				`}
+			/>
+			{open ? (
+				<MenuOverlay
 					css={`
-						right: -${(props: any) => rem(props.theme.spacings.small)};
+						div {
+							justify-content: flex-start;
+							align-items: flex-start;
+						}
 					`}
-				/>
-				{open ? (
-					<MenuOverlay
-						css={`
-							div {
-								justify-content: flex-start;
-								align-items: flex-start;
-							}
-						`}
-					>
-						{nav}
-					</MenuOverlay>
-				) : null}
-			</NavigationMobileWrapper>
+				>
+					{nav}
+				</MenuOverlay>
+			) : null}
 		</NavigationContainer>
 	);
 };
