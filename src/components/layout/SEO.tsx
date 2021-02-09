@@ -26,7 +26,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const query = useStaticQuery<any>(
 		graphql`
 			query SiteMetaData {
-				seoConfig: allContentfulSearchEngineConfiguration {
+				seoConfig: allContentfulMetaSeoConfiguration {
 					edges {
 						node {
 							name
