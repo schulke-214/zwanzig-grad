@@ -17,7 +17,7 @@ const MenuOverlayContent = styled.div`
 	align-items: center;
 `;
 
-const MenuOverlay: FunctionComponent<MenuOverlayProps> = ({ className, children, logo }) => (
+const MenuOverlay: FunctionComponent<MenuOverlayProps> = ({ className, children }) => (
 	<Overlay className={className}>
 		<MenuOverlayContent>{children}</MenuOverlayContent>
 	</Overlay>
