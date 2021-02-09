@@ -51,10 +51,6 @@ const NavigationDesktopWrapper = styled.div`
 	}
 `;
 
-const NavigationSpacer = styled.li`
-	height: ${props => rem(props.theme.spacings.xsmall)};
-`;
-
 const NavigationLogo = styled(Link)`
 	z-index: ${props => props.theme.layers.overlay.content};
 	position: relative;
@@ -93,19 +89,6 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 					node {
 						links {
 							...NavigationLink
-
-							... on ContentfulNavigationLink {
-								internal {
-									type
-								}
-							}
-
-							... on ContentfulNavigationSpacer {
-								internal {
-									type
-								}
-								id
-							}
 						}
 						logo {
 							file {
@@ -122,26 +105,15 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 
 	const nav = (
 		<ul>
-			{links?.map((link: any) => {
-				switch (link.internal.type) {
-					case 'ContentfulNavigationSpacer':
-						return <NavigationSpacer key={link.id} />;
-
-					case 'ContentfulNavigationLink':
-						return (
-							<NavigationItem
-								key={link.id}
-								to={`/${link.linkTo.metadata.slug}`}
-								onClick={close}
-							>
-								{link.displayText}
-							</NavigationItem>
-						);
-
-					default:
-						throw new Error('Unknown navigation item type! (' + link.internal.type + ')');
-				}
-			})}
+			{links?.map((link: any) => (
+				<NavigationItem
+					key={link.id}
+					to={`/${link.linkTo.metadata.slug}`}
+					onClick={close}
+				>
+					{link.displayText}
+				</NavigationItem>
+			))}
 		</ul>
 	);
 
