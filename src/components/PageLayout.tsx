@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import Accordion from './modules/Accordion';
-import Container from './modules/Container';
 import Projects from './modules/Projects';
 import Slider from './modules/Slider';
 import Text from './modules/Text';
@@ -14,10 +12,6 @@ interface PageLayoutProps {
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
 	const renderModules = ({ __typename, id, ...el }: any) => {
 		switch(__typename) {
-			case 'ContentfulLayoutAccordion':
-				return <Accordion key={id} {...el} />;
-			case 'ContentfulLayoutContainer':
-				return <Container key={id} {...el} />
 			case 'ContentfulLayoutProjekte':
 				return <Projects key={id} {...el} />;
 			case 'ContentfulLayoutSlider':
