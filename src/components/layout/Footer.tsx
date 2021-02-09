@@ -6,8 +6,9 @@ import { tablet } from 'lib/media';
 
 
 const FooterContainer = styled.footer`
-	background-color: ${props => props.theme.colors.muted};
 	width: 100%;
+	height: min-content;
+	background-color: ${props => props.theme.colors.muted};
 	padding: ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {

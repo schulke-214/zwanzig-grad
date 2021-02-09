@@ -16,8 +16,6 @@ const NavigationContainer = styled.nav`
 	position: sticky;
 	top: 0;
 	left: 0;
-	grid-column: 1 / span 1;
-	grid-row: 1 / span 1;
 	z-index: 10;
 	background-color: ${props => transparentize(0.05, props.theme.colors.background)};
 	padding: ${props => rem(props.theme.spacings.medium)};

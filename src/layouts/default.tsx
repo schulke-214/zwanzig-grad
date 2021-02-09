@@ -11,10 +11,11 @@ import Footer from 'components/layout/Footer';
 
 
 const Container = styled.div`
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: 6.5rem auto;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
+	height: 100%;
+	min-height: 100vh;
 	margin: 0 auto;
 
 	main {
@@ -23,8 +24,7 @@ const Container = styled.div`
 		margin: 0 auto;
 		padding: ${props => rem(props.theme.spacings.medium)};
 		padding-top: ${props => rem(props.theme.spacings.large)};
-		grid-column: 1 / span 1;
-		grid-row: 2 / span 1;
+		flex-grow: 1;
 	
 		${tablet} {
 			overflow-y: auto;
