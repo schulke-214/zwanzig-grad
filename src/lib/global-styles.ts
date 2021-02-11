@@ -39,15 +39,36 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 	body {
 		min-height: 100vh;
 		color: inherit;
+		font-weight: 400;
 	}
 
 	a {
 		color: ${props => props.theme.colors.foreground};
-		text-decoration: none;
-	}
+		display: inline-block;
+		position: relative;
+		text-decoration: none !important;
 
-	p a {
-		text-decoration: underline;
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			transition: width ${props => props.theme.animation.duration.fast}s;
+			width: 0px;
+			border-bottom: 1px solid;
+		}
+
+		&:focus {
+			border: 0;
+			outline: none;
+		}
+
+		&:hover, &:focus {
+			&::before {
+				width: 100%;
+			}
+		}
 	}
 
 	ul {
