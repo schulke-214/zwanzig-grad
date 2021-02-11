@@ -6,7 +6,7 @@ import { DefaultTheme } from 'lib/themes';
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
-import Navigation from 'components/layout/Navigation';
+import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer';
 
 
@@ -17,19 +17,19 @@ const Container = styled.div`
 	height: 100%;
 	min-height: 100vh;
 	margin: 0 auto;
+`;
 
-	main {
-		width: 100%;
-		max-width: ${props => rem(props.theme.layout.maxWidth)};
-		margin: 0 auto;
-		padding: ${props => rem(props.theme.spacings.medium)};
-		padding-top: ${props => rem(props.theme.spacings.large)};
-		flex-grow: 1;
-	
-		${tablet} {
-			overflow-y: auto;
-			padding: ${props => rem(props.theme.spacings.large)};;
-		}
+const Main = styled.main`
+	width: 100%;
+	max-width: ${props => rem(props.theme.layout.maxWidth)};
+	margin: 0 auto;
+	padding: ${props => rem(props.theme.spacings.medium)};
+	padding-top: ${props => rem(props.theme.spacings.large)};
+	flex-grow: 1;
+
+	${tablet} {
+		overflow-y: auto;
+		padding: ${props => rem(props.theme.spacings.large)};;
 	}
 `;
 
@@ -41,8 +41,8 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => (
 	<ThemeProvider theme={DefaultTheme}>
 		<GlobalStyles />
 		<Container>
-			<Navigation />
-			<main>{children}</main>
+			<Header />
+			<Main>{children}</Main>
 			<Footer />
 		</Container>
 	</ThemeProvider>
