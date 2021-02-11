@@ -4,7 +4,8 @@ import styled, { ThemeContext } from 'styled-components';
 
 import { rem } from 'lib/polished';
 import { desktop, tablet } from 'lib/media';
-import { common } from 'lib/module-styles';
+
+import ModuleContainer from 'components/generic/ModuleContainer';
 
 
 const SliderItem = styled.picture`
@@ -27,7 +28,7 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 	const theme = useContext(ThemeContext);
 
 	const settings = {
-		slidesPerView: 1.33,
+		slidesPerView: 1.5,
 		centeredSlides: true,
 		shouldSwiperUpdate: true,
 		slideToClickedSlide: true,
@@ -39,22 +40,24 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 	};
 
 	return (
-		<div className={className} css={common}>
-			<Swiper {...settings}>
-				{images.map((image: any) => (
-					<SliderItem key={image.id}>
-						<source srcSet={image.desktop.src} media={desktop.replace('@media ', '')} />
-						<img src={image.mobile.src} alt={"abc"} />
-					</SliderItem>
-				))}
-			</Swiper>
-		</div>
+		<ModuleContainer>
+			<div className={className}>
+				<Swiper {...settings}>
+					{images.map((image: any) => (
+						<SliderItem key={image.id}>
+							<source srcSet={image.desktop.src} media={desktop.replace('@media ', '')} />
+							<img src={image.mobile.src} alt={"abc"} />
+						</SliderItem>
+					))}
+				</Swiper>
+			</div>
+		</ModuleContainer>
 	);
 }
 
 
 export default styled(Slider)`
-	margin: 0 0 ${props => rem(props.theme.spacings.small)};
+	margin: 0 ${props => rem(-props.theme.spacings.medium)} ${props => rem(props.theme.spacings.small)};
 
 	${tablet} {
 		margin: 0 0 ${props => rem(props.theme.spacings.medium)};

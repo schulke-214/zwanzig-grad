@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from 'react'
 
-import { common } from 'lib/module-styles';
+import ModuleContainer from 'components/generic/ModuleContainer';
 
 
 interface ProjectsProps {}
 
 const Projects: FunctionComponent<ProjectsProps> = () => {
 	return (
-		<div css={common}>
-			{"<Projects>"}
-		</div>
+		<ModuleContainer>
+			<div>
+				{"<Projects>"}
+			</div>
+		</ModuleContainer>
 	);
 }
 

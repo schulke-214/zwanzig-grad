@@ -1,12 +1,15 @@
 import React, { FunctionComponent } from 'react'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { renderRichText } from 'lib/rich-text';
-import { common } from 'lib/module-styles';
+import { rem } from 'lib/polished';
+
+import ModuleContainer from 'components/generic/ModuleContainer';
 
 
 interface TextProps {
 	className?: string;
+	isSmall?: boolean;
 	text: {
 		json?: any;
 	};
@@ -14,13 +17,20 @@ interface TextProps {
 
 const Text: FunctionComponent<TextProps> = ({ className, text }) => {
 	return (
-		<div className={className} css={common}>
-			{renderRichText(text?.json)}
-		</div>
+		<ModuleContainer>
+			<div className={className}>
+				{renderRichText(text?.json)}
+			</div>
+		</ModuleContainer>
 	);
 }
 
 export default styled(Text)`
+	${props => props.isSmall && css`
+		max-width: ${props => rem(props.theme.layout.maxWidth / 2)};
+		margin: 0 auto;
+	`}
+
 	> h1,
 	> h2,
 	> h3,
