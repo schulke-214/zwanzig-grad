@@ -18,6 +18,7 @@ const MenuIconContainer = styled.button<MenuIconProps>`
 	cursor: pointer;
 	outline: none;
 	position: relative;
+	z-index: ${props => props.theme.layers.overlay.foreground};
 	width: ${props => rem(props.theme.spacings.small * 2 + 24)};
 	height: ${props => rem(props.theme.spacings.small * 2 + 16)};
 	padding: ${props => rem(props.theme.spacings.small)};
@@ -34,7 +35,6 @@ const MenuIconContainer = styled.button<MenuIconProps>`
 	${props =>
 		props.open &&
 		css`
-			z-index: ${props => props.theme.layers.overlay.content};
 
 			span:first-child {
 				transform: rotate(45deg) translate(5px, 5px);
