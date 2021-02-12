@@ -29,9 +29,12 @@ const ContactDataItem = styled.div`
 		display: block;
 	}
 
-	li, span {
-		&:not(:last-child) {
-			margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+	li,
+	span {
+		margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 `;
