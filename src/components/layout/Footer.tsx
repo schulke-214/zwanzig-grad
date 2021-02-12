@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
+import ContactData from 'components/generic/ContactData';
+
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
@@ -14,11 +16,6 @@ const FooterContainer = styled.footer`
 	${tablet} {
 		padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.large)};;
 	}
-
-	ul {
-		list-style: none;
-		display: block;
-	}
 `;
 
 const FooterContent = styled.div`
@@ -31,7 +28,7 @@ interface FooterProps {}
 const Footer: FunctionComponent<FooterProps> = ({}) => (
 	<FooterContainer>
 		<FooterContent>
-			<h3>SSW</h3>
+			<ContactData />
 		</FooterContent>
 	</FooterContainer>
 );
