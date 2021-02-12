@@ -1,14 +1,52 @@
 import { graphql } from 'gatsby';
 
-export const Layout = graphql`
+import {CMSContentModule, CMSResponsiveImage} from 'data/cms';
+
+
+export type Layout = {
+	content: [LayoutElement]
+};
+
+export type LayoutElement = LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
+
+export type LayoutModuleText = CMSContentModule & {
+	text: {
+		json: string;
+	}
+};
+
+export type LayoutModuleSlider = CMSContentModule & {
+	showTitle: boolean;
+	title: string;
+	images: CMSResponsiveImage[];
+};
+
+export type LayoutModuleFacts = CMSContentModule & {
+	id: string;
+	headline: string;
+	facts: {
+		description: string;
+	};
+};
+
+export type LayoutModuleProjects = CMSContentModule & {
+	filter: boolean;
+	sortBy: string;
+	order: string;
+};
+
+export type LayoutModuleStage = CMSContentModule & {
+	staticText: string;
+	buzzWords: string[];
+	background: CMSResponsiveImage;
+};
+
+export default graphql`
 	fragment Layout on ContentfulLayout {
 		content {
-			...on ContentfulLayoutSlider {
-				...LayoutSlider
-			}
-			...on ContentfulLayoutText {
-				...LayoutText
-			}
+			...LayoutText
+			...LayoutSlider
+			...LayoutProjects
 		}
 	}
 
@@ -46,7 +84,7 @@ export const Layout = graphql`
 		}
 	}
 
-	fragment LayoutProjects on ContentfulLayoutProjects {
+	fragment LayoutProjects on ContentfulLayoutProjekte {
 		__typename
 		id
 		filter
@@ -54,7 +92,7 @@ export const Layout = graphql`
 		order
 	}
 
-	fragment LayoutStage on ContentfulLayoutStage {
+	fragment LayoutStage on ContentfulLayoutBuehne {
 		__typename
 		id
 		staticText
