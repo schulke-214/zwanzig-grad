@@ -1,6 +1,17 @@
 import { graphql } from 'gatsby';
 
-export const Navigation = graphql`
+
+export type NavigationLink = {
+	id: string;
+	displayText: string;
+	linkTo: {
+		metadata: {
+			slug: string;
+		}
+	}
+}
+
+export default graphql`
 	fragment NavigationLink on ContentfulNavigationLink {
 		id
 		displayText
