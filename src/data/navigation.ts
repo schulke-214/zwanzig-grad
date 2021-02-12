@@ -11,7 +11,7 @@ export type NavigationLink = {
 	}
 }
 
-export default graphql`
+export const Navigation = graphql`
 	fragment NavigationLink on ContentfulNavigationLink {
 		id
 		displayText

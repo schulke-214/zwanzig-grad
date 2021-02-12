@@ -13,7 +13,7 @@ export type Project = {
 	titleImage: CMSResponsiveImage;
 }
 
-export default graphql`
+export const Project = graphql`
 	fragment Project on ContentfulProjekt {
 		slug
 		title

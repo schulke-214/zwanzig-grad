@@ -41,7 +41,7 @@ export type LayoutModuleStage = CMSContentModule & {
 	background: CMSResponsiveImage;
 };
 
-export default graphql`
+export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
 		content {
 			...LayoutText
