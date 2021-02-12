@@ -3,50 +3,14 @@ import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import Overlay from 'components/ui/Overlay';
+import ContactData from 'components/generic/ContactData';
 import NavigationItem from 'components/layout/NavigationItem';
 
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
 
-const UnstyledNavigationContact: FunctionComponent<any> = ({className}) => {
-	return (
-		<div className={className}>
-			<div>
-				<meta itemProp="name" content="Moccu – Digital Experience" />
-				<meta itemProp="legalName" content="Moccu GmbH &amp; Co. KG" />
-				<meta itemProp="url" content="https://www.moccu.com/" />
-
-				<strong>Anschrift</strong>
-				<div className="address" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
-					<span itemProp="name">Moccu GmbH &amp; Co. KG</span><br />
-					<span itemProp="streetAddress">Am Treptower Park 28-30</span><br />
-					<span itemProp="postalCode">12435</span>
-					<span itemProp="addressLocality">Berlin</span><br />
-					<meta itemProp="addressRegion" content="Berlin" />
-					<meta itemProp="addressCountry" content="Germany" />
-				</div>
-			</div>
-			<div>
-				<strong>Kontakt</strong>
-				<ul className="contact">
-					<li>
-						<a itemProp="telephone" href="tel:+493044013030" title="Rufen Sie uns an">
-							+49 30 44 01 30 30
-						</a>
-					</li>
-					<li>
-						<a itemProp="email" href="mailto:hello@moccu.com" title="Senden Sie uns eine E-Mail">
-							hello@moccu.com
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	);
-}
-
-const NavigationContact = styled(UnstyledNavigationContact)`
+const NavigationContact = styled(ContactData)`
 	position: absolute;
 	top: 0;
 	left: 0;
