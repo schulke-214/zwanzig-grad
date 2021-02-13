@@ -14,12 +14,12 @@ interface ProjectProps extends ProjectType {
 	className?: string;
 };
 
-const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = ({className, title, year, client, tileImage, slug}) => {
+const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = ({className, title, year, tileImage, slug}) => {
 	return (
 		<div className={className}>
 			<Link to={`/projekt/${slug}`}>
 				<img src={tileImage.fluid.src} alt={tileImage.description} />
-				<span>{year} | {title} für {client}</span>
+				<span>{year}  |  {title}</span>
 			</Link>
 		</div>
 	);
