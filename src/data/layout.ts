@@ -37,6 +37,7 @@ export type LayoutModuleProjects = CMSContentModule & {
 
 export type LayoutModuleStage = CMSContentModule & {
 	staticText: string;
+	connection: string;
 	buzzWords: string[];
 	background: CMSResponsiveImage;
 };
@@ -46,6 +47,7 @@ export const Layout = graphql`
 		content {
 			...LayoutText
 			...LayoutSlider
+			...LayoutStage
 			...LayoutProjects
 		}
 	}
@@ -85,10 +87,11 @@ export const Layout = graphql`
 		order
 	}
 
-	fragment LayoutStage on ContentfulLayoutBuehne {
+	fragment LayoutStage on ContentfulLayoutStage {
 		__typename
 		id
 		staticText
+		connection
 		buzzWords
 		background {
 			id
