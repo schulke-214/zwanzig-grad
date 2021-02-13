@@ -4,7 +4,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
-import { tablet } from 'lib/media';
+import { landscape } from 'lib/media';
 import { rem } from 'lib/polished';
 
 import { Project as ProjectType } from 'data/project';
@@ -26,6 +26,11 @@ const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = ({className, titl
 };
 
 const ProjectTeaser = styled(UnstyledProjectTeaser)`
+	&, a, img {
+		display: block;
+		width: 100%;
+	}
+
 	&:not(:last-child) {
 		margin-bottom: ${props => rem(props.theme.spacings.large)};
 	}
@@ -82,15 +87,20 @@ export default styled(Projects)`
 		display: block;
 
 		&:first-child {
-			margin-right: ${props => rem(props.theme.spacings.large)};
+			margin-bottom: ${props => rem(props.theme.spacings.large)};
 		}
 
-		${tablet} {
+		${landscape} {
+			&:first-child {
+				margin-bottom: 0;
+				margin-right: ${props => rem(props.theme.spacings.large)};
+			}
+
 			width: 50%;
 		}
 	}
 
-	${tablet} {
+	${landscape} {
 		flex-direction: row;
 	}
 `;
