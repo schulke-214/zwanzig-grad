@@ -64,14 +64,7 @@ export const Layout = graphql`
 		showTitle
 		title
 		images {
-			id
-			title
-			mobile: resize(height: 420, width: 640, quality: 80, resizingBehavior: FILL) {
-				src
-			}
-			desktop: resize(height: 640, width: 960, quality: 90, resizingBehavior: FILL) {
-				src
-			}
+			...CMSImage
 		}
 	}
 
