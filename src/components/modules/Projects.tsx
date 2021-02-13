@@ -61,8 +61,8 @@ const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
 	);
 
 	const projects: [ProjectType] = data?.allContentfulProjekt?.edges.map((edge: {node: ProjectType}) => edge.node);
-	const left = projects.filter((_, index) => index % 2)
-	const right = projects.filter((_, index) => !(index % 2))
+	const left = projects.filter((_, index) => !(index % 2));
+	const right = projects.filter((_, index) => index % 2);
 	const renderProject = (project: ProjectType) => (<ProjectTeaser {...project} key={project.slug} />);
 
 	return (
