@@ -6,14 +6,14 @@ import { phoneNumber } from 'utils/format';
 import { rem } from 'lib/polished';
 
 
-const ContactDataItem = styled.div`
+export const ContactDataItem = styled.div`
 	&:not(:last-child) {
 		margin-bottom: ${props => rem(props.theme.spacings.medium)};
 	}
 
 	strong {
 		display: block;
-		font-weight: 500;
+		font-weight: 700;
 		margin-bottom: ${props => rem(props.theme.spacings.small)};
 	}
 
@@ -108,4 +108,4 @@ const ContactData: FunctionComponent<any> = ({className, children}) => {
 	);
 }
 
-export default ContactData;
+export default styled(ContactData)``;
