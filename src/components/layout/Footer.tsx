@@ -12,7 +12,7 @@ import { tablet, landscape } from 'lib/media';
 const FooterContainer = styled.footer`
 	width: 100%;
 	height: min-content;
-	background-color: ${props => props.theme.colors.muted};
+	background-color: ${props => props.theme.colors.brand};
 	padding: ${props => rem(props.theme.spacings.large)};
 	
 	${tablet} {
@@ -34,10 +34,6 @@ const FooterContent = styled.div`
 			${landscape} {
 				margin-bottom: 0;
 				width: 33.33%;
-			}
-
-			li {
-				margin-bottom:  ${props => rem(props.theme.spacings.small)};
 			}
 
 			${NavigationItem} {
