@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import Facts from './modules/Facts';
 import Projects from './modules/Projects';
 import Slider from './modules/Slider';
 import Stage from './modules/Stage';
@@ -13,6 +14,8 @@ interface PageLayoutProps {
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
 	const renderModules = ({ __typename, id, ...el }: any) => {
 		switch(__typename) {
+			case 'ContentfulLayoutFakten':
+				return <Facts key={id} {...el} />
 			case 'ContentfulLayoutProjekte':
 				return <Projects key={id} {...el} />;
 			case 'ContentfulLayoutSlider':
