@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 
 import Projects from './modules/Projects';
 import Slider from './modules/Slider';
+import Stage from './modules/Stage';
 import Text from './modules/Text';
 
 
@@ -15,7 +16,9 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
 			case 'ContentfulLayoutProjekte':
 				return <Projects key={id} {...el} />;
 			case 'ContentfulLayoutSlider':
-				return <Slider key={id} {...el} />
+				return <Slider key={id} {...el} />;
+			case 'ContentfulLayoutStage':
+				return <Stage key={id} {...el} />;
 			case 'ContentfulLayoutText':
 				return <Text key={id} {...el} />;
 			default:
