@@ -24,7 +24,7 @@ export interface NavigationItemProps {
 const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className, children, onClick }) => {
 	let content;
 
-	if(to) {
+	if (to) {
 		content = (
 			<Link
 				to={to}

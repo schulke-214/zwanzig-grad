@@ -54,9 +54,10 @@ const NavigationContent = styled.nav`
 
 interface NavigationLinksProps {
 	className?: string;
+	onClick?: () => void;
 }
 
-export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({className}) => {
+export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({className, onClick}) => {
 	const data = useStaticQuery(graphql`
 		{
 			allContentfulNavigation {
@@ -79,7 +80,7 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({classN
 				<NavigationItem
 					key={link.id}
 					to={`/${link.linkTo.metadata.slug}`}
-					onClick={close}
+					onClick={onClick}
 				>
 					{link.displayText}
 				</NavigationItem>
@@ -90,12 +91,13 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({classN
 
 interface NavigationProps {
 	className?: string;
+	onClose?: () => void;
 }
 
-const Navigation: FunctionComponent<NavigationProps> = ({ className }) => (
+const Navigation: FunctionComponent<NavigationProps> = ({ className, onClose }) => (
 	<Overlay className={className}>
 		<NavigationContent itemScope itemType="http://schema.org/SiteNavigationElement">
-			<NavigationLinks />
+			<NavigationLinks onClick={onClose} />
 		</NavigationContent>
 		<NavigationContact />
 	</Overlay>

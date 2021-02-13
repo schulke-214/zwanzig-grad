@@ -55,7 +55,7 @@ const Header: FunctionComponent<HeaderProps> = ({}) => {
 				onClick={toggleOpen}
 				css={`right: -${(props: any) => rem(props.theme.spacings.small)};`}
 			/>
-			{open && <Navigation />}
+			{open && <Navigation onClose={close} />}
 		</HeaderContainer>
 	);
 };
