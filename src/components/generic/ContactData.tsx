@@ -71,7 +71,7 @@ const ContactData: FunctionComponent<any> = ({className, children}) => {
 			<ContactDataItem>
 				<meta itemProp="name" content={contactData.name} />
 				<meta itemProp="legalName" content={contactData.legalName} />
-				<meta itemProp="url" content={window.location.href} />
+				<meta itemProp="url" content="https://zwanzig-grad.de" />
 
 				<strong>Anschrift</strong>
 				<div className="address" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
