@@ -31,7 +31,7 @@ export const ContactDataItem = styled.div`
 
 	li,
 	span {
-		margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+		margin-bottom: ${props => rem(props.theme.spacings.xsmall)} !important;
 
 		&:last-child {
 			margin-bottom: 0;
