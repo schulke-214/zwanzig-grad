@@ -3,21 +3,15 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 import { rem } from "lib/polished";
-import { landscape } from "lib/media";
+import { tablet } from "lib/media";
+
 
 const StyledListItem = styled.li`
 	display: block;
 	margin: 0;
 	
 	:not(:last-child) {
-		margin-right: ${(props: any) => rem(props.theme.spacings.small)};
-	}
-
-	${landscape} {
-		:not(:last-child) {
-			margin-bottom: ${(props: any) => rem(props.theme.spacings.small)};
-			margin-right: 0;
-		}
+		margin-bottom: ${(props: any) => rem(props.theme.spacings.medium)};
 	}
 `;
 
@@ -38,7 +32,7 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 				onClick={onClick}
 				itemProp="url"
 			>
-				<span itemProp="name">{children}</span>
+				{children}
 			</Link>
 		);
 	} else {
@@ -50,17 +44,25 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 	}
 
 	return (
-		<StyledListItem>
+		<StyledListItem itemProp={to && 'name'}>
 			{content}
 		</StyledListItem>
 	);
 };
 
 export default styled(NavigationItem)<NavigationItemProps>`
-	display: block;
 	background-color: transparent;
 	white-space: nowrap;
 	cursor: pointer;
-	font-weight: 300;
+	font-weight: 500;
+	font-size: 30px;
 	color: ${props => props.theme.colors.foreground};
+	
+	&::before {
+		border-bottom-width: 2px;
+	}
+
+	${tablet} {
+		font-size: 40px;
+	}
 `;

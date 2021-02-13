@@ -1,91 +1,62 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
+
+import Overlay from 'components/ui/Overlay';
+import ContactData from 'components/generic/ContactData';
+import NavigationItem from 'components/layout/NavigationItem';
 
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
-import NavigationItem from 'components/layout/NavigationItem';
-import MenuIcon from 'components/layout/MenuIcon';
-import MenuOverlay from 'components/layout/MenuOverlay';
 
-
-const NavigationContainer = styled.nav`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: sticky;
+const NavigationContact = styled(ContactData)`
+	position: absolute;
 	top: 0;
 	left: 0;
-	grid-column: 1 / span 2;
-	grid-row: 1 / span 1;
-	z-index: 10;
-	background-color: ${props => props.theme.colors.background};
-	padding: ${props => rem(props.theme.spacings.medium)};
-
-	${tablet} {
-		display: block;
-		padding-top: ${props => rem(props.theme.spacings.large)};
-		overflow-y: auto;
-		grid-column: 1 / span 1;
-		grid-row: 1 / span 2;
-	}
-
-	ul {
-		list-style: none;
-		display: block;
-	}
-`;
-
-const NavigationMobileWrapper = styled.div`
-	${tablet} {
-		display: none;
-	}
-`;
-
-const NavigationDesktopWrapper = styled.div`
 	display: none;
+	height: 100vh;
+	padding: ${props => rem(props.theme.spacings.xlarge)};
+	padding-left: 12.5%;
+	background-color: ${props => props.theme.colors.brand};
 
 	${tablet} {
 		display: flex;
+		width: 40%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: left;
 	}
 `;
 
-const NavigationSpacer = styled.li`
-	height: ${props => rem(props.theme.spacings.xsmall)};
-`;
-
-const NavigationLogo = styled(Link)`
-	z-index: ${props => props.theme.layers.overlay.content};
-	position: relative;
-	display: block;
-	width: 4rem;
-	height: 4rem;
+const NavigationContent = styled.nav`
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: ${props => rem(props.theme.spacings.xlarge)};
 
 	${tablet} {
-		width: 100%;
-		height: auto;
-		margin-bottom: ${props => rem(props.theme.spacings.medium)};
+		padding-left: 15%;
+		width: 60%;
+		align-items: flex-start;
 	}
 
-	img {
-		display: block;
-		margin: 0;
-
-		${tablet} {
-			display: block;
-			width: 100%;
-		}
+	ul {
+		margin-bottom: 0;
 	}
 `;
 
-interface NavigationProps {}
+interface NavigationProps {
+	className?: string;
+}
 
-const Navigation: FunctionComponent<NavigationProps> = ({}) => {
-	const [open, setOpen] = useState(false);
-	const toggleOpen = () => setOpen(o => !o);
-	const close = () => setOpen(false);
-
+const Navigation: FunctionComponent<NavigationProps> = ({ className, children }) => {
 	const data = useStaticQuery(graphql`
 		{
 			allContentfulNavigation {
@@ -93,24 +64,6 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 					node {
 						links {
 							...NavigationLink
-
-							... on ContentfulNavigationLink {
-								internal {
-									type
-								}
-							}
-
-							... on ContentfulNavigationSpacer {
-								internal {
-									type
-								}
-								id
-							}
-						}
-						logo {
-							file {
-								url
-							}
 						}
 					}
 				}
@@ -118,62 +71,30 @@ const Navigation: FunctionComponent<NavigationProps> = ({}) => {
 		}
 	`);
 
-	const { links, logo } = data.allContentfulNavigation.edges[0].node;
+	const { links } = data.allContentfulNavigation.edges[0].node;
 
 	const nav = (
 		<ul>
-			{links?.map((link: any) => {
-				switch (link.internal.type) {
-					case 'ContentfulNavigationSpacer':
-						return <NavigationSpacer key={link.id} />;
-
-					case 'ContentfulNavigationLink':
-						return (
-							<NavigationItem
-								key={link.id}
-								to={`/${link.linkTo.metadata.slug}`}
-								onClick={close}
-							>
-								{link.displayText}
-							</NavigationItem>
-						);
-
-					default:
-						throw new Error('Unknown navigation item type! (' + link.internal.type + ')');
-				}
-			})}
+			{links?.map((link: any) => (
+				<NavigationItem
+					key={link.id}
+					to={`/${link.linkTo.metadata.slug}`}
+					onClick={close}
+				>
+					{link.displayText}
+				</NavigationItem>
+			))}
 		</ul>
 	);
 
 	return (
-		<NavigationContainer itemScope itemType="http://schema.org/SiteNavigationElement">
-			<NavigationLogo to="/" className="logo" onClick={close}>
-				<img src={logo?.file?.url} />
-			</NavigationLogo>
-			<NavigationDesktopWrapper>{nav}</NavigationDesktopWrapper>
-			<NavigationMobileWrapper>
-				<MenuIcon
-					open={open}
-					onClick={toggleOpen}
-					css={`
-						right: -${(props: any) => rem(props.theme.spacings.small)};
-					`}
-				/>
-				{open ? (
-					<MenuOverlay
-						css={`
-							div {
-								justify-content: flex-start;
-								align-items: flex-start;
-							}
-						`}
-					>
-						{nav}
-					</MenuOverlay>
-				) : null}
-			</NavigationMobileWrapper>
-		</NavigationContainer>
+		<Overlay className={className}>
+			<NavigationContent itemScope itemType="http://schema.org/SiteNavigationElement">
+				{nav}
+			</NavigationContent>
+			<NavigationContact />
+		</Overlay>
 	);
-};
+}
 
 export default Navigation;

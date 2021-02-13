@@ -4,6 +4,7 @@ exports.createPages = async ({ graphql, actions }) => {
 	const { createPage } = actions;
 	const pageTemplate = path.resolve('./src/templates/page.tsx');
 	const subpageTemplate = path.resolve('./src/templates/subpage.tsx');
+	const projectTemplate = path.resolve('./src/templates/project.tsx');
 
 	const {errors, data} = await graphql(`
 		{
@@ -18,6 +19,13 @@ exports.createPages = async ({ graphql, actions }) => {
 								slug
 							}
 						}
+					}
+				}
+			}
+			allContentfulProjekt {
+				edges {
+					node {
+						slug
 					}
 				}
 			}
@@ -67,5 +75,19 @@ exports.createPages = async ({ graphql, actions }) => {
 				}
 			});
 		})
+	});
+
+	const projects = data.allContentfulProjekt.edges;
+
+	projects.forEach(project => {
+		const projectSlug = project.node.slug;
+
+		createPage({
+			path: `/projekt/${projectSlug}/`,
+			component: projectTemplate,
+			context: {
+				slug: projectSlug
+			}
+		});
 	});
 }

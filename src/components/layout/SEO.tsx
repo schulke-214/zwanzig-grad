@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
+
 type SEOMetaElement = React.DetailedHTMLProps<React.MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement>[];
 
 export interface SEOProps {
@@ -26,7 +27,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const query = useStaticQuery<any>(
 		graphql`
 			query SiteMetaData {
-				seoConfig: allContentfulSearchEngineConfiguration {
+				seoConfig: allContentfulMetaSeoConfiguration {
 					edges {
 						node {
 							name

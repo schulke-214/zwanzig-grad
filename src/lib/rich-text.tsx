@@ -2,6 +2,8 @@ import React from 'react';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+import { CMSRichText } from 'data/cms';
+
 
 const options = {
 	renderNode: {
@@ -37,3 +39,15 @@ const cleanupDocument = (document: any) => {
 }
 
 export const renderRichText = (document: any) => documentToReactComponents(cleanupDocument(document), options);
+
+export const intoPlainText = (text: CMSRichText): string =>
+	text.content
+		.filter(content => content.nodeType === 'paragraph')
+		.map(content =>
+			content.content
+				.filter(innnercontent => innnercontent.nodeType === 'text')
+				.map(innercontent => innercontent.value)
+				.join('')
+		)
+		.flat()
+		.join(' ')
