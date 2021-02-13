@@ -24,9 +24,10 @@ export type LayoutModuleSlider = CMSContentModule & {
 export type LayoutModuleFacts = CMSContentModule & {
 	id: string;
 	headline: string;
-	facts: {
+	facts: [{
+		id: string;
 		description: string;
-	};
+	}];
 };
 
 export type LayoutModuleProjects = CMSContentModule & {
@@ -45,9 +46,10 @@ export type LayoutModuleStage = CMSContentModule & {
 export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
 		content {
-			...LayoutText
+			...LayoutFacts
 			...LayoutSlider
 			...LayoutStage
+			...LayoutText
 			...LayoutProjects
 		}
 	}
@@ -70,11 +72,12 @@ export const Layout = graphql`
 		}
 	}
 
-	fragment LayoutFacts on ContentfulLayoutFacts {
+	fragment LayoutFacts on ContentfulLayoutFakten {
 		__typename
 		id
 		headline
 		facts {
+			id
 			description
 		}
 	}
