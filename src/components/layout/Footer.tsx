@@ -10,7 +10,7 @@ import { tablet } from 'lib/media';
 const FooterContainer = styled.footer`
 	width: 100%;
 	height: min-content;
-	background-color: ${props => props.theme.colors.muted};
+	background-color: ${props => props.theme.colors.brand};
 	padding: ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {
