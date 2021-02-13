@@ -4,8 +4,14 @@ import { graphql } from 'gatsby';
 import Layout from 'layouts/default';
 
 import SEO from 'components/layout/SEO';
+import Slider from 'components/modules/Slider';
+import Text from 'components/modules/Text';
 
 import { Project as ProjectType } from 'data/project';
+
+import { intoPlainText } from 'lib/rich-text';
+
+import { shorten } from 'utils/shorten';
 
 
 interface ProjectProps {
@@ -22,11 +28,13 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 			<SEO
 				title={project.title}
 				slug={project.slug}
-				description={project.description}
-				keywords={project.materials}
+				description={shorten(intoPlainText(project.description), 255)}
+				keywords={project.material}
 			/>
+			<Slider images={project.images} showTitle={false} title="" />
 			<h1>{project.title}</h1>
-			{/* <ProjectLayout {...layout} /> */}
+			<ul>{project.material.map(item => <li key={item}>{item}</li>)}</ul>
+			<Text text={project.description} />
 		</Layout>
 	);
 };
@@ -34,7 +42,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 export const query = graphql`
 	query ProjectQuery($slug: String) {
 		project: contentfulProjekt(slug: {eq: $slug}) {
-			title
+			...Project
 		}
 	}
 `;
