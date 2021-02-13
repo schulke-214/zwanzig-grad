@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { LayoutModuleStage } from 'data/layout';
 
+import ModuleContainer from 'components/generic/ModuleContainer';
+
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
@@ -58,8 +60,13 @@ const StageContent = styled.div`
 	}
 `;
 
-const StageSpacer = styled.div`
+const StageSpacer = styled(ModuleContainer)`
 	height: calc(90vh - ${props => rem(props.theme.logo.height + 2 * props.theme.spacings.medium + props.theme.spacings.large)});
+	margin-bottom: ${props => rem(props.theme.spacings.xlarge)};
+
+	${tablet} {
+		margin-bottom: ${props => rem(props.theme.spacings.xlarge * 2)};
+	}
 `;
 
 interface StageProps extends LayoutModuleStage {
