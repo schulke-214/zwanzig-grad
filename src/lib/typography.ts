@@ -3,7 +3,7 @@ import GithubTheme from 'typography-theme-github';
 
 
 GithubTheme.overrideThemeStyles = () => ({
-	'h1': {
+	'h1, h2, h3, h4, h5, h6': {
 		borderBottom: 0
 	}
 })
