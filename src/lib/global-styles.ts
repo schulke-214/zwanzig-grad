@@ -42,6 +42,10 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 		font-weight: 400;
 	}
 
+	h1:first-child {
+		margin-top: 0;
+	}
+
 	a {
 		color: ${props => props.theme.colors.foreground};
 		display: inline-block;
