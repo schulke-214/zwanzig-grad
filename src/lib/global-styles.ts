@@ -42,8 +42,10 @@ export const GlobalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobal
 		font-weight: 400;
 	}
 
-	h1:first-child {
-		margin-top: 0;
+	h1, h2, h3, h4, h5, h6 {
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 
 	a {
