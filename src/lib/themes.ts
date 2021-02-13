@@ -13,6 +13,10 @@ export const DefaultTheme: Theme = {
 	layout: {
 		maxWidth: 1240
 	},
+	logo: {
+		width: 64,
+		height: 64
+	},
 	colors: {
 		foreground: BLACK,
 		background: WHITE,

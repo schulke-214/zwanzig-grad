@@ -12,6 +12,10 @@ declare module 'styled-components' {
 		layout: {
 			maxWidth: number;
 		};
+		logo: {
+			width: number;
+			height: number;
+		};
 		colors: {
 			foreground: string;
 			background: string;

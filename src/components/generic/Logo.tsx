@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
+import { rem } from 'lib/polished';
+
 
 const Logo: FunctionComponent<any> = ({ className, ...props }) => {
 	const data = useStaticQuery(graphql`
@@ -33,8 +35,8 @@ export default styled(Logo)`
 	z-index: ${props => props.theme.layers.overlay.content};
 	position: relative;
 	display: block;
-	width: 4rem;
-	height: 4rem;
+	width: ${props => rem(props.theme.logo.width)};
+	height:  ${props => rem(props.theme.logo.height)};;
 	
 	&::before {
 		content: unset;
