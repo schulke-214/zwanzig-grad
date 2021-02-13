@@ -1,16 +1,17 @@
 import { graphql } from 'gatsby';
 
-import { CMSResponsiveImage } from 'data/cms';
+import { CMSResponsiveImage, CMSRichText } from 'data/cms';
 
 
 export type Project = {
 	slug: string;
 	title: string;
-	description: string
+	description: CMSRichText;
 	client: string;
 	year: number;
-	materials: string[];
-	titleImage: CMSResponsiveImage;
+	material: string[];
+	tileImage: CMSResponsiveImage;
+	images: CMSResponsiveImage[];
 }
 
 export const Project = graphql`
@@ -24,6 +25,20 @@ export const Project = graphql`
 				src
 			}
 			description
+		}
+		images {
+			...CMSImage
+		}
+		material
+		description {
+			json
+			content {
+				nodeType
+				content {
+					value
+					nodeType
+				}
+			}
 		}
 	}
 `;
