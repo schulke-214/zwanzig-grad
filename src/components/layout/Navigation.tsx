@@ -52,11 +52,11 @@ const NavigationContent = styled.nav`
 	}
 `;
 
-interface NavigationProps {
+interface NavigationLinksProps {
 	className?: string;
 }
 
-const Navigation: FunctionComponent<NavigationProps> = ({ className, children }) => {
+export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({className}) => {
 	const data = useStaticQuery(graphql`
 		{
 			allContentfulNavigation {
@@ -73,8 +73,8 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className, children })
 
 	const { links } = data.allContentfulNavigation.edges[0].node;
 
-	const nav = (
-		<ul>
+	return (
+		<ul className={className}>
 			{links?.map((link: any) => (
 				<NavigationItem
 					key={link.id}
@@ -86,15 +86,19 @@ const Navigation: FunctionComponent<NavigationProps> = ({ className, children })
 			))}
 		</ul>
 	);
+};
 
-	return (
-		<Overlay className={className}>
-			<NavigationContent itemScope itemType="http://schema.org/SiteNavigationElement">
-				{nav}
-			</NavigationContent>
-			<NavigationContact />
-		</Overlay>
-	);
+interface NavigationProps {
+	className?: string;
 }
+
+const Navigation: FunctionComponent<NavigationProps> = ({ className }) => (
+	<Overlay className={className}>
+		<NavigationContent itemScope itemType="http://schema.org/SiteNavigationElement">
+			<NavigationLinks />
+		</NavigationContent>
+		<NavigationContact />
+	</Overlay>
+);
 
 export default Navigation;
