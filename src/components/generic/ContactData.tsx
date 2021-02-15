@@ -8,13 +8,13 @@ import { rem } from 'lib/polished';
 
 export const ContactDataItem = styled.div`
 	&:not(:last-child) {
-		margin-bottom: ${props => rem(props.theme.spacings.medium)};
+		margin-bottom: ${props => rem(props.theme.spacings.large)};
 	}
 
 	strong {
 		display: block;
 		font-weight: 700;
-		margin-bottom: ${props => rem(props.theme.spacings.small)};
+		margin-bottom: ${props => rem(props.theme.spacings.medium)};
 	}
 
 	ul, div {
@@ -31,11 +31,15 @@ export const ContactDataItem = styled.div`
 
 	li,
 	span {
-		margin-bottom: ${props => rem(props.theme.spacings.xsmall)} !important;
+		margin-bottom: ${props => rem(props.theme.spacings.small)} !important;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	div[itemProp='address'] {
+		margin-bottom: ${props => rem(-props.theme.spacings.small)};
 	}
 `;
 
@@ -74,18 +78,18 @@ const ContactData: FunctionComponent<any> = ({className, children}) => {
 				<meta itemProp="url" content="https://zwanzig-grad.de" />
 
 				<strong>Anschrift</strong>
-				<div className="address" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
+				<div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
 					<span itemProp="name">{contactData.legalName}</span><br />
 					<span itemProp="streetAddress">{contactData.street} {contactData.houseNumber}</span><br />
 					<span itemProp="postalCode">{contactData.postalCode}</span>{' '}
-					<span itemProp="addressLocality">{contactData.city}</span><br />
+					<span itemProp="addressLocality">{contactData.city}</span>
 					<meta itemProp="addressRegion" content="NRW" />
 					<meta itemProp="addressCountry" content="Germany" />
 				</div>
 			</ContactDataItem>
 			<ContactDataItem>
 				<strong>Kontakt</strong>
-				<ul className="contact">
+				<ul>
 					<li>
 						<a itemProp="telephone" href={`tel:${contactData.landline}`} title="Rufen Sie uns an">
 							{phoneNumber(contactData.landline)}
