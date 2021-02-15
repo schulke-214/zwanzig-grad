@@ -17,11 +17,12 @@ const StyledListItem = styled.li`
 
 export interface NavigationItemProps {
 	to?: string;
+	hasItemProp?: boolean;
 	className?: string;
 	onClick?: () => void;
 }
 
-const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className, children, onClick }) => {
+const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, hasItemProp, className, children, onClick }) => {
 	let content;
 
 	if (to) {
@@ -30,7 +31,7 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 				to={to}
 				className={className}
 				onClick={onClick}
-				itemProp="url"
+				itemProp={to && hasItemProp ? 'url' : undefined}
 			>
 				{children}
 			</Link>
@@ -44,7 +45,7 @@ const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, className,
 	}
 
 	return (
-		<StyledListItem itemProp={to && 'name'}>
+		<StyledListItem itemProp={to && hasItemProp ? 'name' : undefined}>
 			{content}
 		</StyledListItem>
 	);

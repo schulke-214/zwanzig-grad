@@ -54,10 +54,11 @@ const NavigationContent = styled.nav`
 
 interface NavigationLinksProps {
 	className?: string;
+	hasItemProp?: boolean;
 	onClick?: () => void;
 }
 
-export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({className, onClick}) => {
+export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ className, hasItemProp, onClick }) => {
 	const data = useStaticQuery(graphql`
 		{
 			allContentfulNavigation {
@@ -81,6 +82,7 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({classN
 					key={link.id}
 					to={`/${link.linkTo.metadata.slug}`}
 					onClick={onClick}
+					hasItemProp={hasItemProp}
 				>
 					{link.displayText}
 				</NavigationItem>
