@@ -12,31 +12,38 @@ import ModuleContainer from 'components/generic/ModuleContainer';
 import { Project as ProjectType } from 'data/project';
 
 import { intoPlainText } from 'lib/rich-text';
+import { rem } from 'lib/polished';
+import { tablet } from 'lib/media';
 
 import { shorten } from 'utils/shorten';
-import { rem } from 'lib/polished';
-import { landscape } from 'lib/media';
 
 
-const ProjectHeaderSpacer = styled.span`
-	display: none;
+const ProjectMeta = styled.div`
+	display: flex;
+	flex-direction: column;
 
-	${landscape} {
-		display: block;
-		margin: 0 ${props => rem(props.theme.spacings.medium)};
+	${tablet} {
+		padding-left: ${props => rem(props.theme.spacings.xlarge)};
 	}
 `;
 
-const ProjectHeaderMaterialList = styled.ul`
+const ProjectMetaItemName = styled.p`
+	font-weight: bold;
+	font-size: 75%;
+`;
+
+const ProjectMetaItemValue = styled.p`
+	margin-bottom: ${props => rem(props.theme.spacings.medium)};
+`;
+
+const ProjectMetaMaterialList = styled.ul`
 	display: flex;
 	list-style: none;
 	margin: 0;
-	padding: ${props => rem(props.theme.spacings.xsmall)} 0;
 
 	li {
 		margin: 0;
 		padding: 0;
-		line-height: 0.8;
 
 		&:not(:last-child) {
 			margin-right: ${props => rem(props.theme.spacings.xsmall)};
@@ -48,22 +55,29 @@ const ProjectHeaderMaterialList = styled.ul`
 	}
 `;
 
-const ProjectHeader = styled(ModuleContainer)`
+const ProjectContentContainer = styled(ModuleContainer)`
 	display: flex;
 	flex-direction: column;
 
-	${landscape} {
+	${tablet} {
 		flex-direction: row;
-		align-items: center;
 	}
 
-	h1 {
-		${landscape} {
-			margin: 0;
+	${ModuleContainer} {
+		margin-bottom: inherit;
+
+		${tablet} {
+			margin-bottom: 0;
+			flex: 1 1 100%;
+		}
+	}
+
+	${ProjectMeta} {
+		${tablet} {
+			flex: 1 1 ${props => rem(props.theme.layout.maxWidth / 4)};
 		}
 	}
 `;
-
 
 interface ProjectProps {
 	data: {
@@ -83,18 +97,22 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />
-			<ProjectHeader>
-				<h1>{project.title}</h1>
-				<ProjectHeaderSpacer />
-				<span>{project.year}</span>
-				<ProjectHeaderSpacer>|</ProjectHeaderSpacer>
-				<span>Für {project.client}</span>
-				<ProjectHeaderSpacer>|</ProjectHeaderSpacer>
-				<ProjectHeaderMaterialList>
-					{project.material.map(item => <li key={item}>{item}</li>)}
-				</ProjectHeaderMaterialList>
-			</ProjectHeader>
-			<Text text={project.description} />
+			<h1>{project.title}</h1>
+			
+			<ProjectContentContainer>
+				<Text text={project.description} />
+				<ProjectMeta>
+					<ProjectMetaItemName>Ort</ProjectMetaItemName>
+					<ProjectMetaItemName>Jahr</ProjectMetaItemName>
+					<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
+					<ProjectMetaItemName>Kunde</ProjectMetaItemName>
+					<ProjectMetaItemValue>Für {project.client}</ProjectMetaItemValue>
+					<ProjectMetaItemName>Materialien</ProjectMetaItemName>
+					<ProjectMetaMaterialList>
+						{project.material.map(item => <li key={item}>{item}</li>)}
+					</ProjectMetaMaterialList>
+				</ProjectMeta>
+			</ProjectContentContainer>
 		</Layout>
 	);
 };
