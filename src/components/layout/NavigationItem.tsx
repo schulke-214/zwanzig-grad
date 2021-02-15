@@ -17,18 +17,20 @@ const StyledListItem = styled.li`
 
 export interface NavigationItemProps {
 	to?: string;
+	pageTitle?: string;
 	hasItemProp?: boolean;
 	className?: string;
 	onClick?: () => void;
 }
 
-const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, hasItemProp, className, children, onClick }) => {
+const NavigationItem: FunctionComponent<NavigationItemProps> = ({ to, pageTitle, hasItemProp, className, children, onClick }) => {
 	let content;
 
 	if (to) {
 		content = (
 			<Link
 				to={to}
+				title={`Zu ${pageTitle ?? 'dieser Seite'} wechseln`}
 				className={className}
 				onClick={onClick}
 				itemProp={to && hasItemProp ? 'url' : undefined}

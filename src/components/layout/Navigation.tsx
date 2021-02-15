@@ -6,6 +6,8 @@ import Overlay from 'components/ui/Overlay';
 import ContactData from 'components/generic/ContactData';
 import NavigationItem from 'components/layout/NavigationItem';
 
+import { NavigationLink } from 'data/navigation';
+
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
 
@@ -73,7 +75,7 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ class
 		}
 	`);
 
-	const { links } = data.allContentfulNavigation.edges[0].node;
+	const { links }: { links: NavigationLink[] } = data.allContentfulNavigation.edges[0].node;
 
 	return (
 		<ul className={className}>
@@ -81,6 +83,7 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ class
 				<NavigationItem
 					key={link.id}
 					to={`/${link.linkTo.metadata.slug}`}
+					pageTitle={link.linkTo.title}
 					onClick={onClick}
 					hasItemProp={hasItemProp}
 				>
