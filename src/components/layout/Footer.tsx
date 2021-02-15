@@ -13,7 +13,7 @@ const FooterContainer = styled.footer`
 	width: 100%;
 	height: min-content;
 	background-color: ${props => props.theme.colors.brand};
-	padding: ${props => rem(props.theme.spacings.large)};
+	padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {
 		padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.large)};;
@@ -25,13 +25,16 @@ const FooterContent = styled.div`
 	margin: 0 auto;
 
 	${ContactData} {
-		${landscape} {
+		padding-bottom: ${props => rem(props.theme.spacings.large)};
+		border-bottom: 1px solid currentColor;
+
+		${tablet} {
 			display: flex;
 			flex-direction: row;
 		}
 
 		> ${ContactDataItem} {
-			${landscape} {
+			${tablet} {
 				margin-bottom: 0;
 				width: 33.33%;
 
