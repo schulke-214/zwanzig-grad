@@ -34,6 +34,10 @@ const FooterContent = styled.div`
 			${landscape} {
 				margin-bottom: 0;
 				width: 33.33%;
+
+				&:not(:last-child) {
+					margin-right: ${props => rem(props.theme.spacings.medium)};
+				}
 			}
 
 			${NavigationItem} {
@@ -54,7 +58,7 @@ const Footer: FunctionComponent<FooterProps> = ({}) => (
 		<FooterContent>
 			<ContactData>
 				<ContactDataItem>
-					<strong>Seitenübersicht</strong>
+					<strong>Übersicht</strong>
 					<NavigationLinks />
 				</ContactDataItem>
 			</ContactData>
