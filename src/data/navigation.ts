@@ -5,6 +5,7 @@ export type NavigationLink = {
 	id: string;
 	displayText: string;
 	linkTo: {
+		title: string;
 		metadata: {
 			slug: string;
 		}
@@ -16,6 +17,7 @@ export const Navigation = graphql`
 		id
 		displayText
 		linkTo {
+			title
 			metadata {
 				slug
 			}
