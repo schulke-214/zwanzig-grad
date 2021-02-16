@@ -1,15 +1,12 @@
 import { graphql } from 'gatsby';
 
+import { Page } from 'data/page';
+
 
 export type NavigationLink = {
 	id: string;
 	displayText: string;
-	linkTo: {
-		title: string;
-		metadata: {
-			slug: string;
-		}
-	}
+	linkTo: Page;
 }
 
 export const Navigation = graphql`
@@ -17,10 +14,7 @@ export const Navigation = graphql`
 		id
 		displayText
 		linkTo {
-			title
-			metadata {
-				slug
-			}
+			...Page
 		}
 	}
 `;
