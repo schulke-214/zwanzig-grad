@@ -7,6 +7,7 @@ export type Project = {
 	slug: string;
 	title: string;
 	description: CMSRichText;
+	location: string;
 	client: string;
 	year: number;
 	material: string[];
@@ -20,6 +21,7 @@ export const Project = graphql`
 		title
 		year
 		client
+		location
 		tileImage {
 			fluid(quality: 80, , maxWidth: 720) {
 				src
