@@ -1,7 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 
-import ContactData, {ContactDataItem} from 'components/generic/ContactData';
+import { NavigationLink } from 'data/navigation';
+
+import ContactData, { ContactDataItem } from 'components/generic/ContactData';
 import NavigationItem from 'components/layout/NavigationItem';
 import { NavigationLinks } from 'components/layout/Navigation';
 
@@ -16,7 +19,7 @@ const FooterContainer = styled.footer`
 	padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {
-		padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.large)};;
+		padding: ${props => rem(props.theme.spacings.xlarge * 2)} ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.xlarge)};
 	}
 `;
 
@@ -42,12 +45,34 @@ const FooterContent = styled.div`
 					margin-right: ${props => rem(props.theme.spacings.medium)};
 				}
 			}
+		}
+	}
 
-			${NavigationItem} {
-				font-size: unset;
+	${NavigationItem} {
+		font-size: unset;
 
-				&::before {
-					border-bottom-width: 1px;
+		&::before {
+			border-bottom-width: 1px;
+		}
+	}
+
+	> ul {
+		margin-bottom: 0;
+		padding-top: ${props => rem(props.theme.spacings.large)};
+		display: flex;
+		flex-direction: column;
+
+		${tablet} {
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+
+		li {
+			${tablet} {
+				&:not(:last-child) {
+					margin-bottom: 0;
+					margin-right: ${props => rem(props.theme.spacings.medium)};
 				}
 			}
 		}
@@ -56,17 +81,52 @@ const FooterContent = styled.div`
 
 interface FooterProps {}
 
-const Footer: FunctionComponent<FooterProps> = ({}) => (
-	<FooterContainer>
-		<FooterContent>
-			<ContactData>
-				<ContactDataItem>
-					<strong>Übersicht</strong>
-					<NavigationLinks />
-				</ContactDataItem>
-			</ContactData>
-		</FooterContent>
-	</FooterContainer>
-);
+const Footer: FunctionComponent<FooterProps> = ({}) => {
+	const data = useStaticQuery(
+		graphql`
+			query MetaLegalConfig {
+				config: allContentfulMetaLegalConfiguration {
+					edges {
+						node {
+							imprint {
+								...NavigationLink
+							}
+							dataPrivacy {
+								...NavigationLink
+							}
+						}
+					}
+				}
+			}
+		`
+	);
+
+	const { imprint, dataPrivacy, additionalLinks = [] } = data.config.edges[0].node;
+	const links: NavigationLink[] = [imprint, dataPrivacy, ...additionalLinks];
+
+	return (
+		<FooterContainer>
+			<FooterContent>
+				<ContactData>
+					<ContactDataItem>
+						<strong>Übersicht</strong>
+						<NavigationLinks />
+					</ContactDataItem>
+				</ContactData>
+				<ul>
+					{links.map(link => (
+						<NavigationItem
+							key={link.id}
+							to={`/${link.linkTo.metadata.slug}`}
+							pageTitle={link.linkTo.title}
+						>
+							{link.displayText}
+						</NavigationItem>
+					))}
+				</ul>
+			</FooterContent>
+		</FooterContainer>
+	);
+};
 
 export default Footer;
