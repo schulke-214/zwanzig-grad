@@ -11,7 +11,12 @@ export type Project = {
 	client: string;
 	year: number;
 	material: string[];
-	tileImage: CMSResponsiveImage;
+	tileImage: {
+		fluid: {
+			src: string;
+		}
+		description: string;
+	};
 	images: CMSResponsiveImage[];
 }
 
