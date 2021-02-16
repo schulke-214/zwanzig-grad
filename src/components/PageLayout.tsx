@@ -1,35 +1,47 @@
 import React, { FunctionComponent } from 'react'
 
-import Facts from './modules/Facts';
-import Projects from './modules/Projects';
-import Slider from './modules/Slider';
-import Stage from './modules/Stage';
-import Text from './modules/Text';
+import Facts from 'components/modules/Facts';
+import Projects from 'components/modules/Projects';
+import Slider from 'components/modules/Slider';
+import Stage from 'components/modules/Stage';
+import Text from 'components/modules/Text';
+import Title from 'components/modules/Title';
+
+import { LayoutElement } from 'data/layout';
+import { Page, Subpage } from 'data/page';
 
 
 interface PageLayoutProps {
-	content: any
+	page: Page | Subpage;
 }
 
-const PageLayout: FunctionComponent<PageLayoutProps> = ({ content }) => {
-	const renderModules = ({ __typename, id, ...el }: any) => {
+const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
+	const renderModules = ({ __typename, id, ...el }: LayoutElement) => {
 		switch(__typename) {
 			case 'ContentfulLayoutFakten':
-				return <Facts key={id} {...el} />
+				return <Facts key={id} {...el as any} />;
 			case 'ContentfulLayoutProjekte':
-				return <Projects key={id} {...el} />;
+				return <Projects key={id} {...el as any} />;
 			case 'ContentfulLayoutSlider':
-				return <Slider key={id} {...el} />;
+				return <Slider key={id} {...el as any} />;
 			case 'ContentfulLayoutStage':
-				return <Stage key={id} {...el} />;
+				return <Stage key={id} {...el as any} />;
 			case 'ContentfulLayoutText':
-				return <Text key={id} {...el} />;
+				return <Text key={id} {...el as any} />;
 			default:
 				throw new Error(`Unkown content element '${__typename}'`);
 		}
 	};
 
-	return content?.map(renderModules) ?? null;
+	const elements = page.layout.content.map(renderModules);
+
+	if (page.layout.showTitle) {
+		elements.unshift((
+			<Title key={page.metadata.slug}>{page.title}</Title>
+		));
+	}
+
+	return elements;
 }
 
 export default PageLayout;

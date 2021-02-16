@@ -4,12 +4,14 @@ import {CMSContentModule, CMSResponsiveImage} from 'data/cms';
 
 
 export type Layout = {
+	showTitle: boolean;
 	content: [LayoutElement]
 };
 
 export type LayoutElement = LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
 
 export type LayoutModuleText = CMSContentModule & {
+	isSmall: boolean;
 	text: {
 		json: string;
 	}
@@ -45,6 +47,7 @@ export type LayoutModuleStage = CMSContentModule & {
 
 export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
+		showTitle
 		content {
 			...LayoutFacts
 			...LayoutSlider
@@ -57,6 +60,7 @@ export const Layout = graphql`
 	fragment LayoutText on ContentfulLayoutText {
 		__typename
 		id
+		isSmall
 		text {
 			json
 		}

@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
+import Header from 'components/layout/Header';
+import Footer from 'components/layout/Footer';
+
 import { GlobalStyles } from 'lib/global-styles';
 import { DefaultTheme } from 'lib/themes';
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
-
-import Header from 'components/layout/Header';
-import Footer from 'components/layout/Footer';
 
 
 const Container = styled.div`

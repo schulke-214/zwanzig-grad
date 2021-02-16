@@ -1,45 +1,39 @@
 import React, { FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from 'layouts/default';
-
 import PageLayout from 'components/PageLayout';
 import SEO from 'components/layout/SEO';
 
+import { Page as PageType } from 'data/page';
+
+import Layout from 'layouts/default';
+
 
 interface PageProps {
-	data: any;
+	data: {
+		page: PageType;
+	};
 }
 
 const Page: FunctionComponent<PageProps> = ({ data }) => {
-	const {
-		contentfulSeite: {
-			title,
-			metadata: {
-				slug,
-				description,
-				keywords
-			},
-			layout
-		}
-	} = data;
+	const { page } = data;
 
 	return (
 		<Layout>
 			<SEO
-				title={title}
-				slug={slug}
-				description={description}
-				keywords={keywords}
+				title={page.title}
+				slug={page.metadata.slug}
+				description={page.metadata.description}
+				keywords={page.metadata.keywords}
 			/>
-			<PageLayout {...layout} />
+			<PageLayout page={page} />
 		</Layout>
 	);
 };
 
 export const query = graphql`
 	query PageQuery($slug: String) {
-		contentfulSeite(metadata: {slug: {eq: $slug }}) {
+		page: contentfulSeite(metadata: {slug: {eq: $slug }}) {
 			title
 			metadata {
 				slug
