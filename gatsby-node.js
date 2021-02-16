@@ -26,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
 				edges {
 					node {
 						slug
+						location
 					}
 				}
 			}
@@ -81,12 +82,14 @@ exports.createPages = async ({ graphql, actions }) => {
 
 	projects.forEach(project => {
 		const projectSlug = project.node.slug;
+		const projectLocation = project.node.location;
 
 		createPage({
 			path: `/projekt/${projectSlug}/`,
 			component: projectTemplate,
 			context: {
-				slug: projectSlug
+				slug: projectSlug,
+				location: projectLocation
 			}
 		});
 	});
