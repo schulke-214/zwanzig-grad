@@ -4,20 +4,23 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
+import { Project as ProjectType } from 'data/project';
+
 import { landscape } from 'lib/media';
 import { rem } from 'lib/polished';
-
-import { Project as ProjectType } from 'data/project';
+import { getProjectUrl } from 'lib/urls';
 
 
 interface ProjectProps extends ProjectType {
 	className?: string;
 };
 
-const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = ({className, title, year, tileImage, slug}) => {
+const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = (props) => {
+	const { className, title, year, tileImage } = props;
+
 	return (
 		<div className={className}>
-			<Link to={`/projekt/${slug}`}>
+			<Link to={getProjectUrl(props)}>
 				<img src={tileImage.fluid.src} alt={tileImage.description} />
 				<span>{year}  |  {title}</span>
 			</Link>

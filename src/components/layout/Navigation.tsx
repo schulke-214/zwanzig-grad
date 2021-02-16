@@ -10,6 +10,7 @@ import { NavigationLink } from 'data/navigation';
 
 import { tablet } from 'lib/media';
 import { rem } from 'lib/polished';
+import { getPageUrl } from 'lib/urls';
 
 
 const NavigationContact = styled(ContactData)`
@@ -82,7 +83,7 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ class
 			{links?.map((link: any) => (
 				<NavigationItem
 					key={link.id}
-					to={`/${link.linkTo.metadata.slug}`}
+					to={getPageUrl(link.linkTo)}
 					pageTitle={link.linkTo.title}
 					onClick={onClick}
 					hasItemProp={hasItemProp}

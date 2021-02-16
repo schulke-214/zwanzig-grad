@@ -9,7 +9,8 @@ import NavigationItem from 'components/layout/NavigationItem';
 import { NavigationLinks } from 'components/layout/Navigation';
 
 import { rem } from 'lib/polished';
-import { tablet, landscape } from 'lib/media';
+import { tablet } from 'lib/media';
+import { getPageUrl } from 'lib/urls';
 
 
 const FooterContainer = styled.footer`
@@ -117,7 +118,7 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 					{links.map(link => (
 						<NavigationItem
 							key={link.id}
-							to={`/${link.linkTo.metadata.slug}`}
+							to={getPageUrl(link.linkTo)}
 							pageTitle={link.linkTo.title}
 						>
 							{link.displayText}
