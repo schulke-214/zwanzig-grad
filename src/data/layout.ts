@@ -97,14 +97,7 @@ export const Layout = graphql`
 		connection
 		buzzWords
 		background {
-			id
-			title
-			mobile: resize(height: 540, width: 960, quality: 80, resizingBehavior: FILL) {
-				src
-			}
-			desktop: resize(height: 1080, width: 1920, quality: 90, resizingBehavior: FILL) {
-				src
-			}
+			...CMSImage
 		}
 	}
 `;

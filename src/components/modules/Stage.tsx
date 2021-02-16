@@ -9,15 +9,18 @@ import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
 
-const StageBackground = styled.img`
+const StageBackground = styled.picture`
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: ${props => props.theme.layers.default.background};
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+
+	&, img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 `;
 
 const StageContent = styled.div`
@@ -81,7 +84,10 @@ const Stage: FunctionComponent<StageProps> = ({ className, staticText, connectio
 					{staticText}
 					<span>{connection} <em>{buzzWords[0]}</em></span>
 				</h1>
-				<StageBackground src={background.desktop.src} alt={background.title} />
+				<StageBackground>
+					<source srcSet={background.responsive.srcSet} media={tablet.replace('@media', '')} />
+					<img src={background.responsive.src} alt={background.description} /> 
+				</StageBackground>
 			</StageContent>
 			<StageSpacer />
 		</div>

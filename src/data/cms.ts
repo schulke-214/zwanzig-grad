@@ -8,13 +8,11 @@ export type CMSContentModule = {
 
 export type CMSResponsiveImage = {
 	id: string;
-	title: string;
-	mobile: {
+	description: string;
+	responsive: {
 		src: string;
-	};
-	desktop: {
-		src: string;
-	};
+		srcSet: string;
+	}
 };
 
 export type CMSRichText = {
@@ -32,12 +30,16 @@ export type CMSRichText = {
 export const CMS = graphql`
 	fragment CMSImage on ContentfulAsset {
 		id
-		title
-		mobile: resize(height: 420, width: 640, quality: 80, resizingBehavior: FILL) {
+		description
+		#mobile: resize(height: 420, width: 640, quality: 80, resizingBehavior: FILL) {
+		#	src
+		#}
+		#desktop: resize(height: 640, width: 960, quality: 90, resizingBehavior: FILL) {
+		#	src
+		#}
+		responsive: fluid(maxWidth: 960, maxHeight: 640, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
 			src
-		}
-		desktop: resize(height: 640, width: 960, quality: 90, resizingBehavior: FILL) {
-			src
+			srcSet
 		}
 	}
 `;

@@ -3,7 +3,7 @@ import Swiper from 'react-id-swiper';
 import styled, { ThemeContext } from 'styled-components';
 
 import { rem } from 'lib/polished';
-import { desktop, tablet } from 'lib/media';
+import { tablet } from 'lib/media';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
@@ -45,8 +45,8 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 				<Swiper {...settings}>
 					{images.map((image: any) => (
 						<SliderItem key={image.id}>
-							<source srcSet={image.desktop.src} media={desktop.replace('@media ', '')} />
-							<img src={image.mobile.src} alt={"abc"} />
+							<source srcSet={image.responsive.srcSet} media={tablet.replace('@media ', '')} />
+							<img src={image.responsive.src} alt={image.description} />
 						</SliderItem>
 					))}
 				</Swiper>
