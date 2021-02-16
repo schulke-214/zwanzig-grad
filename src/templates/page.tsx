@@ -33,7 +33,7 @@ const Page: FunctionComponent<PageProps> = ({ data }) => {
 
 export const query = graphql`
 	query PageQuery($slug: String) {
-		page: contentfulSeite(metadata: {slug: {eq: $slug }}) {
+		page: contentfulSeite(metadata: {slug: {eq: $slug}}) {
 			title
 			metadata {
 				slug
