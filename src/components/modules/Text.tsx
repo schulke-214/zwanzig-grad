@@ -17,10 +17,8 @@ interface TextProps {
 
 const Text: FunctionComponent<TextProps> = ({ className, text }) => {
 	return (
-		<ModuleContainer>
-			<div className={className}>
-				{renderRichText(text?.json)}
-			</div>
+		<ModuleContainer className={className}>
+			{renderRichText(text?.json)}
 		</ModuleContainer>
 	);
 }
