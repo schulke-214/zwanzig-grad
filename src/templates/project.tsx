@@ -103,6 +103,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				<Text text={project.description} />
 				<ProjectMeta>
 					<ProjectMetaItemName>Ort</ProjectMetaItemName>
+					<ProjectMetaItemValue>{project.location}</ProjectMetaItemValue>
 					<ProjectMetaItemName>Jahr</ProjectMetaItemName>
 					<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
 					<ProjectMetaItemName>Kunde</ProjectMetaItemName>
