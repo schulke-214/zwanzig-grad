@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { LayoutModuleStage } from 'data/layout';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import TypeWriter from 'components/generic/TypeWriter';
 
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
@@ -82,7 +83,7 @@ const Stage: FunctionComponent<StageProps> = ({ className, staticText, connectio
 			<StageContent>
 				<h1>
 					{staticText}
-					<span>{connection} <em>{buzzWords[0]}</em></span>
+					<span>{connection} <em><TypeWriter words={buzzWords} /></em></span>
 				</h1>
 				<StageBackground>
 					<source srcSet={background.responsive.srcSet} media={tablet.replace('@media', '')} />
