@@ -52,7 +52,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
 	const data = useStaticQuery(
 		graphql`
 			query Projekte {
-				allContentfulProjekt {
+				allContentfulProjekt(sort: {fields: year, order: DESC}) {
 					edges {
 						node {
 							...Project
@@ -64,6 +64,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
 	);
 
 	const projects: [ProjectType] = data?.allContentfulProjekt?.edges.map((edge: {node: ProjectType}) => edge.node);
+
 	const left = projects.filter((_, index) => !(index % 2));
 	const right = projects.filter((_, index) => index % 2);
 	const renderProject = (project: ProjectType) => (<ProjectTeaser {...project} key={project.slug} />);
