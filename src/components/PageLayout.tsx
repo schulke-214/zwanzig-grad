@@ -4,6 +4,7 @@ import Facts from 'components/modules/Facts';
 import Projects from 'components/modules/Projects';
 import Slider from 'components/modules/Slider';
 import Stage from 'components/modules/Stage';
+import TextImage from 'components/modules/TextImage';
 import Text from 'components/modules/Text';
 import Title from 'components/modules/Title';
 
@@ -26,6 +27,8 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 				return <Slider key={id} {...el as any} />;
 			case 'ContentfulLayoutStage':
 				return <Stage key={id} {...el as any} />;
+			case 'ContentfulLayoutBildText':
+				return <TextImage key={id} {...el as any} />;
 			case 'ContentfulLayoutText':
 				return <Text key={id} {...el as any} />;
 			default:
