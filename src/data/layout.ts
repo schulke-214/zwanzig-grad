@@ -8,13 +8,18 @@ export type Layout = {
 	content: [LayoutElement]
 };
 
-export type LayoutElement = LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
+export type LayoutElement = LayoutModuleTextImage | LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
+
+export type LayoutModuleTextImage = CMSContentModule & {
+	image: CMSResponsiveImage;
+	text: LayoutModuleText;
+};
 
 export type LayoutModuleText = CMSContentModule & {
 	isSmall: boolean;
 	text: {
 		json: string;
-	}
+	};
 };
 
 export type LayoutModuleSlider = CMSContentModule & {
@@ -49,6 +54,7 @@ export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
 		showTitle
 		content {
+			...LayoutBildText
 			...LayoutFacts
 			...LayoutSlider
 			...LayoutStage
@@ -60,15 +66,30 @@ export const Layout = graphql`
 	fragment LayoutText on ContentfulLayoutText {
 		__typename
 		id
+
 		isSmall
 		text {
 			json
 		}
 	}
 
+	fragment LayoutBildText on ContentfulLayoutBildText {
+		__typename
+		id
+
+		image {
+			...CMSImage
+		}
+
+		text {
+			...LayoutText
+		}
+	}
+
 	fragment LayoutSlider on ContentfulLayoutSlider {
 		__typename
 		id
+
 		showTitle
 		title
 		images {
@@ -79,6 +100,7 @@ export const Layout = graphql`
 	fragment LayoutFacts on ContentfulLayoutFakten {
 		__typename
 		id
+
 		headline
 		facts {
 			id
@@ -89,6 +111,7 @@ export const Layout = graphql`
 	fragment LayoutProjects on ContentfulLayoutProjekte {
 		__typename
 		id
+
 		filter
 		sortBy
 		order
@@ -97,6 +120,7 @@ export const Layout = graphql`
 	fragment LayoutStage on ContentfulLayoutStage {
 		__typename
 		id
+
 		staticText
 		connection
 		buzzWords
