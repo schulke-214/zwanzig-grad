@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import Link from 'components/generic/Link';
 
 import { Project as ProjectType } from 'data/project';
 

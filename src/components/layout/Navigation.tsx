@@ -58,7 +58,6 @@ const NavigationContent = styled.nav`
 interface NavigationLinksProps {
 	className?: string;
 	hasItemProp?: boolean;
-	onClick?: () => void;
 }
 
 export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ className, hasItemProp, onClick }) => {
@@ -85,7 +84,6 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ class
 					key={link.id}
 					to={getPageUrl(link.linkTo)}
 					pageTitle={link.linkTo.title}
-					onClick={onClick}
 					hasItemProp={hasItemProp}
 				>
 					{link.displayText}
@@ -97,13 +95,12 @@ export const NavigationLinks: FunctionComponent<NavigationLinksProps> = ({ class
 
 interface NavigationProps {
 	className?: string;
-	onClose?: () => void;
 }
 
-const Navigation: FunctionComponent<NavigationProps> = ({ className, onClose }) => (
+const Navigation: FunctionComponent<NavigationProps> = ({ className }) => (
 	<Overlay className={className}>
 		<NavigationContent itemScope itemType="http://schema.org/SiteNavigationElement">
-			<NavigationLinks onClick={onClose} />
+			<NavigationLinks />
 		</NavigationContent>
 		<NavigationContact />
 	</Overlay>
