@@ -17,6 +17,12 @@ const dev = [
 		},
 	},
 	'gatsby-plugin-styled-components',
+	{
+		resolve: 'gatsby-plugin-transition-link',
+		options: {
+			injectPageProps: false,
+		}
+	}
 ];
 
 const sources = [
