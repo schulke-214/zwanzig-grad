@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer';
+import PageTransition from 'components/layout/PageTransition';
 
 import { GlobalStyles } from 'lib/global-styles';
 import { DefaultTheme } from 'lib/themes';
@@ -40,6 +41,7 @@ interface LayoutProps {
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => (
 	<ThemeProvider theme={DefaultTheme}>
 		<GlobalStyles />
+		<PageTransition />
 		<Container>
 			<Header />
 			<Main>{children}</Main>
