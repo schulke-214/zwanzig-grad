@@ -1,0 +1,9 @@
+FROM node:stretch
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN yarn -s
+
+CMD ["yarn", "dev"]
