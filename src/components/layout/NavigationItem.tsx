@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import styled from "styled-components";
-import { Link } from "gatsby";
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 
-import { rem } from "lib/polished";
-import { tablet } from "lib/media";
+import { rem } from 'lib/polished';
+import { tablet } from 'lib/media';
 
 
 const StyledListItem = styled.li`
