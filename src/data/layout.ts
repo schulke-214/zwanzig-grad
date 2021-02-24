@@ -18,7 +18,7 @@ export type LayoutModuleTextImage = CMSContentModule & {
 export type LayoutModuleText = CMSContentModule & {
 	isSmall: boolean;
 	text: {
-		json: string;
+		json: Object;
 	};
 };
 
@@ -33,7 +33,15 @@ export type LayoutModuleFacts = CMSContentModule & {
 	headline: string;
 	facts: [{
 		id: string;
-		description: string;
+		icon: {
+			description: string;
+			file: {
+				url: string;
+			};
+		};
+		description: {
+			json: Object;
+		};
 	}];
 };
 
@@ -104,7 +112,15 @@ export const Layout = graphql`
 		headline
 		facts {
 			id
-			description
+			icon {
+				description
+				file {
+					url
+				}
+			}
+			description {
+				json
+			}
 		}
 	}
 
