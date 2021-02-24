@@ -29,21 +29,21 @@ export const Page = graphql`
 		metadata {
 			...PageMetaData
 		}
-		subpages {
-			...Subpage
-		}
+#		subpages {
+#			...Subpage
+#		}
 	}
 
-	fragment Subpage on ContentfulSeiteUnterseite {
-		id
-		title
-		layout {
-			...Layout
-		}
-		metadata {
-			...PageMetaData
-		}
-	}
+#	fragment Subpage on ContentfulSeiteUnterseite {
+#		id
+#		title
+#		layout {
+#			...Layout
+#		}
+#		metadata {
+#			...PageMetaData
+#		}
+#	}
 
 	fragment PageMetaData on ContentfulSeiteMetadaten {
 		id
