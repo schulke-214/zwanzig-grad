@@ -112,7 +112,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 					<ProjectMetaItemName>Jahr</ProjectMetaItemName>
 					<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
 					<ProjectMetaItemName>Kunde</ProjectMetaItemName>
-					<ProjectMetaItemValue>Für {project.client}</ProjectMetaItemValue>
+					<ProjectMetaItemValue>{project.client}</ProjectMetaItemValue>
 					<ProjectMetaItemName>Materialien</ProjectMetaItemName>
 					<ProjectMetaMaterialList>
 						{project.material.map(item => <li key={item}>{item}</li>)}
