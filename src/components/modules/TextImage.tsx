@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 import Text from 'components/modules/Text';
+import Title from 'components/modules/Title';
 
 import { CMSResponsiveImage } from 'data/cms';
 import { LayoutModuleText } from 'data/layout';
@@ -47,6 +48,16 @@ export default styled(TextImage)`
 		}
 	}
 
+	${Title} + & {
+		padding-top: ${props => rem(props.theme.spacings.large)};
+		margin-top: ${props => rem(-props.theme.spacings.large)};
+
+		${tablet} {
+			padding-top: ${props => rem(props.theme.spacings.xlarge)};
+			margin-top: ${props => rem(-props.theme.spacings.xlarge)};
+		}
+	}
+
 	& + &:nth-child(odd) {
 		${tablet} {
 			flex-direction: row-reverse;
@@ -67,7 +78,7 @@ export default styled(TextImage)`
 		margin-bottom: 0;
 
 		${tablet} {
-			width: 75%;
+			width: 66.66%;
 			height: ${props => rem(props.theme.spacings.xlarge * 5)};
 			margin-right: ${props => rem(props.theme.spacings.large)};
 		}
@@ -81,7 +92,7 @@ export default styled(TextImage)`
 
 		${tablet} {
 			margin-top: 0;
-			width: 25%;
+			width: 33.33%;
 		}
 
 		> *:last-child {
