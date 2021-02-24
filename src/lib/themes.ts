@@ -23,6 +23,13 @@ export const DefaultTheme: Theme = {
 		brand: BRAND,
 		muted: GRAY
 	},
+	decorations: {
+		line: {
+			width: 40,
+			height: 2,
+			color: BRAND
+		}
+	},
 	spacings: {
 		xlarge: 60,
 		large: 40,
