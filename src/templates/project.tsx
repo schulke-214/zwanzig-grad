@@ -38,6 +38,7 @@ const ProjectMetaItemValue = styled.p`
 
 const ProjectMetaMaterialList = styled.ul`
 	display: flex;
+	flex-wrap: wrap;
 	list-style: none;
 	margin: 0;
 
@@ -47,6 +48,10 @@ const ProjectMetaMaterialList = styled.ul`
 
 		&:not(:last-child) {
 			margin-right: ${props => rem(props.theme.spacings.xsmall)};
+
+			${tablet} {
+				margin-right: 0;
+			}
 
 			&:after {
 				content: ', ';
