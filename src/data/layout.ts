@@ -30,6 +30,7 @@ export type LayoutModuleSlider = CMSContentModule & {
 
 export type LayoutModuleFacts = CMSContentModule & {
 	id: string;
+	chapterHeadline: string;
 	headline: string;
 	facts: [{
 		id: string;
@@ -108,7 +109,7 @@ export const Layout = graphql`
 	fragment LayoutFacts on ContentfulLayoutFakten {
 		__typename
 		id
-
+		chapterHeadline
 		headline
 		facts {
 			id

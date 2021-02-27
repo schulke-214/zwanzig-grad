@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { LayoutModuleFacts } from 'data/layout';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import ChapterHeadline from 'components/generic/ChapterHeadline';
 
 import { rem } from 'lib/polished';
 import { tablet, landscape } from 'lib/media';
@@ -56,11 +57,12 @@ interface FactsProps extends LayoutModuleFacts {
 	className?: string;
 }
 
-const Facts: FunctionComponent<FactsProps> = ({ className, headline, facts }) => {
+const Facts: FunctionComponent<FactsProps> = ({ className, chapterHeadline, headline, facts }) => {
 	return (
 		<ModuleContainer>
 			<div className={className}>
 				<div>
+					{ chapterHeadline && <ChapterHeadline inheritColor>{chapterHeadline}</ChapterHeadline> }
 					<h2>{headline}</h2>
 				</div>
 				<ul>
@@ -86,8 +88,12 @@ export default styled(Facts)`
 			padding: ${props => rem(props.theme.spacings.xlarge * 2)};
 		}
 
-		h2 {
+		h2,
+		${ChapterHeadline} {
 			color: ${props => props.theme.colors.background};
+		}
+
+		h2 {
 			padding: 0;
 			margin: 0;
 			font-size: 200%;
