@@ -62,7 +62,7 @@ const Facts: FunctionComponent<FactsProps> = ({ className, chapterHeadline, head
 		<ModuleContainer>
 			<div className={className}>
 				<div>
-					{ chapterHeadline && <ChapterHeadline inheritColor>{chapterHeadline}</ChapterHeadline> }
+					{chapterHeadline && <ChapterHeadline inheritColor>{chapterHeadline}</ChapterHeadline>}
 					<h2>{headline}</h2>
 				</div>
 				<ul>
