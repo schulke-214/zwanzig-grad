@@ -40,7 +40,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 
 	if (page.layout.showTitle) {
 		elements.unshift((
-			<Title key={page.metadata.slug}>{page.title}</Title>
+			<Title key={page.metadata.slug} subtitle={page.subtitle}>{page.title}</Title>
 		));
 	}
 
