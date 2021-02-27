@@ -29,9 +29,10 @@ const Fact = styled.li`
 const FactIcon = styled.img`
 	display: block;
 	margin-bottom: 0;
-	width: ${props => rem(props.theme.spacings.xlarge)};
-	height: ${props => rem(props.theme.spacings.xlarge)};
-	object-fit: cover;
+	width: ${props => rem(props.theme.spacings.large)};
+	height: ${props => rem(props.theme.spacings.large)};
+	margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+	object-fit: contain;
 `;
 
 const FactIndicator = styled.div`
