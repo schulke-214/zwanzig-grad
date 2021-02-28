@@ -1,8 +1,11 @@
 import React from 'react';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { Link } from 'gatsby';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { CMSRichText } from 'data/cms';
+
+import { getPageUrl } from 'lib/urls';
 
 
 const options = {
@@ -17,6 +20,17 @@ const options = {
 			>
 				<img alt={node?.data?.target?.fields?.description?.de} src={node?.data?.target?.fields?.file?.de?.url} />
 			</p>
+		),
+		[INLINES.ENTRY_HYPERLINK]: (node: any) => (
+			<Link
+				to={getPageUrl({
+					metadata: {
+						slug: node?.data?.target?.fields?.metadata?.de?.fields?.slug?.de
+					}
+				} as any)}
+			>
+				{node?.content[0]?.value}
+			</Link>
 		)
 	}
 };
