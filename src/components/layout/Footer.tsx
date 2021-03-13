@@ -12,6 +12,8 @@ import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 import { getPageUrl } from 'lib/urls';
 
+import { useCookies } from 'hooks/use-cookies';
+
 
 const FooterContainer = styled.footer`
 	width: 100%;
@@ -104,6 +106,7 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 
 	const { imprint, dataPrivacy, additionalLinks = [] } = data.config.edges[0].node;
 	const links: NavigationLink[] = [imprint, dataPrivacy, ...additionalLinks];
+	const cookies = useCookies();
 
 	return (
 		<FooterContainer>
@@ -124,6 +127,12 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 							{link.displayText}
 						</NavigationItem>
 					))}
+					<NavigationItem
+						key="cookie"
+						onClick={cookies.clear}
+					>
+						Cookie Einstellungen
+					</NavigationItem>
 				</ul>
 			</FooterContent>
 		</FooterContainer>
