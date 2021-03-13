@@ -13,6 +13,10 @@ const StyledListItem = styled.li`
 	:not(:last-child) {
 		margin-bottom: ${(props: any) => rem(props.theme.spacings.medium)};
 	}
+
+	button {
+		padding: 0;
+	}
 `;
 
 export interface NavigationItemProps {
