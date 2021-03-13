@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
+import Cookie from 'js-cookie';
 
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
@@ -86,17 +87,47 @@ const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
 		`
 	);
 	const disclaimer = data.disclaimer.nodes[0];
-	const [choice, setChoice] = useState<null | boolean>(null);
 
-	if (choice !== null || !disclaimer) return (<></>);
+	const [answered, setAnswered] = useState(() => !!Cookie.get('cookie-consent') || false);
+
+	const storeAnswer = (answer: boolean) => (ev: MouseEvent) => {
+		ev.preventDefault();
+
+		Cookie.set('cookie-consent', '' + answer, {
+			expires: 365
+		});
+
+		console.log("store answer", answer)
+		setAnswered(true);
+	};
+
+	useEffect(() => {
+		if (!answered) return;
+
+		const accepted = Cookie.get('cookie-consent') === 'true';
+
+		if (!accepted) {
+			return;
+		}
+
+		(async () => {
+			const {default: withAnalytics} = await import('lib/analytics');
+
+			withAnalytics(analytics => {
+				analytics.page();
+			});
+		})();
+	}, [answered]);
+
+	if (answered) return <></>;
 
 	return (
 		<CookieDisclaimerContainer>
 			<CookieDisclaimerInnerContainer>
 				<div>{renderRichText(disclaimer.description.json)}</div>
 				<div>
-					<CookieDisclaimerButton onClick={() => setChoice(true)}>Akzeptieren</CookieDisclaimerButton>
-					<CookieDisclaimerButton onClick={() => setChoice(false)}>Ablehnen</CookieDisclaimerButton>
+					<CookieDisclaimerButton onClick={storeAnswer(true) as any}>Akzeptieren</CookieDisclaimerButton>
+					<CookieDisclaimerButton onClick={storeAnswer(false) as any}>Ablehnen</CookieDisclaimerButton>
 				</div>
 			</CookieDisclaimerInnerContainer>
 		</CookieDisclaimerContainer>
