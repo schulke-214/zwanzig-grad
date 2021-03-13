@@ -46,7 +46,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => (
 			<Main>{children}</Main>
 			<Footer />
 		</Container>
-		<CookieDisclaimer />
+		{ typeof window !== 'undefined' && <CookieDisclaimer /> }
 	</ThemeProvider>
 );
 
