@@ -1,11 +1,14 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
-import Cookie from 'js-cookie';
 
+import { setCookieClearHandler } from 'lib/cookies';
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 import { renderRichText } from 'lib/rich-text';
+
+import { useCookies } from 'hooks/use-cookies';
+import { useForceUpdate } from 'hooks/use-force-update';
 
 
 const CookieDisclaimerButton = styled.button`
@@ -72,6 +75,16 @@ const CookieDisclaimerInnerContainer = styled.div`
 interface CookieDisclaimerProps {}
 
 const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
+	const cookies = useCookies();
+	const [refresh, render_id] = useForceUpdate();
+	const [answered, setAnswered] = useState(() => (cookies.allowed() || cookies.permitted()) || false);
+	const storeAnswer = (answer: boolean) => {
+		if (answer) cookies.allow()
+		else cookies.permit()
+
+		setAnswered(true);
+	};
+
 	const data = useStaticQuery(
 		graphql`
 			{
@@ -86,38 +99,29 @@ const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
 			}
 		`
 	);
+
 	const disclaimer = data.disclaimer.nodes[0];
 
-	const [answered, setAnswered] = useState(() => !!Cookie.get('cookie-consent') || false);
-
-	const storeAnswer = (answer: boolean) => (ev: MouseEvent) => {
-		ev.preventDefault();
-
-		Cookie.set('cookie-consent', '' + answer, {
-			expires: 365
+	useEffect(() => {
+		setCookieClearHandler(() => {
+			setAnswered((cookies.allowed() || cookies.permitted()) || false);
+			refresh();
 		});
 
-		console.log("store answer", answer)
-		setAnswered(true);
-	};
-
-	useEffect(() => {
-		if (!answered) return;
-
-		const accepted = Cookie.get('cookie-consent') === 'true';
-
-		if (!accepted) {
-			return;
+		if (answered && cookies.allowed()) {
+			(async () => {
+				const {default: withAnalytics} = await import('lib/analytics');
+	
+				withAnalytics(analytics => {
+					analytics.page();
+				});
+			})();
 		}
 
-		(async () => {
-			const {default: withAnalytics} = await import('lib/analytics');
-
-			withAnalytics(analytics => {
-				analytics.page();
-			});
-		})();
-	}, [answered]);
+		return () => {
+			setCookieClearHandler(() => {});
+		};
+	}, [answered, render_id]);
 
 	if (answered) return <></>;
 
@@ -126,8 +130,8 @@ const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
 			<CookieDisclaimerInnerContainer>
 				<div>{renderRichText(disclaimer.description.json)}</div>
 				<div>
-					<CookieDisclaimerButton onClick={storeAnswer(true) as any}>Akzeptieren</CookieDisclaimerButton>
-					<CookieDisclaimerButton onClick={storeAnswer(false) as any}>Ablehnen</CookieDisclaimerButton>
+					<CookieDisclaimerButton onClick={() => storeAnswer(true) as any}>Akzeptieren</CookieDisclaimerButton>
+					<CookieDisclaimerButton onClick={() => storeAnswer(false) as any}>Ablehnen</CookieDisclaimerButton>
 				</div>
 			</CookieDisclaimerInnerContainer>
 		</CookieDisclaimerContainer>
