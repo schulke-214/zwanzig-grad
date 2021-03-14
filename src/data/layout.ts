@@ -10,11 +10,13 @@ export type Layout = {
 	content: [LayoutElement]
 };
 
-export type LayoutElement = LayoutModuleTextImage | LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
+export type LayoutElement = LayoutModuleTeaserGroup | LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
 
-export type LayoutModuleTextImage = CMSContentModule & {
-	image: CMSResponsiveImage;
-	text: LayoutModuleText;
+export type LayoutModuleTeaserGroup = CMSContentModule & {
+	teaser: [{
+		image: CMSResponsiveImage;
+		text: LayoutModuleText;
+	}]
 };
 
 export type LayoutModuleText = CMSContentModule & {
@@ -70,7 +72,7 @@ export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
 		showTitle
 		content {
-			...LayoutBildText
+			...LayoutTeaserGroup
 			...LayoutFacts
 			...LayoutEmployees
 			...LayoutSlider
@@ -99,16 +101,17 @@ export const Layout = graphql`
 		}
 	}
 
-	fragment LayoutBildText on ContentfulLayoutBildText {
+	fragment LayoutTeaserGroup on ContentfulLayoutTeaserGruppe {
 		__typename
 		id
 
-		image {
-			...CMSImage
-		}
-
-		text {
-			...LayoutText
+		teaser {
+			image {
+				...CMSImage
+			}
+			text {
+				...LayoutText
+			}
 		}
 	}
 
