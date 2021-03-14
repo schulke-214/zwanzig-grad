@@ -78,11 +78,10 @@ export default styled(Employees)`
 	}
 
 	${Title} + & {
-		padding-top: ${props => rem(props.theme.spacings.large)};
+		padding-top: 0;
 		margin-top: ${props => rem(-props.theme.spacings.large)};
 
 		${tablet} {
-			padding-top: ${props => rem(props.theme.spacings.xlarge)};
 			margin-top: ${props => rem(-props.theme.spacings.xlarge)};
 		}
 	}
