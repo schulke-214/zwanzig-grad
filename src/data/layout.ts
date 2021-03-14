@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 
-import {CMSContentModule, CMSResponsiveImage} from 'data/cms';
+import { CMSContentModule, CMSResponsiveImage } from 'data/cms';
+import { Employee as EmployeeType } from 'data/employee'
 
 
 export type Layout = {
@@ -20,6 +21,10 @@ export type LayoutModuleText = CMSContentModule & {
 	text: {
 		json: Object;
 	};
+};
+
+export type LayoutModuleEmployees = CMSContentModule & {
+	employees: EmployeeType[]
 };
 
 export type LayoutModuleSlider = CMSContentModule & {
@@ -65,6 +70,7 @@ export const Layout = graphql`
 		content {
 			...LayoutBildText
 			...LayoutFacts
+			...LayoutEmployees
 			...LayoutSlider
 			...LayoutStage
 			...LayoutText
@@ -79,6 +85,15 @@ export const Layout = graphql`
 		isSmall
 		text {
 			json
+		}
+	}
+
+	fragment LayoutEmployees on ContentfulLayoutMitarbeiter {
+		__typename
+		id
+
+		employees {
+			...Employee
 		}
 	}
 
