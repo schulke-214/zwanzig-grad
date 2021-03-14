@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import Employees from 'components/modules/Employees';
 import Facts from 'components/modules/Facts';
 import Projects from 'components/modules/Projects';
 import Slider from 'components/modules/Slider';
@@ -19,6 +20,10 @@ interface PageLayoutProps {
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 	const renderModules = ({ __typename, id, ...el }: LayoutElement) => {
 		switch(__typename) {
+			case 'ContentfulLayoutBildText':
+				return <TextImage key={id} {...el as any} />;
+			case 'ContentfulLayoutMitarbeiter':
+				return <Employees key={id} {...el as any} />;
 			case 'ContentfulLayoutFakten':
 				return <Facts key={id} {...el as any} />;
 			case 'ContentfulLayoutProjekte':
@@ -27,8 +32,6 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 				return <Slider key={id} {...el as any} />;
 			case 'ContentfulLayoutStage':
 				return <Stage key={id} {...el as any} />;
-			case 'ContentfulLayoutBildText':
-				return <TextImage key={id} {...el as any} />;
 			case 'ContentfulLayoutText':
 				return <Text key={id} {...el as any} />;
 			default:
