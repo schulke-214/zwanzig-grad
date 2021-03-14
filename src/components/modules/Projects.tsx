@@ -34,8 +34,16 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 		width: 100%;
 	}
 
+	img {
+		margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+	}
+
+	span {
+		line-height: 1;
+	}
+
 	&:not(:last-child) {
-		margin-bottom: ${props => rem(props.theme.spacings.large)};
+		margin-bottom: ${props => rem(props.theme.spacings.small)};
 	}
 
 	a::before {
@@ -98,13 +106,13 @@ export default styled(Projects)`
 		display: block;
 
 		&:first-child {
-			margin-bottom: ${props => rem(props.theme.spacings.large)};
+			margin-bottom: ${props => rem(props.theme.spacings.medium)};
 		}
 
 		${landscape} {
 			&:first-child {
 				margin-bottom: 0;
-				margin-right: ${props => rem(props.theme.spacings.large)};
+				margin-right: ${props => rem(props.theme.spacings.medium)};
 			}
 
 			width: 50%;
