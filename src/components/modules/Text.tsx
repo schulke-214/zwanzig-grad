@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { renderRichText } from 'lib/rich-text';
 import { rem } from 'lib/polished';
+import { tablet } from 'lib/media';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
@@ -25,9 +26,15 @@ const Text: FunctionComponent<TextProps> = ({ className, text }) => {
 
 export default styled(Text)`
 	${props => props.isSmall && css`
+		columns: 1 !important;
+		margin-left: auto;
+		margin-right: auto;
 		max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
-		margin: 0 auto;
 	`}
+
+	${tablet} {
+		columns: 2;
+	}
 
 	> h1,
 	> h2,

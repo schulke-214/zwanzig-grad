@@ -22,7 +22,7 @@ const Teaser: FunctionComponent<TeaserProps> = ({ className, text, image }) => {
 	return (
 		<div className={className}>
 			<img src={image.responsive.src} alt={image.description} />
-			<Text {...text} />
+			<Text {...text} isSmall />
 		</div>
 	);
 };
