@@ -16,7 +16,7 @@ interface TitleProps {
 const Title: FunctionComponent<TitleProps> = ({ className, children, subtitle }) => {
 	return (
 		<ModuleContainer className={className}>
-			{subtitle && <ChapterHeadline inheritColor>{subtitle}</ChapterHeadline>}
+			{subtitle && <ChapterHeadline>{subtitle}</ChapterHeadline>}
 			<h1>{children}</h1>
 		</ModuleContainer>
 	);
@@ -30,15 +30,10 @@ export default styled(Title)`
 		padding: ${props => rem(props.theme.spacings.xlarge)};
 	}
 
-	h1,
-	${ChapterHeadline} {
-		color: ${props => props.theme.colors.background};
-	}
-
 	h1 {
+		color: ${props => props.theme.colors.background};
 		padding: 0;
 		margin: 0;
-		text-align: center;
 		text-transform: uppercase;
 	}
 `;
