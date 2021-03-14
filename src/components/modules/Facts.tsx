@@ -49,7 +49,7 @@ const FactIndicator = styled.div`
 		top: ${props => rem((props.theme.spacings.medium - props.theme.decorations.line.height) / 2)};
 		height: ${props => rem(props.theme.decorations.line.height)};
 		width: ${props => rem(props.theme.decorations.line.width)};
-		background-color: ${props => props.theme.decorations.line.color};
+		background-color: ${props => props.theme.colors.brand};
 	}
 `;
 
