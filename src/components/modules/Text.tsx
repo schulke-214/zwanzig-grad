@@ -25,7 +25,7 @@ const Text: FunctionComponent<TextProps> = ({ className, text }) => {
 
 export default styled(Text)`
 	${props => props.isSmall && css`
-		max-width: ${props => rem(props.theme.layout.maxWidth / 2)};
+		max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
 		margin: 0 auto;
 	`}
 
