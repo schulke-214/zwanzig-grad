@@ -11,7 +11,7 @@ export type Employee = {
 	slug: string;
 	portrait: {
 		id: string;
-		responsive: {
+		fixed: {
 			src: string;
 			srcSet: string;
 		}
@@ -29,7 +29,7 @@ export const Employee = graphql`
 		slug
 		portrait {
 			id
-			responsive: fluid(maxWidth: 800, maxHeight: 1200, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
+			fixed(width: 800, height: 1200) {
 				src
 				srcSet
 			}

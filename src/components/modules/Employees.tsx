@@ -12,7 +12,10 @@ import { rem } from 'lib/polished';
 
 const Employee: FunctionComponent<EmployeeType & { className?: string; }> = ({ className, firstName, lastName, portrait }) => (
 	<li className={className}>
-		<img src={portrait.file.url} alt={`${firstName} ${lastName}`} />
+		<picture>
+			<source srcSet={portrait.fixed.srcSet} media={tablet.replace('@media', '')} />
+			<img src={portrait.fixed.src} alt={`${firstName} ${lastName}`} />
+		</picture>
 		<h4>{firstName} {lastName}</h4>
 	</li>
 );
@@ -21,7 +24,7 @@ const StyledEmployee = styled(Employee)`
 	margin: 0;
 	color: ${props => props.theme.colors.background};
 
-	img {
+	picture, img {
 		margin: 0;
 	}
 
