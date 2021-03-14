@@ -5,7 +5,7 @@ import Facts from 'components/modules/Facts';
 import Projects from 'components/modules/Projects';
 import Slider from 'components/modules/Slider';
 import Stage from 'components/modules/Stage';
-import TextImage from 'components/modules/TextImage';
+import TeaserGroup from 'components/modules/TeaserGroup';
 import Text from 'components/modules/Text';
 import Title from 'components/modules/Title';
 
@@ -20,8 +20,8 @@ interface PageLayoutProps {
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 	const renderModules = ({ __typename, id, ...el }: LayoutElement) => {
 		switch(__typename) {
-			case 'ContentfulLayoutBildText':
-				return <TextImage key={id} {...el as any} />;
+			case 'ContentfulLayoutTeaserGruppe':
+				return <TeaserGroup key={id} {...el as any} />;
 			case 'ContentfulLayoutMitarbeiter':
 				return <Employees key={id} {...el as any} />;
 			case 'ContentfulLayoutFakten':
