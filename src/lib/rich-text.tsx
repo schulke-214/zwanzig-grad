@@ -18,7 +18,8 @@ const options = {
 					}
 				`}
 			>
-				<img alt={node?.data?.target?.fields?.description?.de} src={node?.data?.target?.fields?.file?.de?.url} />
+				<pre>{JSON.stringify(node)}</pre>
+				<img alt={node?.data?.target?.fields?.description?.de} src={`${node?.data?.target?.fields?.file?.de?.url}?w=1240&q=50&fit=fill`} />
 			</p>
 		),
 		[INLINES.ENTRY_HYPERLINK]: (node: any) => (
