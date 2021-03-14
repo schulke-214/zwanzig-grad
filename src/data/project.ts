@@ -18,7 +18,7 @@ export type Project = {
 		description: string;
 	};
 	images: CMSResponsiveImage[];
-}
+};
 
 export const Project = graphql`
 	fragment Project on ContentfulProjekt {
