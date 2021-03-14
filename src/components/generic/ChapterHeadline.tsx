@@ -16,7 +16,9 @@ export default styled.span<ChapterHeadlineProps>`
 	min-width: ${props => rem(props.theme.decorations.line.width)};
 	padding-bottom: ${props => rem(props.theme.spacings.medium)};
 	margin-bottom: ${props => props.isSlim ? 0 : rem(props.theme.spacings.medium)};
-	color: currentColor;
+	color: ${props => props.inheritColor ? 'currentColor' : props.theme.decorations.line.color};
+	text-transform: initial;
+	font-size: 1rem;
 
 	&::after {
 		content: '';
