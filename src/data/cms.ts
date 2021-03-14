@@ -12,7 +12,10 @@ export type CMSResponsiveImage = {
 	responsive: {
 		src: string;
 		srcSet: string;
-	}
+	};
+	file: {
+		url: string;
+	};
 };
 
 export type CMSRichText = {
@@ -40,6 +43,9 @@ export const CMS = graphql`
 		responsive: fluid(maxWidth: 960, maxHeight: 640, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
 			src
 			srcSet
+		}
+		file {
+			url
 		}
 	}
 `;
