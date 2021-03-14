@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 
 import { CMSContentModule, CMSResponsiveImage } from 'data/cms';
 import { Employee as EmployeeType } from 'data/employee'
+import { ProjectType } from 'data/project';
 
 
 export type Layout = {
@@ -55,6 +56,7 @@ export type LayoutModuleProjects = CMSContentModule & {
 	filter: boolean;
 	sortBy: string;
 	order: string;
+	type: ProjectType | 'Alle';
 };
 
 export type LayoutModuleStage = CMSContentModule & {
@@ -147,6 +149,7 @@ export const Layout = graphql`
 		filter
 		sortBy
 		order
+		type
 	}
 
 	fragment LayoutStage on ContentfulLayoutStage {

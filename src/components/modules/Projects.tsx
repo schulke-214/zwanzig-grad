@@ -4,7 +4,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
-import { Project as ProjectType } from 'data/project';
+import { Project as ProjectType, ProjectType as ProjectTypeEnum } from 'data/project';
 
 import { landscape } from 'lib/media';
 import { rem } from 'lib/polished';
@@ -46,9 +46,10 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 
 interface ProjectsProps {
 	className?: string;
+	type: ProjectTypeEnum | 'Alle';
 }
 
-const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
+const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 	const data = useStaticQuery(
 		graphql`
 			query Projekte {
@@ -63,7 +64,13 @@ const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
 		`
 	);
 
-	const projects: [ProjectType] = data?.allContentfulProjekt?.edges.map((edge: {node: ProjectType}) => edge.node);
+	const projects: [ProjectType] = data?.allContentfulProjekt?.edges
+		.map((edge: {node: ProjectType}) => edge.node)
+		.filter((project: ProjectType) => {
+			if (type === 'Alle') return true;
+
+			return project.type === type;
+		});
 
 	const left = projects.filter((_, index) => !(index % 2));
 	const right = projects.filter((_, index) => index % 2);
