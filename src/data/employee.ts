@@ -1,7 +1,5 @@
 import { graphql } from 'gatsby';
 
-import { CMSResponsiveImage } from 'data/cms';
-
 
 export type Employee = {
 	firstName: string;
@@ -11,7 +9,13 @@ export type Employee = {
 	position: string;
 	since: string;
 	slug: string;
-	portrait: CMSResponsiveImage;
+	portrait: {
+		id: string;
+		responsive: {
+			src: string;
+			srcSet: string;
+		}
+	};
 };
 
 export const Employee = graphql`
@@ -24,7 +28,11 @@ export const Employee = graphql`
 		since(formatString: "DD.MM.YYYY")
 		slug
 		portrait {
-			...CMSImage
+			id
+			responsive: fluid(maxWidth: 800, maxHeight: 1200, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
+				src
+				srcSet
+			}
 		}
 	}
 `;
