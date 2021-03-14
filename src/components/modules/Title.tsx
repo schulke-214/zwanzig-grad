@@ -39,5 +39,6 @@ export default styled(Title)`
 		padding: 0;
 		margin: 0;
 		text-align: center;
+		text-transform: uppercase;
 	}
 `;
