@@ -61,7 +61,7 @@ interface TeaserGroupProps {
 
 const TeaserGroup: FunctionComponent<TeaserGroupProps> = ({ className, teaser }) => (
 	<ModuleContainer className={className}>
-		{teaser.map(teaser => <StyledTeaser {...teaser} />)}
+		{teaser.map(teaser => <StyledTeaser key={teaser.image.contentful_id + teaser.text.id} {...teaser} />)}
 	</ModuleContainer>
 );
 
