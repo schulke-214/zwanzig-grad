@@ -36,30 +36,6 @@ const ProjectMetaItemValue = styled.p`
 	margin-bottom: ${props => rem(props.theme.spacings.medium)};
 `;
 
-const ProjectMetaMaterialList = styled.ul`
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-	margin: 0;
-
-	li {
-		margin: 0;
-		padding: 0;
-
-		&:not(:last-child) {
-			margin-right: ${props => rem(props.theme.spacings.xsmall)};
-
-			${tablet} {
-				margin-right: 0;
-			}
-
-			&:after {
-				content: ', ';
-			}
-		}
-	}
-`;
-
 const ProjectContentContainer = styled(ModuleContainer)`
 	display: flex;
 	flex-direction: column;
@@ -102,7 +78,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />
-			<h1>{project.title}</h1>
+			<h1>N° 01 – {project.title}</h1>
 			
 			<ProjectContentContainer>
 				<Text text={project.description} />
@@ -111,12 +87,6 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 					<ProjectMetaItemValue>{project.location}</ProjectMetaItemValue>
 					<ProjectMetaItemName>Jahr</ProjectMetaItemName>
 					<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
-					<ProjectMetaItemName>Kunde</ProjectMetaItemName>
-					<ProjectMetaItemValue>{project.client}</ProjectMetaItemValue>
-					<ProjectMetaItemName>Materialien</ProjectMetaItemName>
-					<ProjectMetaMaterialList>
-						{project.material.map(item => <li key={item}>{item}</li>)}
-					</ProjectMetaMaterialList>
 				</ProjectMeta>
 			</ProjectContentContainer>
 		</Layout>
