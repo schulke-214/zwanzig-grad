@@ -9,14 +9,18 @@ import { Employee as EmployeeType } from 'data/employee';
 import { tablet, landscape } from 'lib/media';
 import { rem } from 'lib/polished';
 
+import { phoneNumber } from 'utils/format';
 
-const Employee: FunctionComponent<EmployeeType & { className?: string; }> = ({ className, firstName, lastName, portrait }) => (
+
+const Employee: FunctionComponent<EmployeeType & { className?: string; }> = ({ className, firstName, lastName, portrait, phone, email }) => (
 	<li className={className}>
 		<picture>
 			<source srcSet={portrait.fixed.srcSet} media={tablet.replace('@media', '')} />
 			<img src={portrait.fixed.src} alt={`${firstName} ${lastName}`} />
 		</picture>
-		<h4>{firstName} {lastName}</h4>
+		<h4>{firstName} {lastName}</h4><br />
+		<a href={`tel:${phone.replace(' ', '')}`} title={`Rufen Sie ${firstName} an und lassen Sie sich beraten!`}>{phoneNumber(phone)}</a><br />
+		<a href={`mailto:${email}`} title={`Schreiben Sie ${firstName} und lassen Sie sich beraten!`}>{email}</a>
 	</li>
 );
 
@@ -28,9 +32,12 @@ const StyledEmployee = styled(Employee)`
 		margin: 0;
 	}
 
-	h4 {
-		margin: 0;
+	h4,
+	a {
 		color: currentColor;
+		display: inline-block;
+		margin-top: ${props => rem(props.theme.spacings.small)};
+		margin-bottom: 0;
 	}
 `;
 
@@ -55,7 +62,7 @@ const Employees: FunctionComponent<EmployeesProps> = ({ className, employees }) 
 export default styled(Employees)`
 	background-color: ${props => props.theme.colors.brand};
 	color: ${props => props.theme.colors.background};
-	padding: ${props => rem(props.theme.spacings.medium)};
+	padding: ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.medium)};
 
 	${tablet} {
 		padding: ${props => rem(props.theme.spacings.xlarge)};
@@ -69,11 +76,11 @@ export default styled(Employees)`
 		margin: 0;
 
 		${landscape} {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		${tablet} {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 	}
 
