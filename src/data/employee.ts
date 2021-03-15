@@ -38,15 +38,7 @@ export const Employee = graphql`
 			}
 		}
 		description {
-			id
-			json
-			content {
-				nodeType
-				content {
-					value
-					nodeType
-				}
-			}
+			raw
 		}
 	}
 `;

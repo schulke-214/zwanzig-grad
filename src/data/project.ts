@@ -47,13 +47,9 @@ export const Project = graphql`
 		}
 		material
 		description {
-			json
-			content {
-				nodeType
-				content {
-					value
-					nodeType
-				}
+			raw
+			references {
+				...CMSImage
 			}
 		}
 	}

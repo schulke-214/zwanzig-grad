@@ -46,9 +46,7 @@ export type LayoutModuleFacts = CMSContentModule & {
 				url: string;
 			};
 		};
-		description: {
-			json: Object;
-		};
+		description: CMSRichText;
 	}];
 };
 
@@ -84,14 +82,9 @@ export const Layout = graphql`
 
 		isSmall
 		text {
-			id
-			json
-			content {
-				nodeType
-				content {
-					value
-					nodeType
-				}
+			raw
+			references {
+				...CMSImage
 			}
 		}
 	}
@@ -144,15 +137,7 @@ export const Layout = graphql`
 				}
 			}
 			description {
-				id
-				json
-				content {
-					nodeType
-					content {
-						value
-						nodeType
-					}
-				}
+				raw
 			}
 		}
 	}
