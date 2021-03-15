@@ -33,7 +33,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 			case 'ContentfulLayoutStage':
 				return <Stage key={id} {...el as any} />;
 			case 'ContentfulLayoutText':
-				return <Text key={id} {...el as any} />;
+				return <Text key={id} {...el as any} desktopColumns={2} />;
 			default:
 				throw new Error(`Unkown content element '${__typename}'`);
 		}

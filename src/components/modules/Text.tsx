@@ -11,6 +11,7 @@ import ModuleContainer from 'components/generic/ModuleContainer';
 interface TextProps {
 	className?: string;
 	isSmall?: boolean;
+	desktopColumns?: number;
 	text: {
 		json?: any;
 	};
@@ -32,9 +33,11 @@ export default styled(Text)`
 		max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
 	`}
 
-	${tablet} {
-		columns: 2;
-	}
+	${props => props.desktopColumns && css`
+		${tablet} {
+			columns: ${props.desktopColumns};
+		}
+	`}
 
 	> h1,
 	> h2,
