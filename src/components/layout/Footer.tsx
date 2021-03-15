@@ -23,7 +23,7 @@ const FooterContainer = styled.footer`
 	padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {
-		padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.large)};
+		padding: ${props => rem(props.theme.spacings.xlarge * 2)} ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.xlarge)};
 	}
 `;
 
