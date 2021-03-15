@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { NavigationLink } from 'data/navigation';
 
 import ContactData, { ContactDataItem } from 'components/generic/ContactData';
+import ChapterHeadline from 'components/generic/ChapterHeadline';
 import NavigationItem from 'components/layout/NavigationItem';
 import { NavigationLinks } from 'components/layout/Navigation';
 
@@ -22,16 +23,16 @@ const FooterContainer = styled.footer`
 	padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.medium)};
 	
 	${tablet} {
-		padding: ${props => rem(props.theme.spacings.xlarge * 2)} ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.xlarge)};
+		padding: ${props => rem(props.theme.spacings.xlarge)} ${props => rem(props.theme.spacings.large)};
 	}
 `;
 
 const FooterContent = styled.div`
-	max-width: ${props => rem(props.theme.layout.maxWidth - 8 * props.theme.spacings.large)};
+	max-width: ${props => rem(props.theme.layout.maxWidth - 12 * props.theme.spacings.large)};
 	margin: 0 auto;
 
 	${ContactData} {
-		padding-bottom: ${props => rem(props.theme.spacings.large)};
+		padding-bottom: ${props => rem(props.theme.spacings.medium)};
 		border-bottom: 1px solid currentColor;
 
 		${tablet} {
@@ -61,7 +62,7 @@ const FooterContent = styled.div`
 
 	> ul {
 		margin-bottom: 0;
-		padding-top: ${props => rem(props.theme.spacings.large)};
+		padding-top: ${props => rem(props.theme.spacings.medium)};
 		display: flex;
 		flex-direction: column;
 
@@ -81,6 +82,17 @@ const FooterContent = styled.div`
 		}
 	}
 `;
+
+const ContactHeader = styled.h2`
+	padding-bottom: 0;
+	margin-bottom: ${props => rem(props.theme.spacings.medium)};
+
+	span {
+		font-size: inherit;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+`
 
 interface FooterProps {}
 
@@ -111,6 +123,11 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 	return (
 		<FooterContainer>
 			<FooterContent>
+				<ContactHeader>
+					<ChapterHeadline>
+						Kontakieren Sie uns
+					</ChapterHeadline>
+				</ContactHeader>
 				<ContactData>
 					<ContactDataItem>
 						<strong>Übersicht</strong>
