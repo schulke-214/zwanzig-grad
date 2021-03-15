@@ -18,16 +18,12 @@ const options = {
 					}
 				`}
 			>
-				<img alt={node?.data?.target?.fields?.description?.de} src={`${node?.data?.target?.fields?.file?.de?.url}?w=1240&q=50&fit=fill`} />
+				<img alt={node?.data?.target?.resolved?.description?.de} src={`${node?.data?.target?.resolved?.responsive?.src}`} />
 			</p>
 		),
 		[INLINES.ENTRY_HYPERLINK]: (node: any) => (
 			<Link
-				to={getPageUrl({
-					metadata: {
-						slug: node?.data?.target?.fields?.metadata?.de?.fields?.slug?.de
-					}
-				} as any)}
+				to={getPageUrl(node?.data?.target?.resolved) as any}
 			>
 				{node?.content[0]?.value}
 			</Link>
@@ -35,8 +31,22 @@ const options = {
 	}
 };
 
-const cleanupDocument = (document: any) => {
+const cleanupDocument = (rawDocument: CMSRichText) => {
+	const document = JSON.parse(rawDocument.raw);
+	const { references } = rawDocument;
 	const { content } = document;
+
+	const insertReferences = (node: any) => {
+		const {id} = node?.data?.target?.sys || {};
+
+		if (!id) return;
+
+		const ref = references.find(ref => ref.contentful_id === id);
+
+		if (!ref) throw new Error(`Expected ref ${id} ${JSON.stringify(node, null, 4)}`);
+
+		node.data.target.resolved = ref;
+	};
 
 	try {
 		const last = content[content.length - 1];
@@ -45,6 +55,12 @@ const cleanupDocument = (document: any) => {
 		if (last.nodeType === 'paragraph' && textContent === '') {
 			content.pop();
 		}
+
+		content.forEach((inner: any) => {
+			insertReferences(inner);
+			inner?.content.forEach((node: any) => insertReferences(node));
+		});
+
 	} catch (e) {
 		console.warn('Failed cleaning document: ' + e + '\n' + JSON.stringify(4, null, document))
 	}
@@ -52,15 +68,15 @@ const cleanupDocument = (document: any) => {
 	return document;
 }
 
-export const renderRichText = (document: any) => documentToReactComponents(cleanupDocument(document), options);
+export const renderRichText = (document: CMSRichText) => documentToReactComponents(cleanupDocument(document), options);
 
-export const intoPlainText = (text: CMSRichText): string =>
-	text.content
-		.filter(content => content.nodeType === 'paragraph')
-		.map(content =>
+export const intoPlainText = (document: CMSRichText): string =>
+	cleanupDocument(document)?.content
+		.filter((content: any) => content.nodeType === 'paragraph')
+		.map((content: any) =>
 			content.content
-				.filter(innnercontent => innnercontent.nodeType === 'text')
-				.map(innercontent => innercontent.value)
+				.filter((innercontent: any) => innercontent.nodeType === 'text')
+				.map((innercontent: any) => innercontent.value)
 				.join('')
 		)
 		.flat()
