@@ -85,7 +85,7 @@ const FooterContent = styled.div`
 
 const ContactHeader = styled.h2`
 	padding-bottom: 0;
-	margin-bottom: ${props => rem(props.theme.spacings.medium)};
+	margin-bottom: ${props => rem(props.theme.spacings.large)};
 
 	span {
 		font-size: inherit;
