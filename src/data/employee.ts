@@ -1,5 +1,7 @@
 import { graphql } from 'gatsby';
 
+import { CMSRichText } from 'data/cms';
+
 
 export type Employee = {
 	firstName: string;
@@ -16,6 +18,7 @@ export type Employee = {
 			srcSet: string;
 		}
 	};
+	description: CMSRichText;
 };
 
 export const Employee = graphql`
@@ -32,6 +35,17 @@ export const Employee = graphql`
 			fixed(width: 800, height: 1200) {
 				src
 				srcSet
+			}
+		}
+		description {
+			id
+			json
+			content {
+				nodeType
+				content {
+					value
+					nodeType
+				}
 			}
 		}
 	}
