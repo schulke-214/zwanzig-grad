@@ -11,7 +11,7 @@ const GRAY: string = colors.gray;
 
 export const DefaultTheme: Theme = {
 	layout: {
-		maxWidth: 1240
+		maxWidth: 1380
 	},
 	logo: {
 		width: 64,
@@ -22,6 +22,13 @@ export const DefaultTheme: Theme = {
 		background: WHITE,
 		brand: BRAND,
 		muted: GRAY
+	},
+	decorations: {
+		line: {
+			width: 40,
+			height: 2,
+			color: BLACK
+		}
 	},
 	spacings: {
 		xlarge: 60,

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { renderRichText } from 'lib/rich-text';
 import { rem } from 'lib/polished';
+import { tablet } from 'lib/media';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
@@ -10,6 +11,7 @@ import ModuleContainer from 'components/generic/ModuleContainer';
 interface TextProps {
 	className?: string;
 	isSmall?: boolean;
+	desktopColumns?: number;
 	text: {
 		json?: any;
 	};
@@ -25,8 +27,16 @@ const Text: FunctionComponent<TextProps> = ({ className, text }) => {
 
 export default styled(Text)`
 	${props => props.isSmall && css`
-		max-width: ${props => rem(props.theme.layout.maxWidth / 2)};
-		margin: 0 auto;
+		columns: 1 !important;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
+	`}
+
+	${props => props.desktopColumns && css`
+		${tablet} {
+			columns: ${props.desktopColumns};
+		}
 	`}
 
 	> h1,

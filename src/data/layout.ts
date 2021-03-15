@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby';
 
-import {CMSContentModule, CMSResponsiveImage} from 'data/cms';
+import { CMSContentModule, CMSResponsiveImage, CMSRichText } from 'data/cms';
+import { Employee as EmployeeType } from 'data/employee'
+import { ProjectType } from 'data/project';
 
 
 export type Layout = {
@@ -8,18 +10,22 @@ export type Layout = {
 	content: [LayoutElement]
 };
 
-export type LayoutElement = LayoutModuleTextImage | LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
+export type LayoutElement = LayoutModuleTeaserGroup | LayoutModuleText | LayoutModuleSlider | LayoutModuleFacts | LayoutModuleProjects | LayoutModuleStage;
 
-export type LayoutModuleTextImage = CMSContentModule & {
-	image: CMSResponsiveImage;
-	text: LayoutModuleText;
+export type LayoutModuleTeaserGroup = CMSContentModule & {
+	teaser: [{
+		image: CMSResponsiveImage;
+		text: LayoutModuleText;
+	}]
 };
 
 export type LayoutModuleText = CMSContentModule & {
 	isSmall: boolean;
-	text: {
-		json: string;
-	};
+	text: CMSRichText;
+};
+
+export type LayoutModuleEmployees = CMSContentModule & {
+	employees: EmployeeType[]
 };
 
 export type LayoutModuleSlider = CMSContentModule & {
@@ -30,17 +36,25 @@ export type LayoutModuleSlider = CMSContentModule & {
 
 export type LayoutModuleFacts = CMSContentModule & {
 	id: string;
+	chapterHeadline: string;
 	headline: string;
 	facts: [{
 		id: string;
-		description: string;
+		icon: {
+			description: string;
+			file: {
+				url: string;
+			};
+		};
+		description: {
+			json: Object;
+		};
 	}];
 };
 
 export type LayoutModuleProjects = CMSContentModule & {
+	type: ProjectType;
 	filter: boolean;
-	sortBy: string;
-	order: string;
 };
 
 export type LayoutModuleStage = CMSContentModule & {
@@ -54,8 +68,9 @@ export const Layout = graphql`
 	fragment Layout on ContentfulLayout {
 		showTitle
 		content {
-			...LayoutBildText
+			...LayoutTeaserGroup
 			...LayoutFacts
+			...LayoutEmployees
 			...LayoutSlider
 			...LayoutStage
 			...LayoutText
@@ -69,20 +84,38 @@ export const Layout = graphql`
 
 		isSmall
 		text {
+			id
 			json
+			content {
+				nodeType
+				content {
+					value
+					nodeType
+				}
+			}
 		}
 	}
 
-	fragment LayoutBildText on ContentfulLayoutBildText {
+	fragment LayoutEmployees on ContentfulLayoutMitarbeiter {
 		__typename
 		id
 
-		image {
-			...CMSImage
+		employees {
+			...Employee
 		}
+	}
 
-		text {
-			...LayoutText
+	fragment LayoutTeaserGroup on ContentfulLayoutTeaserGruppe {
+		__typename
+		id
+
+		teaser {
+			image {
+				...CMSImage
+			}
+			text {
+				...LayoutText
+			}
 		}
 	}
 
@@ -100,11 +133,27 @@ export const Layout = graphql`
 	fragment LayoutFacts on ContentfulLayoutFakten {
 		__typename
 		id
-
+		chapterHeadline
 		headline
 		facts {
 			id
-			description
+			icon {
+				description
+				file {
+					url
+				}
+			}
+			description {
+				id
+				json
+				content {
+					nodeType
+					content {
+						value
+						nodeType
+					}
+				}
+			}
 		}
 	}
 
@@ -112,9 +161,8 @@ export const Layout = graphql`
 		__typename
 		id
 
+		type
 		filter
-		sortBy
-		order
 	}
 
 	fragment LayoutStage on ContentfulLayoutStage {

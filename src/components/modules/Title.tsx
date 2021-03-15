@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import ChapterHeadline from 'components/generic/ChapterHeadline';
 
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
@@ -9,11 +10,13 @@ import { tablet } from 'lib/media';
 
 interface TitleProps {
 	className?: string;
+	subtitle?: string;
 }
 
-const Title: FunctionComponent<TitleProps> = ({ className, children }) => {
+const Title: FunctionComponent<TitleProps> = ({ className, children, subtitle }) => {
 	return (
 		<ModuleContainer className={className}>
+			{subtitle && <ChapterHeadline>{subtitle}</ChapterHeadline>}
 			<h1>{children}</h1>
 		</ModuleContainer>
 	);
@@ -21,7 +24,7 @@ const Title: FunctionComponent<TitleProps> = ({ className, children }) => {
 
 export default styled(Title)`
 	background-color: ${props => props.theme.colors.brand};
-	padding: ${props => rem(props.theme.spacings.large)};
+	padding: ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.medium)};
 
 	${tablet} {
 		padding: ${props => rem(props.theme.spacings.xlarge)};
@@ -31,6 +34,6 @@ export default styled(Title)`
 		color: ${props => props.theme.colors.background};
 		padding: 0;
 		margin: 0;
-		text-align: center;
+		text-transform: uppercase;
 	}
 `;

@@ -5,12 +5,15 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { NavigationLink } from 'data/navigation';
 
 import ContactData, { ContactDataItem } from 'components/generic/ContactData';
+import ChapterHeadline from 'components/generic/ChapterHeadline';
 import NavigationItem from 'components/layout/NavigationItem';
 import { NavigationLinks } from 'components/layout/Navigation';
 
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 import { getPageUrl } from 'lib/urls';
+
+import { useCookies } from 'hooks/use-cookies';
 
 
 const FooterContainer = styled.footer`
@@ -25,11 +28,11 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-	max-width: ${props => rem(props.theme.layout.maxWidth - 8 * props.theme.spacings.large)};
+	max-width: ${props => rem(props.theme.layout.maxWidth - 12 * props.theme.spacings.large)};
 	margin: 0 auto;
 
 	${ContactData} {
-		padding-bottom: ${props => rem(props.theme.spacings.large)};
+		padding-bottom: ${props => rem(props.theme.spacings.medium)};
 		border-bottom: 1px solid currentColor;
 
 		${tablet} {
@@ -59,7 +62,7 @@ const FooterContent = styled.div`
 
 	> ul {
 		margin-bottom: 0;
-		padding-top: ${props => rem(props.theme.spacings.large)};
+		padding-top: ${props => rem(props.theme.spacings.medium)};
 		display: flex;
 		flex-direction: column;
 
@@ -79,6 +82,17 @@ const FooterContent = styled.div`
 		}
 	}
 `;
+
+const ContactHeader = styled.h2`
+	padding-bottom: 0;
+	margin-bottom: ${props => rem(props.theme.spacings.large)};
+
+	span {
+		font-size: inherit;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+`
 
 interface FooterProps {}
 
@@ -104,10 +118,16 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 
 	const { imprint, dataPrivacy, additionalLinks = [] } = data.config.edges[0].node;
 	const links: NavigationLink[] = [imprint, dataPrivacy, ...additionalLinks];
+	const cookies = useCookies();
 
 	return (
 		<FooterContainer>
 			<FooterContent>
+				<ContactHeader>
+					<ChapterHeadline>
+						Kontakieren Sie uns
+					</ChapterHeadline>
+				</ContactHeader>
 				<ContactData>
 					<ContactDataItem>
 						<strong>Übersicht</strong>
@@ -124,6 +144,12 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 							{link.displayText}
 						</NavigationItem>
 					))}
+					<NavigationItem
+						key="cookie"
+						onClick={cookies.clear}
+					>
+						Cookie Einstellungen
+					</NavigationItem>
 				</ul>
 			</FooterContent>
 		</FooterContainer>

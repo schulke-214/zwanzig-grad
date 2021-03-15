@@ -1,5 +1,5 @@
-import { Page, Subpage } from "data/page";
-import { Project } from "data/project";
+import { Page, Subpage } from 'data/page';
+import { Project } from 'data/project';
 
 
 export const getPageUrl = (page: Page) => `/${page.metadata.slug}`;

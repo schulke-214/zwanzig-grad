@@ -3,7 +3,6 @@ const path = require('path');
 exports.createPages = async ({ graphql, actions }) => {
 	const { createPage } = actions;
 	const pageTemplate = path.resolve('./src/templates/page.tsx');
-	const subpageTemplate = path.resolve('./src/templates/subpage.tsx');
 	const projectTemplate = path.resolve('./src/templates/project.tsx');
 
 	const {errors, data} = await graphql(`
@@ -14,11 +13,11 @@ exports.createPages = async ({ graphql, actions }) => {
 						metadata {
 							slug
 						}
-						subpages {
-							metadata {
-								slug
-							}
-						}
+						#subpages {
+						#	metadata {
+						#		slug
+						#	}
+						#}
 					}
 				}
 			}
@@ -62,19 +61,19 @@ exports.createPages = async ({ graphql, actions }) => {
 			});
 		}
 		
-		if (!page.node.subpages) return;
+		// if (!page.node.subpages) return;
 
-		const prefix = isHomePage ? '/' : `/${pageSlug}/`;
+		// const prefix = isHomePage ? '/' : `/${pageSlug}/`;
 
-		page.node.subpages.forEach(subpage => {
-			createPage({
-				path: `${prefix}${subpage.metadata.slug}/`,
-				component: subpageTemplate,
-				context: {
-					slug: subpage.metadata.slug
-				}
-			});
-		})
+		// page.node.subpages.forEach(subpage => {
+		// 	createPage({
+		// 		path: `${prefix}${subpage.metadata.slug}/`,
+		// 		component: subpageTemplate,
+		// 		context: {
+		// 			slug: subpage.metadata.slug
+		// 		}
+		// 	});
+		// })
 	});
 
 	const projects = data.allContentfulProjekt.edges;

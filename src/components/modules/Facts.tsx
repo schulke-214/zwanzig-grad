@@ -5,27 +5,73 @@ import styled from 'styled-components';
 import { LayoutModuleFacts } from 'data/layout';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import ChapterHeadline from 'components/generic/ChapterHeadline';
 
 import { rem } from 'lib/polished';
 import { tablet, landscape } from 'lib/media';
+import { renderRichText } from 'lib/rich-text';
 
+
+const Fact = styled.li`
+	display: block;
+	position: relative;
+	width: 100%;
+	margin-bottom: ${props => rem(props.theme.spacings.medium)};
+
+	${landscape} {
+		margin-bottom: 0;
+
+		&:not(:last-child) {
+			margin-right: ${props => rem(props.theme.spacings.large)};
+		}
+	}
+`;
+
+const FactIcon = styled.img`
+	display: block;
+	margin-bottom: 0;
+	width: ${props => rem(props.theme.spacings.large)};
+	height: ${props => rem(props.theme.spacings.large)};
+	margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+	object-fit: contain;
+`;
+
+const FactIndicator = styled.div`
+	position: relative;
+	font-style: italic;
+	padding-top: ${props => rem(props.theme.spacings.medium)};
+	margin-bottom: ${props => rem(props.theme.spacings.small)};
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: ${props => rem((props.theme.spacings.medium - props.theme.decorations.line.height) / 2)};
+		height: ${props => rem(props.theme.decorations.line.height)};
+		width: ${props => rem(props.theme.decorations.line.width)};
+		background-color: ${props => props.theme.colors.brand};
+	}
+`;
 
 interface FactsProps extends LayoutModuleFacts {
 	className?: string;
 }
 
-const Facts: FunctionComponent<FactsProps> = ({ className, headline, facts }) => {
+const Facts: FunctionComponent<FactsProps> = ({ className, chapterHeadline, headline, facts }) => {
 	return (
 		<ModuleContainer>
 			<div className={className}>
 				<div>
+					{chapterHeadline && <ChapterHeadline>{chapterHeadline}</ChapterHeadline>}
 					<h2>{headline}</h2>
 				</div>
 				<ul>
-					{facts.map(fact => (
-						<li key={fact.id}>
-							<p>{fact.description}</p>
-						</li>
+					{facts.map((fact, index) => (
+						<Fact key={fact.id}>
+							<FactIcon src={fact.icon.file.url} alt={fact.icon.description} />
+							<FactIndicator>0{index + 1}</FactIndicator>
+							{renderRichText(fact.description.json)}
+						</Fact>
 					))}
 				</ul>
 			</div>
@@ -62,24 +108,6 @@ export default styled(Facts)`
 
 		${landscape} {
 			flex-direction: row;
-		}
-
-		li {
-			display: block;
-			width: 100%;
-			margin-bottom: ${props => rem(props.theme.spacings.medium)};
-
-			${landscape} {
-				margin-bottom: 0;
-
-				&:not(:last-child) {
-					margin-right: ${props => rem(props.theme.spacings.large)};
-				}
-
-				p {
-					margin-bottom: 0;
-				}
-			}
 		}
 	}
 `;

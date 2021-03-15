@@ -6,6 +6,7 @@ import { Layout } from 'data/layout';
 export type Page = {
 	slug: string;
 	title: string;
+	subtitle: string;
 	metadata: PageMetaData;
 	layout: Layout;
 };
@@ -23,27 +24,28 @@ export const Page = graphql`
 	fragment Page on ContentfulSeite {
 		id
 		title
+		subtitle
 		layout {
 			...Layout
 		}
 		metadata {
 			...PageMetaData
 		}
-		subpages {
-			...Subpage
-		}
+#		subpages {
+#			...Subpage
+#		}
 	}
 
-	fragment Subpage on ContentfulSeiteUnterseite {
-		id
-		title
-		layout {
-			...Layout
-		}
-		metadata {
-			...PageMetaData
-		}
-	}
+#	fragment Subpage on ContentfulSeiteUnterseite {
+#		id
+#		title
+#		layout {
+#			...Layout
+#		}
+#		metadata {
+#			...PageMetaData
+#		}
+#	}
 
 	fragment PageMetaData on ContentfulSeiteMetadaten {
 		id

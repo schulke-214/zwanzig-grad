@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer';
 import PageTransition from 'components/layout/PageTransition';
+import CookieDisclaimer from 'components/layout/CookieDisclaimer';
 
 import { GlobalStyles } from 'lib/global-styles';
 import { DefaultTheme } from 'lib/themes';
@@ -47,6 +48,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => (
 			<Main>{children}</Main>
 			<Footer />
 		</Container>
+		{ typeof window !== 'undefined' && <CookieDisclaimer /> }
 	</ThemeProvider>
 );
 

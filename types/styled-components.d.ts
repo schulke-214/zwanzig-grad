@@ -22,6 +22,13 @@ declare module 'styled-components' {
 			brand: string;
 			muted: string;
 		};
+		decorations: {
+			line: {
+				width: number;
+				height: number;
+				color: string;
+			};
+		};
 		spacings: {
 			xlarge: number;
 			large: number;

@@ -7,6 +7,8 @@ import Navigation from 'components/layout/Navigation';
 import MenuIcon from 'components/layout/MenuIcon';
 import Logo from 'components/generic/Logo';
 
+import { useScrollData } from 'hooks/use-scroll-data';
+
 
 const HeaderContainer = styled.header`
 	display: flex;
@@ -43,12 +45,20 @@ const HeaderContainer = styled.header`
 interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = ({}) => {
+	const { y, deltaY } = useScrollData(100);
 	const [open, setOpen] = useState(false);
 	const toggleOpen = () => setOpen(o => !o);
 	const close = () => setOpen(false);
 
+	const hidden = y > 150 && deltaY > 0 && deltaY !== y;
+
 	return (
-		<HeaderContainer>
+		<HeaderContainer
+			css={`
+				${hidden ? `transform: translateY(-100%);` : ''}
+				transition: transform ${(props: any) => props.theme.animation.duration.smooth}s ease-out;
+			`}
+		>
 			<Logo onClick={close} />
 			<MenuIcon
 				open={open}

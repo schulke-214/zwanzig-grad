@@ -5,11 +5,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 import ModuleContainer from 'components/generic/ModuleContainer';
 import Link from 'components/generic/Link';
 
-import { Project as ProjectType } from 'data/project';
+import { Project as ProjectType, ProjectType as ProjectTypeEnum } from 'data/project';
 
 import { landscape } from 'lib/media';
 import { rem } from 'lib/polished';
 import { getProjectUrl } from 'lib/urls';
+
+import { projectNumber } from 'utils/format';
 
 
 interface ProjectProps extends ProjectType {
@@ -17,13 +19,13 @@ interface ProjectProps extends ProjectType {
 };
 
 const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = (props) => {
-	const { className, title, year, tileImage } = props;
+	const { className, title, nr, tileImage } = props;
 
 	return (
 		<div className={className}>
 			<Link to={getProjectUrl(props)}>
 				<img src={tileImage.fluid.src} alt={tileImage.description} />
-				<span>{year}  |  {title}</span>
+				<span>{projectNumber(nr)} – {title}</span>
 			</Link>
 		</div>
 	);
@@ -35,8 +37,16 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 		width: 100%;
 	}
 
+	img {
+		margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
+	}
+
+	span {
+		line-height: 1;
+	}
+
 	&:not(:last-child) {
-		margin-bottom: ${props => rem(props.theme.spacings.large)};
+		margin-bottom: ${props => rem(props.theme.spacings.small)};
 	}
 
 	a::before {
@@ -47,13 +57,14 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 
 interface ProjectsProps {
 	className?: string;
+	type: ProjectTypeEnum;
 }
 
-const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
+const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 	const data = useStaticQuery(
 		graphql`
 			query Projekte {
-				allContentfulProjekt(sort: {fields: year, order: DESC}) {
+				allContentfulProjekt(sort: {fields: nr, order: DESC}) {
 					edges {
 						node {
 							...Project
@@ -64,11 +75,18 @@ const Projects: FunctionComponent<ProjectsProps> = ({className}) => {
 		`
 	);
 
-	const projects: [ProjectType] = data?.allContentfulProjekt?.edges.map((edge: {node: ProjectType}) => edge.node);
+	const projects: [ProjectType] = data?.allContentfulProjekt?.edges
+		.map((edge: {node: ProjectType}) => edge.node)
+		.filter((project: ProjectType) => project.type === type);
 
 	const left = projects.filter((_, index) => !(index % 2));
 	const right = projects.filter((_, index) => index % 2);
-	const renderProject = (project: ProjectType) => (<ProjectTeaser {...project} key={project.slug} />);
+	const renderProject = (project: ProjectType) => (
+		<ProjectTeaser
+			{...project}
+			key={project.slug}
+		/>
+	);
 
 	return (
 		<ModuleContainer>
@@ -92,13 +110,13 @@ export default styled(Projects)`
 		display: block;
 
 		&:first-child {
-			margin-bottom: ${props => rem(props.theme.spacings.large)};
+			margin-bottom: ${props => rem(props.theme.spacings.medium)};
 		}
 
 		${landscape} {
 			&:first-child {
 				margin-bottom: 0;
-				margin-right: ${props => rem(props.theme.spacings.large)};
+				margin-right: ${props => rem(props.theme.spacings.medium)};
 			}
 
 			width: 50%;

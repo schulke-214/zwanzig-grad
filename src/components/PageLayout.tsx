@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react'
 
+import Employees from 'components/modules/Employees';
 import Facts from 'components/modules/Facts';
 import Projects from 'components/modules/Projects';
 import Slider from 'components/modules/Slider';
 import Stage from 'components/modules/Stage';
-import TextImage from 'components/modules/TextImage';
+import TeaserGroup from 'components/modules/TeaserGroup';
 import Text from 'components/modules/Text';
 import Title from 'components/modules/Title';
 
@@ -19,6 +20,10 @@ interface PageLayoutProps {
 const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 	const renderModules = ({ __typename, id, ...el }: LayoutElement) => {
 		switch(__typename) {
+			case 'ContentfulLayoutTeaserGruppe':
+				return <TeaserGroup key={id} {...el as any} />;
+			case 'ContentfulLayoutMitarbeiter':
+				return <Employees key={id} {...el as any} />;
 			case 'ContentfulLayoutFakten':
 				return <Facts key={id} {...el as any} />;
 			case 'ContentfulLayoutProjekte':
@@ -27,10 +32,8 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 				return <Slider key={id} {...el as any} />;
 			case 'ContentfulLayoutStage':
 				return <Stage key={id} {...el as any} />;
-			case 'ContentfulLayoutBildText':
-				return <TextImage key={id} {...el as any} />;
 			case 'ContentfulLayoutText':
-				return <Text key={id} {...el as any} />;
+				return <Text key={id} {...el as any} desktopColumns={2} />;
 			default:
 				throw new Error(`Unkown content element '${__typename}'`);
 		}
@@ -40,7 +43,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = ({ page }): any => {
 
 	if (page.layout.showTitle) {
 		elements.unshift((
-			<Title key={page.metadata.slug}>{page.title}</Title>
+			<Title key={page.metadata.slug} subtitle={page.subtitle}>{page.title}</Title>
 		));
 	}
 
