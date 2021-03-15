@@ -62,7 +62,7 @@ const Facts: FunctionComponent<FactsProps> = ({ className, chapterHeadline, head
 		<ModuleContainer>
 			<div className={className}>
 				<div>
-					{chapterHeadline && <ChapterHeadline inheritColor>{chapterHeadline}</ChapterHeadline>}
+					{chapterHeadline && <ChapterHeadline>{chapterHeadline}</ChapterHeadline>}
 					<h2>{headline}</h2>
 				</div>
 				<ul>
@@ -88,12 +88,8 @@ export default styled(Facts)`
 			padding: ${props => rem(props.theme.spacings.xlarge * 2)};
 		}
 
-		h2,
-		${ChapterHeadline} {
-			color: ${props => props.theme.colors.background};
-		}
-
 		h2 {
+			color: ${props => props.theme.colors.background};
 			padding: 0;
 			margin: 0;
 			font-size: 200%;
