@@ -10,19 +10,21 @@ import { landscape } from 'lib/media';
 import { rem } from 'lib/polished';
 import { getProjectUrl } from 'lib/urls';
 
+import { projectNumber } from 'utils/format';
+
 
 interface ProjectProps extends ProjectType {
 	className?: string;
 };
 
 const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = (props) => {
-	const { className, title, year, tileImage } = props;
+	const { className, title, nr, tileImage } = props;
 
 	return (
 		<div className={className}>
 			<Link to={getProjectUrl(props)}>
 				<img src={tileImage.fluid.src} alt={tileImage.description} />
-				<span>{year}  |  {title}</span>
+				<span>{projectNumber(nr)} – {title}</span>
 			</Link>
 		</div>
 	);
@@ -54,14 +56,14 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 
 interface ProjectsProps {
 	className?: string;
-	type: ProjectTypeEnum | 'Alle';
+	type: ProjectTypeEnum;
 }
 
 const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 	const data = useStaticQuery(
 		graphql`
 			query Projekte {
-				allContentfulProjekt(sort: {fields: year, order: DESC}) {
+				allContentfulProjekt(sort: {fields: nr, order: DESC}) {
 					edges {
 						node {
 							...Project
@@ -74,15 +76,16 @@ const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 
 	const projects: [ProjectType] = data?.allContentfulProjekt?.edges
 		.map((edge: {node: ProjectType}) => edge.node)
-		.filter((project: ProjectType) => {
-			if (type === 'Alle') return true;
-
-			return project.type === type;
-		});
+		.filter((project: ProjectType) => project.type === type);
 
 	const left = projects.filter((_, index) => !(index % 2));
 	const right = projects.filter((_, index) => index % 2);
-	const renderProject = (project: ProjectType) => (<ProjectTeaser {...project} key={project.slug} />);
+	const renderProject = (project: ProjectType) => (
+		<ProjectTeaser
+			{...project}
+			key={project.slug}
+		/>
+	);
 
 	return (
 		<ModuleContainer>

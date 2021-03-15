@@ -12,6 +12,7 @@ export type Project = {
 	slug: string;
 	title: string;
 	type: ProjectType;
+	nr: number;
 	description: CMSRichText;
 	location: string;
 	client: string;
@@ -31,6 +32,7 @@ export const Project = graphql`
 		slug
 		title
 		type
+		nr
 		year
 		client
 		location

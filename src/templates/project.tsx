@@ -16,6 +16,7 @@ import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
 import { shorten } from 'utils/shorten';
+import { projectNumber } from 'utils/format';
 
 
 const ProjectMeta = styled.div`
@@ -78,7 +79,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />
-			<h1>N° 01 – {project.title}</h1>
+			<h1>{projectNumber(project.nr)} – {project.title}</h1>
 			
 			<ProjectContentContainer>
 				<Text text={project.description} />
