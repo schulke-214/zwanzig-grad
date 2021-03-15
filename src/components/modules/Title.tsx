@@ -24,7 +24,7 @@ const Title: FunctionComponent<TitleProps> = ({ className, children, subtitle })
 
 export default styled(Title)`
 	background-color: ${props => props.theme.colors.brand};
-	padding: ${props => rem(props.theme.spacings.large)};
+	padding: ${props => rem(props.theme.spacings.large)} ${props => rem(props.theme.spacings.medium)};
 
 	${tablet} {
 		padding: ${props => rem(props.theme.spacings.xlarge)};
