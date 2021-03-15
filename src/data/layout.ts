@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 
-import { CMSContentModule, CMSResponsiveImage } from 'data/cms';
+import { CMSContentModule, CMSResponsiveImage, CMSRichText } from 'data/cms';
 import { Employee as EmployeeType } from 'data/employee'
 import { ProjectType } from 'data/project';
 
@@ -21,9 +21,7 @@ export type LayoutModuleTeaserGroup = CMSContentModule & {
 
 export type LayoutModuleText = CMSContentModule & {
 	isSmall: boolean;
-	text: {
-		json: Object;
-	};
+	text: CMSRichText;
 };
 
 export type LayoutModuleEmployees = CMSContentModule & {
@@ -55,10 +53,8 @@ export type LayoutModuleFacts = CMSContentModule & {
 };
 
 export type LayoutModuleProjects = CMSContentModule & {
+	type: ProjectType;
 	filter: boolean;
-	sortBy: string;
-	order: string;
-	type: ProjectType | 'Alle';
 };
 
 export type LayoutModuleStage = CMSContentModule & {
@@ -88,7 +84,15 @@ export const Layout = graphql`
 
 		isSmall
 		text {
+			id
 			json
+			content {
+				nodeType
+				content {
+					value
+					nodeType
+				}
+			}
 		}
 	}
 
@@ -140,7 +144,15 @@ export const Layout = graphql`
 				}
 			}
 			description {
+				id
 				json
+				content {
+					nodeType
+					content {
+						value
+						nodeType
+					}
+				}
 			}
 		}
 	}
@@ -149,10 +161,8 @@ export const Layout = graphql`
 		__typename
 		id
 
-		filter
-		sortBy
-		order
 		type
+		filter
 	}
 
 	fragment LayoutStage on ContentfulLayoutStage {
