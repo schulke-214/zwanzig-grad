@@ -7,23 +7,21 @@ import { tablet } from 'lib/media';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 
+import { CMSRichText } from 'data/cms';
+
 
 interface TextProps {
 	className?: string;
 	isSmall?: boolean;
 	desktopColumns?: number;
-	text: {
-		json?: any;
-	};
-}
+	text: CMSRichText;
+};
 
-const Text: FunctionComponent<TextProps> = ({ className, text }) => {
-	return (
-		<ModuleContainer className={className}>
-			{renderRichText(text?.json)}
-		</ModuleContainer>
-	);
-}
+const Text: FunctionComponent<TextProps> = ({ className, text }) => (
+	<ModuleContainer className={className}>
+		{renderRichText(text)}
+	</ModuleContainer>
+);
 
 export default styled(Text)`
 	${props => props.isSmall && css`

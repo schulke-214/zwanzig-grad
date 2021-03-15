@@ -70,7 +70,7 @@ const Facts: FunctionComponent<FactsProps> = ({ className, chapterHeadline, head
 						<Fact key={fact.id}>
 							<FactIcon src={fact.icon.file.url} alt={fact.icon.description} />
 							<FactIndicator>0{index + 1}</FactIndicator>
-							{renderRichText(fact.description.json)}
+							{renderRichText(fact.description)}
 						</Fact>
 					))}
 				</ul>

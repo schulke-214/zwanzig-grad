@@ -92,7 +92,11 @@ const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
 					nodes {
 						title
 						description {
-							json
+							raw
+							references {
+								contentful_id
+								...Page
+							}
 						}
 					}
 				}
@@ -128,7 +132,7 @@ const CookieDisclaimer: FunctionComponent<CookieDisclaimerProps> = ({}) => {
 	return (
 		<CookieDisclaimerContainer>
 			<CookieDisclaimerInnerContainer>
-				<div>{renderRichText(disclaimer.description.json)}</div>
+				<div>{renderRichText(disclaimer.description)}</div>
 				<div>
 					<CookieDisclaimerButton onClick={() => storeAnswer(true) as any}>Akzeptieren</CookieDisclaimerButton>
 					<CookieDisclaimerButton onClick={() => storeAnswer(false) as any}>Ablehnen</CookieDisclaimerButton>
