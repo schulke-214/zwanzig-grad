@@ -7,7 +7,7 @@ export type CMSContentModule = {
 };
 
 export type CMSResponsiveImage = {
-	id: string;
+	contentful_id: string;
 	description: string;
 	responsive: {
 		src: string;
@@ -19,27 +19,16 @@ export type CMSResponsiveImage = {
 };
 
 export type CMSRichText = {
-	id: string;
-	content: Array<{
-		nodeType: string;
-		content: [{
-			value: string;
-			nodeType: string;
-		}]
-	}>;
-	json: Object;
+	raw: string;
+	references: [{
+		contentful_id: string;
+	}];
 };
 
 export const CMS = graphql`
 	fragment CMSImage on ContentfulAsset {
-		id
+		contentful_id
 		description
-		#mobile: resize(height: 420, width: 640, quality: 80, resizingBehavior: FILL) {
-		#	src
-		#}
-		#desktop: resize(height: 640, width: 960, quality: 90, resizingBehavior: FILL) {
-		#	src
-		#}
 		responsive: fluid(maxWidth: 960, maxHeight: 640, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
 			src
 			srcSet
