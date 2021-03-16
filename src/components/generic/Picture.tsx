@@ -53,7 +53,7 @@ const Picture: FunctionComponent<PictureProps> = (props) => {
 			key={contentful_id}
 			placeholder={<PicturePlaceholder {...props} />}
 			once
-			{...{ className } as any}
+			{...{ className: (className ? `${className} picture` : 'picture')} as any}
 		>
 			<picture>
 				<img

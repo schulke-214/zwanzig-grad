@@ -10,7 +10,7 @@ GithubTheme.overrideThemeStyles = ({ rhythm }: any) => ({
 	'p': {
 		marginBottom: rhythm(1)
 	},
-	'picture': {
+	'.picture': {
 		marginTop: rhythm(3/2),
 		marginBottom: rhythm(3/2)
 	}
