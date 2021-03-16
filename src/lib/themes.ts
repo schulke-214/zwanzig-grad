@@ -1,6 +1,7 @@
 import { Theme } from 'styled-components';
 
 import { colors } from 'lib/colors';
+import { darken } from 'polished';
 
 
 const BLACK: string = colors.black;
@@ -50,8 +51,8 @@ export const DefaultTheme: Theme = {
 		},
 		placeholder: {
 			speed: 2,
-			background: '#f3f3f3',
-			foreground: '#ecebeb'
+			background: GRAY,
+			foreground: darken(0.02, GRAY)
 		}
 	},
 	layers: {
