@@ -31,6 +31,7 @@ const ProjectMeta = styled.div`
 const ProjectMetaItemName = styled.p`
 	font-weight: bold;
 	font-size: 75%;
+	margin-bottom: ${props => rem(props.theme.spacings.small)};
 `;
 
 const ProjectMetaItemValue = styled.p`
