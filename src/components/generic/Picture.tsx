@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useContext, useRef } from 'react';
-import styled, { css, ThemeContext } from 'styled-components';
+import styled, { css, keyframes, ThemeContext } from 'styled-components';
+import LazyLoad from 'react-lazyload';
 import ContentLoader from 'react-content-loader';
-// import { graphql, useStaticQuery, Link } from 'gatsby';
+
 
 import { CMSResponsiveImage } from 'data/cms';
 
@@ -29,6 +30,7 @@ const PicturePlaceholder: FunctionComponent<PictureProps> = ({ className, file, 
 			className={className}
 		>
 			<ContentLoader
+				title="Lädt..."
 				speed={theme.animation.placeholder.speed}
 				width={placeholderWidth}
 				height={placeholderHeight}
@@ -43,20 +45,34 @@ const PicturePlaceholder: FunctionComponent<PictureProps> = ({ className, file, 
 };
 
 const Picture: FunctionComponent<PictureProps> = (props) => {
-	// const { className, file, isCropped } = props;
-
-	// console.log(props)
-
-	if (true) {
-		return (
-			<PicturePlaceholder {...props} />
-		);
-	}
+	const { className, fluid, description, contentful_id } = props;
+	const img = useRef<HTMLImageElement>(null);
 
 	return (
-		<picture>
+		<LazyLoad
+			key={contentful_id}
+			placeholder={<PicturePlaceholder {...props} />}
+			once
+			{...{ className } as any}
+		>
+			<picture>
+				<img
+					ref={img}
+					src={fluid.src}
+					srcSet={fluid.srcSet}
+					alt={description}
+					title={description}
+					onLoad={() => {
+						if (!img.current) {
+							console.error(`Couldn't initialize image ${JSON.stringify(props, null, 4)}`);
+							return;
+						}
 
-		</picture>
+						img?.current?.setAttribute('data-loaded', '');
+					}}
+				/>
+			</picture>
+		</LazyLoad>
 	);
 }
 
@@ -67,24 +83,49 @@ export default styled(Picture)`
 	height: 0;
 	padding-top: ${props => 100 / props.fluid.aspectRatio}%;
 
-	${props => props.isSlim && css`
-		margin-top: 0;
-		margin-bottom: 0;
-	`}
-
 	${props => props.isCropped && css`
 		overflow: hidden;
 		height: 100%;
 		padding-top: 0;
-
 	`}
 
-	> svg {
+	${props => props.isSlim && css`
+		margin: 0 !important;
+	`}
+
+
+	> picture {
+		display: block;
 		position: absolute;
 		background-color: ${props => props.theme.animation.placeholder.background};
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
+
+		> img,
+		> svg {
+			margin: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		> img {
+			text-indent: -9999%;
+			opacity: 0;
+
+			&[data-loaded] {
+				animation:
+					${props => props.theme.animation.duration.smooth}s
+					${keyframes`
+						from { opacity: 0; }
+						to { opacity: 1;}
+					`}
+					ease-in-out
+					forwards;
+			}
+		}
 	}
 `;
