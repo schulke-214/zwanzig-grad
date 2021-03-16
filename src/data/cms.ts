@@ -21,13 +21,8 @@ export type CMSResponsiveImage = {
 	fluid: {
 		src: string;
 		srcSet: string;
+		sizes: string;
 		aspectRatio: number;
-	};
-
-	// legacy
-	responsive: {
-		src: string;
-		srcSet: string;
 	};
 };
 
@@ -42,7 +37,6 @@ export const CMS = graphql`
 	fragment CMSImage on ContentfulAsset {
 		contentful_id
 		description
-
 		file {
 			details {
 				image {
@@ -52,16 +46,10 @@ export const CMS = graphql`
 			}
 			url
 		}
-
-		fluid {
+		fluid(quality: 80) {
 			src
 			srcSet
 			aspectRatio
-		}
-
-		responsive: fluid(maxWidth: 960, maxHeight: 640, resizingBehavior: FILL, toFormat: JPG, quality: 80) {
-			src
-			srcSet
 		}
 	}
 `;
