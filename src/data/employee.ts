@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 
-import { CMSRichText } from 'data/cms';
+import { CMSRichText, CMSResponsiveImage } from 'data/cms';
 
 
 export type Employee = {
@@ -11,13 +11,7 @@ export type Employee = {
 	position: string;
 	since: string;
 	slug: string;
-	portrait: {
-		id: string;
-		fixed: {
-			src: string;
-			srcSet: string;
-		}
-	};
+	portrait: CMSResponsiveImage;
 	description: CMSRichText;
 };
 
@@ -31,11 +25,13 @@ export const Employee = graphql`
 		since(formatString: "DD.MM.YYYY")
 		slug
 		portrait {
-			id
-			fixed(width: 800, height: 1200) {
-				src
-				srcSet
-			}
+			...CMSImage
+
+			# id
+			# fixed(width: 800, height: 1200) {
+			# 	src
+			# 	srcSet
+			# }
 		}
 		description {
 			raw

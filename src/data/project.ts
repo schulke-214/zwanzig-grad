@@ -18,12 +18,7 @@ export type Project = {
 	client: string;
 	year: number;
 	material: string[];
-	tileImage: {
-		fluid: {
-			src: string;
-		}
-		description: string;
-	};
+	tileImage: CMSResponsiveImage;
 	images: CMSResponsiveImage[];
 };
 
@@ -37,10 +32,7 @@ export const Project = graphql`
 		client
 		location
 		tileImage {
-			fluid(quality: 80, , maxWidth: 720) {
-				src
-			}
-			description
+			...CMSImage
 		}
 		images {
 			...CMSImage
