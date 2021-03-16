@@ -18,6 +18,10 @@ const Fact = styled.li`
 	width: 100%;
 	margin-bottom: ${props => rem(props.theme.spacings.medium)};
 
+	&:last-child {
+		margin-bottom: 0;
+	}
+
 	${landscape} {
 		margin-bottom: 0;
 
