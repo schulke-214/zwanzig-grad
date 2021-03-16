@@ -12,7 +12,7 @@ export default styled.div`
 		margin-bottom: ${props => rem(props.theme.spacings.xlarge)};
 	}
 
-	& > div {
+	& > div:not(.lazyload-wrapper) {
 		margin-bottom: 0;
 	}
 `;
