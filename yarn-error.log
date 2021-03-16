@@ -47,7 +47,6 @@ npm manifest:
       "react-content-loader": "^6.0.2",
       "react-dom": "^16.12.0",
       "react-helmet": "^6.1.0",
-      "react-id-swiper": "^4.0.0",
       "react-is": "^16.12.0",
       "react-lazyload": "3.2.0",
       "styled-components": "^5.1.1",
