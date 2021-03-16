@@ -64,7 +64,7 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 
 
 export default styled(Slider)`
-	margin: 0 ${props => rem(-props.theme.spacings.medium)} ${props => rem(props.theme.spacings.small)};
+	margin: 0 ${props => rem(-props.theme.spacings.medium)} ${props => rem(props.theme.spacings.large)};
 
 	${tablet} {
 		margin: 0 0 ${props => rem(props.theme.spacings.xlarge)};
