@@ -13,7 +13,7 @@ import { rem } from 'lib/polished';
 
 const Employee: FunctionComponent<EmployeeType & { className?: string; }> = ({ className, firstName, lastName, portrait, phone, email }) => (
 	<li className={className}>
-		<Picture {...portrait} />
+		<Picture {...portrait} isSlim />
 		<h4>{firstName} {lastName}</h4><br />
 	</li>
 );
