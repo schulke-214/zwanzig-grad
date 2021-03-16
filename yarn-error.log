@@ -1,8 +1,8 @@
 Arguments: 
-  /nix/store/2vvdf4irl7l8as8mny4rdk7lj1dv4an9-nodejs-12.18.4/bin/node /home/max/.npm/_npx/21646/bin/yarn
+  /nix/store/2vvdf4irl7l8as8mny4rdk7lj1dv4an9-nodejs-12.18.4/bin/node /home/max/.npm/_npx/17433/bin/yarn
 
 PATH: 
-  /home/max/.npm/_npx/21646/bin:/home/max/workspace/zwanzig-grad/node_modules/.bin:/home/max/.nvm/versions/node/v14.15.4/bin:/home/max/go/bin:/usr/local/opt/python/libexec/bin:/home/max/.local/bin:/home/max/.cargo/bin:/usr/local/sbin:/usr/local/bin:/home/max/bin:/run/wrappers/bin:/home/max/.nix-profile/bin:/etc/profiles/per-user/max/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/local/mysql/bin
+  /home/max/.npm/_npx/17433/bin:/home/max/workspace/zwanzig-grad/node_modules/.bin:/home/max/.nvm/versions/node/v14.15.4/bin:/home/max/go/bin:/usr/local/opt/python/libexec/bin:/home/max/.local/bin:/home/max/.cargo/bin:/usr/local/sbin:/usr/local/bin:/home/max/bin:/run/wrappers/bin:/home/max/.nix-profile/bin:/etc/profiles/per-user/max/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/local/mysql/bin
 
 Yarn version: 
   1.22.10
@@ -14,7 +14,8 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/max/workspace/zwanzig-grad/node_modules/@analytics'
+  Error: connect ENETUNREACH 104.16.22.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)
 
 npm manifest: 
   {
