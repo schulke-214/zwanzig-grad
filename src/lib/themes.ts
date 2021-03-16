@@ -47,6 +47,11 @@ export const DefaultTheme: Theme = {
 			instant: 0.1,
 			fast: 0.25,
 			smooth: 0.5
+		},
+		placeholder: {
+			speed: 2,
+			background: '#f3f3f3',
+			foreground: '#ecebeb'
 		}
 	},
 	layers: {

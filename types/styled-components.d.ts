@@ -47,6 +47,11 @@ declare module 'styled-components' {
 				fast: number;
 				smooth: number;
 			};
+			placeholder: {
+				speed: number;
+				background: string;
+				foreground: string;
+			};
 		};
 		layers: {
 			overlay: LayerConfiguration;
