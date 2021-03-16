@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import Picture from 'components/generic/Picture';
 
 import { Project as ProjectType, ProjectType as ProjectTypeEnum } from 'data/project';
 
@@ -23,7 +24,7 @@ const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = (props) => {
 	return (
 		<div className={className}>
 			<Link to={getProjectUrl(props)}>
-				<img src={tileImage.fluid.src} alt={tileImage.description} />
+				<Picture {...tileImage} isSlim />
 				<span>{projectNumber(nr)} – {title}</span>
 			</Link>
 		</div>
@@ -36,7 +37,7 @@ const ProjectTeaser = styled(UnstyledProjectTeaser)`
 		width: 100%;
 	}
 
-	img {
+	${Picture} {
 		margin-bottom: ${props => rem(props.theme.spacings.xsmall)};
 	}
 
