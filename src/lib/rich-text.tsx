@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+import Picture from 'components/generic/Picture';
+
 import { CMSRichText } from 'data/cms';
 
 import { getPageUrl } from 'lib/urls';
@@ -11,15 +13,14 @@ import { getPageUrl } from 'lib/urls';
 const options = {
 	renderNode: {
 		[BLOCKS.EMBEDDED_ASSET]: (node: any) => (
-			<p
+			<Picture
+				{...(node?.data?.target?.resolved || {})}
 				css={`
 					&:last-child {
 						margin-bottom: 0;
 					}
 				`}
-			>
-				<img alt={node?.data?.target?.resolved?.description?.de} src={`${node?.data?.target?.resolved?.responsive?.src}`} />
-			</p>
+			/>
 		),
 		[INLINES.ENTRY_HYPERLINK]: (node: any) => (
 			<Link
