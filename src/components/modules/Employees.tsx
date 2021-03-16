@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from 'react';
 import styled from 'styled-components';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import Picture from 'components/generic/Picture';
 import Title from 'components/modules/Title';
 
 import { Employee as EmployeeType } from 'data/employee';
@@ -9,18 +10,11 @@ import { Employee as EmployeeType } from 'data/employee';
 import { tablet, landscape } from 'lib/media';
 import { rem } from 'lib/polished';
 
-import { phoneNumber } from 'utils/format';
-
 
 const Employee: FunctionComponent<EmployeeType & { className?: string; }> = ({ className, firstName, lastName, portrait, phone, email }) => (
 	<li className={className}>
-		<picture>
-			<source srcSet={portrait.fixed.srcSet} media={tablet.replace('@media', '')} />
-			<img src={portrait.fixed.src} alt={`${firstName} ${lastName}`} />
-		</picture>
+		<Picture {...portrait} />
 		<h4>{firstName} {lastName}</h4><br />
-		<a href={`tel:${phone.replace(' ', '')}`} title={`Rufen Sie ${firstName} an und lassen Sie sich beraten!`}>{phoneNumber(phone)}</a><br />
-		<a href={`mailto:${email}`} title={`Schreiben Sie ${firstName} und lassen Sie sich beraten!`}>{email}</a>
 	</li>
 );
 
