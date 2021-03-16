@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
+import Picture from 'components/generic/Picture';
 import Text from 'components/modules/Text';
 import Title from 'components/modules/Title';
 
@@ -21,7 +22,7 @@ interface TeaserProps {
 const Teaser: FunctionComponent<TeaserProps> = ({ className, text, image }) => {
 	return (
 		<div className={className}>
-			<img src={image.responsive.src} alt={image.description} />
+			<Picture {...image} isCropped isSlim />
 			<Text {...text} isSmall />
 		</div>
 	);
@@ -31,7 +32,7 @@ const StyledTeaser = styled(Teaser)`
 	display: flex;
 	flex-direction: column;
 
-	> img {
+	> ${Picture} {
 		display: block;
 		width: 100%;
 		object-fit: cover;
@@ -88,7 +89,7 @@ export default styled(TeaserGroup)`
 				grid-column: auto / span 1;
 				grid-row: auto / span 3;
 
-				> img {
+				> ${Picture} {
 					height: ${props => rem(props.theme.spacings.xlarge * 4)};
 				}
 			}
@@ -114,7 +115,7 @@ export default styled(TeaserGroup)`
 				grid-column: auto / span 1;
 				grid-row: auto / span 4;
 
-				> img {
+				> ${Picture} {
 					height: ${props => rem(props.theme.spacings.xlarge * 10)};
 				}
 
@@ -126,7 +127,7 @@ export default styled(TeaserGroup)`
 			${tablet} {
 				grid-row: auto / span 6;
 
-				> img {
+				> ${Picture} {
 					height: ${props => rem(props.theme.spacings.xlarge * 12)};
 				}
 			}
@@ -137,7 +138,7 @@ export default styled(TeaserGroup)`
 				grid-column: auto / span 1;
 				grid-row: auto / span 3;
 
-				> img {
+				> ${Picture} {
 					height: ${props => rem(props.theme.spacings.xlarge * 8)};
 				}
 			}
@@ -145,11 +146,12 @@ export default styled(TeaserGroup)`
 			${tablet} {
 				flex-direction: row;
 
-				> img {
+				> ${Picture} {
 					width: 50%;
 				}
 
 				> div {
+					width: 50%;
 					margin-top: 0;
 					padding-left: ${props => rem(props.theme.spacings.large)};
 				}
@@ -160,6 +162,10 @@ export default styled(TeaserGroup)`
 			${landscape} {
 				grid-column: auto / span 1;
 				grid-row: auto / span 2;
+
+				> ${Picture} {
+					height: ${props => rem(props.theme.spacings.xlarge * 4)};
+				}
 			}
 
 			${tablet} {
@@ -168,7 +174,7 @@ export default styled(TeaserGroup)`
 
 				flex-direction: row-reverse;
 
-				> img {
+				> ${Picture} {
 					width: 66.66%;
 					height: ${props => rem(props.theme.spacings.xlarge * 6)};
 				}
