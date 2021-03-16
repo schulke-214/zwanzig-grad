@@ -2,14 +2,23 @@ import Typography from 'typography';
 import GithubTheme from 'typography-theme-github';
 
 
-GithubTheme.overrideThemeStyles = () => ({
+GithubTheme.overrideThemeStyles = ({ rhythm }: any) => ({
 	'h1, h2, h3, h4, h5, h6': {
+		marginTop: 0,
 		borderBottom: 0
+	},
+	'p': {
+		marginBottom: rhythm(1)
+	},
+	'picture': {
+		marginTop: rhythm(3/2),
+		marginBottom: rhythm(3/2)
 	}
 })
 
 const typography = new Typography({
 	...GithubTheme,
+	baseLineHeight: 1.8,
 	bodyColor: undefined,
 	headerColor: undefined,
 	headerFontFamily: ['Lucida Grande'],
