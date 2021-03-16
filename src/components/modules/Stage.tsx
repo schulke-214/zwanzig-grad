@@ -5,12 +5,13 @@ import { LayoutModuleStage } from 'data/layout';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 import TypeWriter from 'components/generic/TypeWriter';
+import Picture from 'components/generic/Picture';
 
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
 
 
-const StageBackground = styled.picture`
+const StageBackground = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -86,8 +87,9 @@ const Stage: FunctionComponent<StageProps> = ({ className, staticText, connectio
 					<span>{connection} <em><TypeWriter words={buzzWords} /></em></span>
 				</h1>
 				<StageBackground>
-					<source srcSet={background.responsive.srcSet} media={tablet.replace('@media', '')} />
-					<img src={background.responsive.src} alt={background.description} /> 
+					<Picture {...background} isCropped isSlim />
+					{/* <source srcSet={background.responsive.srcSet} media={tablet.replace('@media', '')} />
+					<img src={background.responsive.src} alt={background.description} />  */}
 				</StageBackground>
 			</StageContent>
 			<StageSpacer />
