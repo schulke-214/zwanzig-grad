@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import { useMedia } from 'react-use';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 import Picture from 'components/generic/Picture';
@@ -61,6 +62,7 @@ interface ProjectsProps {
 }
 
 const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
+	const isLandscape = useMedia(landscape.replace('@media ', ''));
 	const data = useStaticQuery(
 		graphql`
 			query Projekte {
@@ -81,6 +83,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 
 	const left = projects.filter((_, index) => !(index % 2));
 	const right = projects.filter((_, index) => index % 2);
+
 	const renderProject = (project: ProjectType) => (
 		<ProjectTeaser
 			{...project}
@@ -89,15 +92,13 @@ const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 	);
 
 	return (
-		<ModuleContainer>
-			<div className={className}>
-				<div>
-					{left.map(renderProject)}
-				</div>
-				<div>
-					{right.map(renderProject)}
-				</div>
-			</div>
+		<ModuleContainer className={className}>
+			{ isLandscape ? (
+				<>
+					<div>{left.map(renderProject)}</div>
+					<div>{right.map(renderProject)}</div>
+				</>
+			) : (<div>{projects.map(renderProject)}</div>)}
 		</ModuleContainer>
 	);
 };
@@ -105,6 +106,10 @@ const Projects: FunctionComponent<ProjectsProps> = ({ className, type }) => {
 export default styled(Projects)`
 	display: flex;
 	flex-direction: column;
+
+	${landscape} {
+		flex-direction: row;
+	}
 
 	> div {
 		display: block;
@@ -121,9 +126,5 @@ export default styled(Projects)`
 
 			width: 50%;
 		}
-	}
-
-	${landscape} {
-		flex-direction: row;
 	}
 `;
