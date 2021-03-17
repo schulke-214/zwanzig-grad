@@ -38,7 +38,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 								lon
 							}
 							sharingImage {
-								fixed(toFormat: JPG, quality: 8) {
+								fixed(toFormat: JPG, quality: 80) {
 									src
 								}
 							}
