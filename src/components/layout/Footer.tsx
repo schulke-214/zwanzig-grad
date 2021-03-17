@@ -103,6 +103,7 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 				config: allContentfulMetaLegalConfiguration {
 					edges {
 						node {
+							title
 							imprint {
 								...NavigationLink
 							}
@@ -116,18 +117,18 @@ const Footer: FunctionComponent<FooterProps> = ({}) => {
 		`
 	);
 
-	const { imprint, dataPrivacy, additionalLinks = [] } = data.config.edges[0].node;
+	const { title, imprint, dataPrivacy, additionalLinks = [] } = data.config.edges[0].node;
 	const links: NavigationLink[] = [imprint, dataPrivacy, ...additionalLinks];
 	const cookies = useCookies();
 
 	return (
 		<FooterContainer>
 			<FooterContent>
-				<ContactHeader>
-					<ChapterHeadline>
-						Kontakieren Sie uns
-					</ChapterHeadline>
-				</ContactHeader>
+				{ title && (
+					<ContactHeader>
+						<ChapterHeadline>{title}</ChapterHeadline>
+					</ContactHeader>
+				)}
 				<ContactData>
 					<ContactDataItem>
 						<strong>Übersicht</strong>
