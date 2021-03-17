@@ -1,13 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 
-import { rem, transparentize } from 'lib/polished';
-
 import Navigation from 'components/layout/Navigation';
 import MenuIcon from 'components/layout/MenuIcon';
 import Logo from 'components/generic/Logo';
 
 import { useScrollData } from 'hooks/use-scroll-data';
+
+import { rem, transparentize } from 'lib/polished';
+import { tablet } from 'lib/media';
 
 
 const HeaderContainer = styled.header`
@@ -19,6 +20,10 @@ const HeaderContainer = styled.header`
 	left: 0;
 	z-index: ${props => props.theme.layers.default.foreground};
 	padding: ${props => rem(props.theme.spacings.medium)};
+
+	${tablet} {
+		padding: ${props => rem(props.theme.spacings.medium)} ${props => rem(props.theme.spacings.large)};
+	}
 
 	&::after {
 		content: '';
