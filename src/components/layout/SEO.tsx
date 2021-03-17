@@ -51,8 +51,8 @@ const SEO: FunctionComponent<SEOProps> = ({
 
 	const config = query.seoConfig.edges[0].node;
 
-	const descr: string = description ?? config.description;
-	const preview: string = image ?? config.sharingImage.src;
+	const descr: string = description || config.description;
+	const preview: string = image || config.sharingImage.fixed.src;
 	const url: string = `${config.domain}/${slug ?? ''}`;
 
 	return (
