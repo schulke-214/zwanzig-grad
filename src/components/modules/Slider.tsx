@@ -39,7 +39,7 @@ const Slider: FunctionComponent<SliderProps> = ({ className, images }) => {
 	const theme = useContext(ThemeContext);
 
 	const settings = {
-		loopedSlides: 2,
+		loopedSlides: images.length,
 		loop: true,
 		slidesPerView: 'auto' as any,
 		slideToClickedSlide: true,
