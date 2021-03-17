@@ -14,6 +14,7 @@ import { Project as ProjectType } from 'data/project';
 import { intoPlainText } from 'lib/rich-text';
 import { rem } from 'lib/polished';
 import { tablet } from 'lib/media';
+import { getProjectUrl } from 'lib/urls';
 
 import { shorten } from 'utils/shorten';
 import { projectNumber } from 'utils/format';
@@ -62,8 +63,9 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 		<Layout>
 			<SEO
 				title={project.title}
-				slug={project.slug}
+				slug={getProjectUrl(project)}
 				description={shorten(intoPlainText(project.description), 255)}
+				image={project.tileImage.fluid.src}
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />

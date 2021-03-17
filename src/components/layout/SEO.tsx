@@ -53,7 +53,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 
 	const descr: string = description || config.description;
 	const preview: string = image || config.sharingImage.fixed.src;
-	const url: string = `${config.domain}/${slug ?? ''}`;
+	const url: string = `${config.domain}/${(slug.startsWith('/') ? slug.substr(1) : slug) ?? ''}`;
 
 	return (
 		<Helmet
