@@ -21,7 +21,11 @@ import { projectNumber } from 'utils/format';
 
 const ProjectMeta = styled.div`
 	display: flex;
-	margin-bottom: ${props => rem(props.theme.spacings.medium)};
+	margin-bottom: ${props => rem(props.theme.spacings.medium)} !important;
+
+	${tablet} {
+		margin-bottom: ${props => rem(props.theme.spacings.large)} !important;
+	}
 
 	> div:not(:last-child) {
 		margin-right: ${props => rem(props.theme.spacings.large)};
@@ -34,22 +38,15 @@ const ProjectMetaItemName = styled.p`
 	margin-bottom: ${props => rem(props.theme.spacings.small)};
 `;
 
-const ProjectMetaItemValue = styled.p``;
+const ProjectMetaItemValue = styled.p`
+	margin-bottom: 0;
+`;
 
 const ProjectContentContainer = styled(ModuleContainer)`
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
 	max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
-
-
-	${ModuleContainer} {
-		margin-bottom: inherit;
-
-		${tablet} {
-			margin-bottom: 0;
-		}
-	}
 `;
 
 interface ProjectProps {
