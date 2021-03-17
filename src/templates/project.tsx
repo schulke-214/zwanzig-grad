@@ -21,10 +21,10 @@ import { projectNumber } from 'utils/format';
 
 const ProjectMeta = styled.div`
 	display: flex;
-	flex-direction: column;
+	margin-bottom: ${props => rem(props.theme.spacings.medium)};
 
-	${tablet} {
-		padding-left: ${props => rem(props.theme.spacings.xlarge)};
+	> div:not(:last-child) {
+		margin-right: ${props => rem(props.theme.spacings.large)};
 	}
 `;
 
@@ -34,30 +34,20 @@ const ProjectMetaItemName = styled.p`
 	margin-bottom: ${props => rem(props.theme.spacings.small)};
 `;
 
-const ProjectMetaItemValue = styled.p`
-	margin-bottom: ${props => rem(props.theme.spacings.medium)};
-`;
+const ProjectMetaItemValue = styled.p``;
 
 const ProjectContentContainer = styled(ModuleContainer)`
 	display: flex;
 	flex-direction: column;
+	margin: 0 auto;
+	max-width: ${props => rem(props.theme.layout.maxWidth - props.theme.spacings.xlarge * 8)};
 
-	${tablet} {
-		flex-direction: row;
-	}
 
 	${ModuleContainer} {
 		margin-bottom: inherit;
 
 		${tablet} {
 			margin-bottom: 0;
-			flex: 1 1 100%;
-		}
-	}
-
-	${ProjectMeta} {
-		${tablet} {
-			flex: 1 1 ${props => rem(props.theme.layout.maxWidth / 4)};
 		}
 	}
 `;
@@ -80,15 +70,19 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />
-			<h1>{projectNumber(project.nr)} | {project.title}</h1>
 			<ProjectContentContainer>
-				<Text text={project.description} />
+				<h1>{projectNumber(project.nr)} | {project.title}</h1>
 				<ProjectMeta>
-					<ProjectMetaItemName>Ort</ProjectMetaItemName>
-					<ProjectMetaItemValue>{project.location}</ProjectMetaItemValue>
-					<ProjectMetaItemName>Jahr</ProjectMetaItemName>
-					<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
+					<div>
+						<ProjectMetaItemName>Ort</ProjectMetaItemName>
+						<ProjectMetaItemValue>{project.location}</ProjectMetaItemValue>
+					</div>
+					<div>
+						<ProjectMetaItemName>Jahr</ProjectMetaItemName>
+						<ProjectMetaItemValue>{project.year}</ProjectMetaItemValue>
+					</div>
 				</ProjectMeta>
+				<Text text={project.description} />
 			</ProjectContentContainer>
 		</Layout>
 	);
