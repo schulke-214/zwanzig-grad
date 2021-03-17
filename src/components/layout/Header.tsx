@@ -55,7 +55,7 @@ const Header: FunctionComponent<HeaderProps> = ({}) => {
 	const toggleOpen = () => setOpen(o => !o);
 	const close = () => setOpen(false);
 
-	const hidden = y > 150 && deltaY > 0 && deltaY !== y;
+	const hidden = y > 100 && deltaY > 0 && deltaY !== y;
 
 	return (
 		<HeaderContainer
