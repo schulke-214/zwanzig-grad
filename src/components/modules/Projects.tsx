@@ -25,7 +25,7 @@ const UnstyledProjectTeaser: FunctionComponent<ProjectProps> = (props) => {
 		<div className={className}>
 			<Link to={getProjectUrl(props)}>
 				<Picture {...tileImage} isSlim />
-				<span>{projectNumber(nr)} – {title}</span>
+				<span>{projectNumber(nr)} | {title}</span>
 			</Link>
 		</div>
 	);

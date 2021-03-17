@@ -80,7 +80,7 @@ const Project: FunctionComponent<ProjectProps> = ({ data }) => {
 				keywords={project.material}
 			/>
 			<Slider images={project.images} showTitle={false} title="" />
-			<h1>{projectNumber(project.nr)} – {project.title}</h1>
+			<h1>{projectNumber(project.nr)} | {project.title}</h1>
 			<ProjectContentContainer>
 				<Text text={project.description} />
 				<ProjectMeta>
