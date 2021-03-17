@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components';
+import { useMedia } from 'react-use';
 
 import ModuleContainer from 'components/generic/ModuleContainer';
 import Picture from 'components/generic/Picture';
@@ -20,9 +21,11 @@ interface TeaserProps {
 }
 
 const Teaser: FunctionComponent<TeaserProps> = ({ className, text, image }) => {
+	const isLandscape = useMedia(landscape.replace('@media ', ''));
+
 	return (
 		<div className={className}>
-			<Picture {...image} isCropped isSlim />
+			<Picture {...image} isCropped={isLandscape} isSlim />
 			<Text {...text} isSmall />
 		</div>
 	);
