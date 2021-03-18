@@ -124,7 +124,6 @@ const SEO: FunctionComponent<SEOProps> = ({
 				...meta
 			]}
 		>
-			<link rel="preload" href="/static/fonts/lucida-grande-subset.woff2" as="font" />
 			<script type="application/ld+json">
 				{JSON.stringify({
 					'@context': 'https://schema.org',
