@@ -21,8 +21,8 @@ const typography = new Typography({
 	baseLineHeight: 1.8,
 	bodyColor: undefined,
 	headerColor: undefined,
-	headerFontFamily: ['Lucida Grande'],
-	bodyFontFamily: ['Lucida Grande']
+	headerFontFamily: ['Lucida Grande', 'sans-serif'],
+	bodyFontFamily: ['Lucida Grande', 'sans-serif']
 });
 
 // Hot reload typography in development.
