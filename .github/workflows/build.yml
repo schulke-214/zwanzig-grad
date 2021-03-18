@@ -5,12 +5,14 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+      CONTENTFUL_DELIVERY_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_DELIVERY_ACCESS_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-
       - name: Build
         run: |
           npm install
