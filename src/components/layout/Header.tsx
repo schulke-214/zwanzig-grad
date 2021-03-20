@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Navigation from 'components/layout/Navigation';
 import MenuIcon from 'components/layout/MenuIcon';
@@ -11,7 +11,7 @@ import { rem, transparentize } from 'lib/polished';
 import { tablet } from 'lib/media';
 
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header<{ open: boolean; }>`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -35,6 +35,14 @@ const HeaderContainer = styled.header`
 		width: 100%;
 		height: 100%;
 		background-color: ${props => transparentize(0.2, props.theme.colors.background)};
+
+		${props => props.open && css`
+			display: none;
+
+			${tablet} {
+				padding: block;
+			}
+		`}
 	}
 
 	ul {
@@ -59,6 +67,7 @@ const Header: FunctionComponent<HeaderProps> = ({}) => {
 
 	return (
 		<HeaderContainer
+			open={open}
 			css={`
 				${hidden ? `transform: translateY(-100%);` : ''}
 				transition: transform ${(props: any) => props.theme.animation.duration.smooth}s ease-out;
