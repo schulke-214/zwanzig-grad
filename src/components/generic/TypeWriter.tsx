@@ -14,9 +14,9 @@ const TypeWriter: FunctionComponent<TypeWriterProps> = ({ words }) => {
 
 	useEffect(() => {
 		let pos = 0;
-		let timeout: number;
+		let timeout: any;
 
-		const word = words[current] + '.';
+		const word = words[current];
 		const interval = setInterval(() => {
 			const nextWord = () => {
 				timeout = setTimeout(() => {
