@@ -79,7 +79,24 @@ export const Layout = graphql`
 		text {
 			raw
 			references {
-				...CMSImage
+				__typename
+				... on ContentfulAsset {
+					...CMSImage
+				}
+				... on ContentfulMetaLegalKontakt {
+					city
+					contentful_id
+					email
+					fax
+					houseNumber
+					landline
+					legalName
+					mobile
+					name
+					owner
+					postalCode
+					street
+				}
 			}
 		}
 	}
