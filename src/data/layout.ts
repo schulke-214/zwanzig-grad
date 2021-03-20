@@ -40,12 +40,7 @@ export type LayoutModuleFacts = CMSContentModule & {
 	headline: string;
 	facts: [{
 		id: string;
-		icon: {
-			description: string;
-			file: {
-				url: string;
-			};
-		};
+		icon: CMSResponsiveImage;
 		description: CMSRichText;
 	}];
 };
@@ -131,10 +126,7 @@ export const Layout = graphql`
 		facts {
 			id
 			icon {
-				description
-				file {
-					url
-				}
+				...CMSImage
 			}
 			description {
 				raw
