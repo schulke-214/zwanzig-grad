@@ -55,6 +55,12 @@ export default styled(Text)`
 		object-fit: cover;
 	}
 
+	li > p {
+		display: block;
+		margin-left: 1.5em;
+		margin-top: -1.7em;
+	}
+
 	> *::last-child {
 		margin-bottom: 0;
 	}
